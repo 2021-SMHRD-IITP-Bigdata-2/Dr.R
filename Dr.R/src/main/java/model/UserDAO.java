@@ -27,14 +27,14 @@ public class UserDAO {
 			String password = "smhrd3";
 
 			conn = DriverManager.getConnection(url, user, password);
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return conn;
-		
+
 	}
 
 	public void close() {
@@ -52,33 +52,33 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public UserDTO user_login(String u_id, String u_pw) {
-		
+
 		UserDTO user = null;
-		
+
 		try {
 			connection();
-			
+
 			// 쿼리문 실행
 			String sql = "select u_email, u_name, u_sex from USERS where u_id=? and u_pw=?";
-			
+
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, u_id);
 			psmt.setString(2, u_pw);
-			
+
 			// DB에서 조회된 데이터를 rs객체에 저장
 			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				String getEmail = rs.getString(1);
 				String getName = rs.getString(2);
 				int getSex = rs.getInt(3);
-				
-				//회원정보를 저장할 수 있는 객체 생성
+
+				// 회원정보를 저장할 수 있는 객체 생성
 				user = new UserDTO(u_id, u_pw, getEmail, getName, getSex);
-				
-			}else {
+
+			} else {
 				System.out.println("정보 조회 실패");
 			}
 		} catch (SQLException e) {
@@ -86,14 +86,105 @@ public class UserDAO {
 		} finally {
 			close();
 		}
-		
+
 		return user;
 	}
 
+	public int confirmID(String userid) {
+		int cnt = -1;
+		String sql = "select U_ID from USERS where U_ID=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		try {
+			conn = connection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				cnt = 1;
+				// 아이디가 중복되는 경우 1저장
+			} else {
+				cnt = -1;
+				// 사용가능한 아이디인 경우 -1저장
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-	
-	
+		return cnt;
+		// 중복되면 1출력
+		// 중복안되면 -1출력 = 사용가능한 경우
+	}
+
+	public int confirmEmail(String useremail) {
+		int cnt = -1;
+		String sql = "select U_EMAIL from USERS where U_EMAIL=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = connection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, useremail);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				cnt = 1;
+				// 아이디가 중복되는 경우 1저장
+			} else {
+				cnt = -1;
+				// 사용가능한 아이디인 경우 -1저장
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return cnt;
+		// 중복되면 1출력
+		// 중복안되면 -1출력 = 사용가능한 경우
+	}
+
+	public int insertUser(UserDTO uDto) {
+		int cnt = -1;
+		// 아이디, 비밀번호, 이메일, 닉네임, 성별
+
+		try {
+			conn = connection();
+
+			String sql = "insert into USERS values(?, ?, ?, ?, ?)";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, uDto.getU_id());
+			psmt.setString(2, uDto.getU_pw());
+			psmt.setString(3, uDto.getU_email());
+			psmt.setString(4, uDto.getU_name());
+			psmt.setInt(5, uDto.getU_sex()); // 남자면 1 여자면 0
+
+			cnt = psmt.executeUpdate();
+			// 재대로 됬으면 값 result == 1
+			// 아니면 -1
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return cnt;
+	}
+
 }
-
-
