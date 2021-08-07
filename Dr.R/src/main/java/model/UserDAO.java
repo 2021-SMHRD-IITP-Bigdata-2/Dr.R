@@ -15,8 +15,9 @@ public class UserDAO {
 	private int cnt;
 
 	// 데이터베이스 연동기능, 종료기능
-	public void connection() {
+	public Connection connection() {
 		try {
+			conn = null;
 			// 1.오라클 드라이버 동적 로딩 = 실행할때 찾아간다는 뜻
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -31,7 +32,8 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return conn;
+		
 	}
 
 	public void close() {
@@ -50,4 +52,9 @@ public class UserDAO {
 		}
 	}
 
+
+	
+	
 }
+
+
