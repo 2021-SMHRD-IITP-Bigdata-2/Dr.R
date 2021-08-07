@@ -22,11 +22,12 @@ public class UserDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2.데이터베이스 연동
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String password = "hr";
+			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String user = "cgi_3_3";
+			String password = "smhrd3";
 
 			conn = DriverManager.getConnection(url, user, password);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -51,6 +52,44 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public UserDTO user_login(String u_id, String u_pw) {
+		
+		UserDTO user = null;
+		
+		try {
+			connection();
+			
+			// 쿼리문 실행
+			String sql = "select u_email, u_name, u_sex from USERS where u_id=? and u_pw=?";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, u_id);
+			psmt.setString(2, u_pw);
+			
+			// DB에서 조회된 데이터를 rs객체에 저장
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				String getEmail = rs.getString(1);
+				String getName = rs.getString(2);
+				int getSex = rs.getInt(3);
+				
+				//회원정보를 저장할 수 있는 객체 생성
+				user = new UserDTO(u_id, u_pw, getEmail, getName, getSex);
+				
+			}else {
+				System.out.println("정보 조회 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return user;
+	}
+
 
 
 	
