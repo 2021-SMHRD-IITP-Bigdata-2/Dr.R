@@ -53,6 +53,119 @@ public class UserDAO {
 		}
 	}
 
+	   // 회원 정보 수정
+	   public int User_update(UserDTO update_User) {
+
+	      try {
+	         connection();
+	         
+	         // 3. 쿼리문 실행
+	         String sql = "update Users "
+	               + "set U_name=?, U_pw=?"
+	               + "where m_email=?";
+	         
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, update_User.getU_name());
+	         psmt.setString(2, update_User.getU_pw());
+	         
+	         cnt = psmt.executeUpdate(); 
+	      
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally { // 무조건적으로 실행되는 finally
+	         close();
+	      }// end finally
+	      return cnt;
+	   }
+
+	   // 질병 수정
+	   public int Disease_update(DiseaseDTO update_Disease) {
+	      
+	      try {
+	         connection();
+	         
+	         String sql = "update Disease "
+	               + "set dis_dang=?, dis_go=?,"
+	               + "dis_we=?, dis_ho=?, dis_no=?";
+	         
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, update_Disease.getDis_dang());
+	         psmt.setString(2, update_Disease.getDis_go());
+	         psmt.setString(3, update_Disease.getDis_we());
+	         psmt.setString(4, update_Disease.getDis_ho());
+	         psmt.setInt(5, update_Disease.getDis_no());
+	         
+	         cnt = psmt.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close();
+	      }
+	      return cnt;
+	   }
+
+
+	   
+	   // 회원 탈퇴
+	   public int User_delete(String u_id, String u_pw, String u_email, String u_name, int u_sex) {
+	      try {
+	         connection();
+	               
+	         String sql = "delete from Users where u_id =?";
+	         
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, u_id);
+	         cnt = psmt.executeUpdate();
+	      
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	         System.out.println("User_delete err:" + e);
+	         e.printStackTrace();
+	      } finally {
+
+	         close();
+	            
+	         }
+	      
+	      
+	      return cnt;
+	   }
+
+	   // 회원 탈퇴 비밀번호 확인
+	   public int User_delete_check(String id, String pw) {
+	      try {
+	         connection();
+	         
+	         String sql = "select u_pw from Users where u_id =?";
+	         
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, id);
+	         rs = psmt.executeQuery();
+	         
+	         // 비번 일치
+	         if (rs.next()) {
+	            String u_pw = rs.getString(1);
+	            if(u_pw.equals(pw))
+	               cnt = 1;
+	         
+	            // 비번 불일치
+	         }else {
+	            cnt = 0;
+	            System.out.println("비밀번호 불일치");
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	         System.out.println("User_delete_check err:" + e);
+	         e.printStackTrace();
+	      } finally {
+
+	         close();
+	            
+	         }
+	      return cnt;
+	   }
 	public UserDTO user_login(String u_id, String u_pw) {
 
 		UserDTO user = null;

@@ -18,22 +18,21 @@ h4{
 }
 </style>
 
-  </head>
-
+</head>
 
 <body width="100%" height="100%">
-  
+
   <form action="member_info_change2.html" method="post" class="loginForm">
     <br>
     <a href="member_info.html" >
         <span class="backspace"> < </span>
       </a>
 
-    <h4 align="center">본인환인을 위해 <br>비밀번호를 입력해주세요.</h4>
+    <h4 align="center">본인확인을 위해 <br>비밀번호를 입력해주세요.</h4>
 
         <div class="idForm" align="center">
 
-          <input type="password" class="id" placeholder="  비밀번호 입력" style="margin-top: 15%;">
+          <input type="password" name="pw" class="id" placeholder="  비밀번호 입력" style="margin-top: 15%;">
           <input type="submit" class="btn3" style="margin-top: 20%;"  value="확인">
           </div>
         </form>
