@@ -35,12 +35,18 @@ h4{
 
 </style>
 
-  </head>
+
+
+</head>
 
 
 <body width="100%" height="100%">
   
-  <form action="info2.html" method="post" class="info2Form">
+  
+  
+  
+  
+  <form action="DeleteCon" method="post" class="info2Form">
     <br>
     <a href="index.html" >
         <span class="backspace"> < </span>
@@ -55,7 +61,9 @@ h4{
 
         <div class="idForm" align="center">
 
-          <input type="password" class="id" placeholder="  비밀번호 입력" style="margin-top: 10%;">
+          <input type="password" class="id" placeholder="  비밀번호 입력" style="margin-top: 10%;" name="pw">
+          
+          
           <input type="submit" class="btn3" style="margin-top: 10%;"  value="확인">
           </div>
         </form>

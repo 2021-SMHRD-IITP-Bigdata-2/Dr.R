@@ -8,7 +8,6 @@ public class UserDTO {
 	private int u_sex;
 	
 	public UserDTO(String u_id, String u_pw, String u_email, String u_name, int u_sex) {
-		super();
 		this.u_id = u_id;
 		this.u_pw = u_pw;
 		this.u_email = u_email;
