@@ -21,11 +21,12 @@ public class UserDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2.데이터베이스 연동
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String password = "hr";
+			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String user = "cgi_3_3";
+			String password = "smhrd3";
 
 			conn = DriverManager.getConnection(url, user, password);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
