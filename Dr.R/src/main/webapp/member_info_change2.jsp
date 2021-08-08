@@ -69,7 +69,11 @@ td{
           <div align="center" class="tdiv">
             <table style="margin-top: 8%;">
               <tr class="checkbox" align="left">
-                <td class="td_font_size"><label><input type="checkbox" name="dis_dang" vlaue="´ç´¢"><span style="margin-left:8px;">´ç´¢</span></label></td>
+              <% if (User.getU_dang()==1){ %>
+              <td class="td_font_size"><label><input type="checkbox" name="dis_dang" value="´ç´¢" checked><span style="margin-left:8px;">´ç´¢</span></label></td>
+              <% } else { %>
+                <td class="td_font_size"><label><input type="checkbox" name="dis_dang" value="´ç´¢"><span style="margin-left:8px;">´ç´¢</span></label></td>
+              <% } %>
                 <td><label><input type="checkbox" name="dis_go" value="°íÇ÷¾Ð"><span style="margin-left:8px;">°íÇ÷¾Ð</span></label></td>
               </tr>
               <tr class="checkbox" align="left">

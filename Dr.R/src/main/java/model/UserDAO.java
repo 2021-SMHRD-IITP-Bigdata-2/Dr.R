@@ -174,7 +174,7 @@ public class UserDAO {
 			connection();
 
 			// 쿼리문 실행
-			String sql = "select u_email, u_name, u_sex from USERS where u_id=? and u_pw=?";
+			String sql = "select u_email, u_name, u_sex, u_dang, u_go, u_we, u_ho, u_no from USERS where u_id=? and u_pw=?";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, u_id);
@@ -187,9 +187,14 @@ public class UserDAO {
 				String getEmail = rs.getString(1);
 				String getName = rs.getString(2);
 				int getSex = rs.getInt(3);
+				int getDang = rs.getInt(4);
+				int getGo = rs.getInt(5);
+				int getWe = rs.getInt(6);
+				int getHo = rs.getInt(7);
+				int getNo = rs.getInt(8);
 
 				// 회원정보를 저장할 수 있는 객체 생성
-				user = new UserDTO(u_id, u_pw, getEmail, getName, getSex);
+				user = new UserDTO(u_id, u_pw, getEmail, getName, getSex, getDang, getGo, getWe, getHo, getNo);
 
 			} else {
 				System.out.println("정보 조회 실패");
