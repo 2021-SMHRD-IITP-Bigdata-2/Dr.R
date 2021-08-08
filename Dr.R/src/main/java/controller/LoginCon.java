@@ -30,9 +30,9 @@ public class LoginCon extends HttpServlet {
 			// 로그인 성공 후 이동페이지
 			response.sendRedirect("main.jsp");
 		}else {
-			System.out.println("login.html");
+			System.out.println("실패");
 			// 로그인 실패 후 이동페이지
-			response.sendRedirect("");
+			response.sendRedirect("login.html");
 		}
 	}
 
