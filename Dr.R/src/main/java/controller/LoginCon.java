@@ -28,7 +28,7 @@ public class LoginCon extends HttpServlet {
 			session.setAttribute("login_User", user);
 			
 			// 로그인 성공 후 이동페이지
-			response.sendRedirect("join1.html");
+			response.sendRedirect("member_dele.jsp");
 		}else {
 			System.out.println("join2.html");
 			// 로그인 실패 후 이동페이지

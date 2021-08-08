@@ -15,6 +15,11 @@ public class UserDTO {
 		this.u_sex = u_sex;
 	}
 	
+	public UserDTO(String id, String pw) {
+		this.u_id = u_id;
+		this.u_pw = u_pw;
+	}
+
 	public String getU_id() {
 		return u_id;
 	}
