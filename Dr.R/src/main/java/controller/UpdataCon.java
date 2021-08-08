@@ -52,7 +52,7 @@ public class UpdataCon extends HttpServlet {
 			response.sendRedirect("join1.html");
 		}
 		else {
-			response.sendRedirect("member_info_change1.jsp");
+			response.sendRedirect("member_info_change2.jsp");
 		}
 		
 

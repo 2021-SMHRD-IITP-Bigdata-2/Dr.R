@@ -66,11 +66,13 @@ background-color: lightgrey;
     </div>
     <div>
       <div class="textform">
-        <div>
-          <input type="text" name="id" class="id input1" placeholder="  ID 입력">
-          <button class="btn4" onclick="">중복체크</button>
-          <span class="check">체크결과</span>
-        </div> 
+      	<form action="idCheckCon" method="post">
+	        <div>
+	          <input type="text" name="id" class="id input1" placeholder="  ID 입력">
+	          <input type="submit" value="중복체크" class="btn4" onclick=""></input>
+	          <span class="check">체크결과</span>
+	        </div> 
+		</form>
 
         <div>
           <input type="text" name="email" class="id input1 next" placeholder="  이메일 입력">

@@ -14,6 +14,7 @@ body {
     background-color: #ebebeb;
 }
 
+
 .mainDr_R{
   color: rgb(56, 56, 56);
   margin-top:80px;
@@ -79,7 +80,7 @@ body {
   height:500px;
   padding: 30px, 20px;
   background-color:#ffffff;
-  top:50%;
+  top:40%;
   left:50%;
   transform: translate(-50%,-50%);
   border-radius: 10px;
