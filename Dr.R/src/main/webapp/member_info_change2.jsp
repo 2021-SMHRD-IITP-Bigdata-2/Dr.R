@@ -23,7 +23,7 @@ h4{
 
 .font_{
   margin-left: 7%;
-  margin-top: 10%;
+  margin-top: 15%;
   margin-bottom: 2%;
   font-size: 14px;
   font-weight: 600;
@@ -57,14 +57,14 @@ td{
 
         <div class="idForm" align="center">
 
-          <div class="font_" align="left">닉네임</div>
-          <input type="text" class="id" placeholder="<%-- <%= User.getU_name()%> --%>sd" name="name">
+          <div class="font_" align="left">닉네임 : <%= User.getU_name()%> </div>
+          <input type="text" class="id" placeholder="닉네임 입력" name="name" >
         
           <div class="font_" align="left">비밀번호 입력</div>
-          <input type="text" class="id" placeholder="  비밀번호 입력" name="pw">
+          <input type="password" class="id" placeholder="  비밀번호 입력" name="pw" id="pw">
 
-          <div class="font_" align="left">비밀번호 재입력</div>
-          <input type="text" class="id" placeholder="  비밀번호 재입력" name="pw_check">
+<!--           <div class="font_" align="left">비밀번호 재입력</div>
+          <input type="password" class="id" placeholder="  비밀번호 재입력" name="pw_check" id="pw_check"> -->
 
           <div align="center" class="tdiv">
             <table style="margin-top: 8%;">
@@ -86,25 +86,6 @@ td{
           </div>
           <input type="submit" class="btn3" style="margin-bottom: 90%; margin-top: 7%;"  value="확인">
           </div>
-
-<!-- 테스트용 시작 --> 
-<!--            <div align="center" class="tdiv">
-            <table style="margin-top: 8%;">
-              <tr class="checkbox" align="left">
-                <td class="td_font_size"><label><input type="checkbox" name="disease" value="당뇨"><span style="margin-left:8px;">당뇨</span></label></td>
-                <td><label><input type="checkbox" name="disease" value="고혈압"><span style="margin-left:8px;">고혈압</span></label></td>
-              </tr>
-              <tr class="checkbox" align="left">
-                <td><label><input type="checkbox" name="disease" value="위장"><span style="margin-left:8px;">위장</span></label></td>
-                <td><label><input type="checkbox" name="disease" value="호흡기"><span style="margin-left:8px;">호흡기</span></label></td>
-              </tr>
-              <tr class="checkbox" align="left">
-                <td><label><input type="checkbox" name="disease" value="1"><span style="margin-left:8px;">해당없음</span></label></td>
-            </table>
-          </div>
-          <input type="submit" class="btn3" style="margin-bottom: 90%; margin-top: 7%;"  value="확인">
-          </div> -->
-<!-- 테스트용 종료 --> 
 
           
         </form>

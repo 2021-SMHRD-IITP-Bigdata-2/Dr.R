@@ -22,7 +22,7 @@ h4{
 
 <body width="100%" height="100%">
 
-  <form action="member_info_change2.html" method="post" class="loginForm">
+  <form action="UpdataConCheck" method="post" class="loginForm">
     <br>
     <a href="member_info.html" >
         <span class="backspace"> < </span>

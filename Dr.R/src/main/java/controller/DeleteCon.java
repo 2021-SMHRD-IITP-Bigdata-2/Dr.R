@@ -31,10 +31,11 @@ public class DeleteCon extends HttpServlet {
 		int cnt1 = dao.User_delete_check(u_id, u_pw);
 		
 			if (cnt1 > 0) {
-				int cnt2 = dao.User_delete(u_id, u_pw, u_email, u_name, u_sex);
+				int cnt2 = dao.User_delete(u_id);
 
 				if (cnt2 > 0) {
 					response.sendRedirect("login.html");
+					session.removeAttribute("login_User");
 					System.out.println("È¸¿ø Å»Åð ¿Ï·á!");
 				} else {
 					response.sendRedirect("member_dele.jsp");
