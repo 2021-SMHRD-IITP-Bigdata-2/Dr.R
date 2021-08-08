@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 페이지 2</title>
+  <title>회원가입 페이지 1</title>
   <link rel="stylesheet" href="Handmade.css">
 
   <style>
@@ -19,7 +19,7 @@
     }
 
     .next {
-      margin-top: 20px;
+      margin-top: 15px;
     }
 
     .butn {
@@ -44,6 +44,12 @@ background-color: lightgrey;
       font-size: 12px;
 }
 
+.check{
+  margin-left: 30px;
+  font-size: 13px;
+  color: blue;
+}
+
   </style>
 
 </head>
@@ -63,11 +69,13 @@ background-color: lightgrey;
         <div>
           <input type="text" name="id" class="id input1" placeholder="  ID 입력">
           <button class="btn4" onclick="">중복체크</button>
-        </div>
+          <span class="check">체크결과</span>
+        </div> 
 
         <div>
           <input type="text" name="email" class="id input1 next" placeholder="  이메일 입력">
-          <button class="btn4" onclick="" style="margin-top:20px" >중복체크</button>
+          <button class="btn4" onclick="" style="margin-top:15px">중복체크</button>
+          <span class="check">체크결과</span>
         </div>
 
         <input type="password" name="pw" class="id2 input next" placeholder="  비밀번호 입력">
