@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.DiseaseDTO;
 import model.UserDAO;
 import model.UserDTO;
 
@@ -16,14 +15,6 @@ import model.UserDTO;
 public class UpdataCon extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// 테스트용 시작
-//		String[] disease = request.getParameterValues("disease");
-//		
-//		for (int i = 0; i < disease.length; i++) {
-//			System.out.println(disease[i]+"  ");
-//		}
-		// 테스트용 종료
 
 		request.setCharacterEncoding("EUC-KR");
 		HttpSession session = request.getSession();
@@ -35,36 +26,35 @@ public class UpdataCon extends HttpServlet {
 		String u_name = request.getParameter("name");
 		String u_email = User.getU_email();
 		int u_sex = User.getU_sex();
-
-		UserDTO update_User = new UserDTO(u_id, u_pw, u_email, u_name, u_sex);
+		int u_dang = 0;
+		int u_go = 0;
+		int u_we = 0;
+		int u_ho = 0;
+		int u_no = 0;
+		
+		if(request.getParameter("dis_dang") != null)
+			u_dang = 1;
+		if(request.getParameter("dis_go") != null)
+			u_go = 1;
+		if(request.getParameter("dis_we") != null)
+			u_we = 1;
+		if(request.getParameter("dis_ho") != null)
+			u_ho = 1;
+		if(request.getParameter("dis_no") != null)
+			u_no = 1;
+		
+		UserDTO user = new UserDTO(u_id, u_pw, u_email, u_name, u_sex, u_dang, u_go, u_we, u_ho, u_no);
 		UserDAO dao = new UserDAO();
-		int cnt = dao.User_update(update_User);
-
+		int cnt = dao.User_update(user);
 		
-		// 회원 질병 수정
-//		DiseaseDTO Disease = (DiseaseDTO)session.getAttribute("");
-//		
-//		String dis_id = Disease.getDis_id();
-//		
-//		String dis_dang = request.getParameter("dis_dang");
-//		String dis_go = request.getParameter("dis_go");
-//		String dis_we = request.getParameter("dis_we");
-//		String dis_ho = request.getParameter("dis_ho");
-//		int dis_no = Integer.parseInt(request.getParameter("dis_no"));
-//		
-		
-//		DiseaseDTO update_Disease = new DiseaseDTO(dis_id, dis_dang, dis_go, dis_we, dis_ho, dis_no);
-
-//		int cnt2 = dao.Disease_update(update_Disease);
-		
-		if (cnt > 0) {
-			session.setAttribute("login_User", update_User);
-//			session.setAttribute("Disease_User", update_Disease);
+		if(cnt > 0) {
+			session.setAttribute("login_User", user);
 			response.sendRedirect("join1.html");
-		}else {
-			response.sendRedirect("member_info_change2.jsp");
 		}
-
+		else {
+			response.sendRedirect("member_info_change1.jsp");
+		}
+		
 
 	}
 

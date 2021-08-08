@@ -60,16 +60,21 @@ public class UserDAO {
 	         connection();
 	         
 	         // 3. 쿼리문 실행
-	         String sql = "update USERS "
-	               + "set U_name=?, U_pw=?"
-	               + "where U_id=? and U_email=? and U_sex=?";
+//	         String sql = "update USERS "
+//	               + "set U_name=?, U_pw=?"
+//	               + "where U_id=? and U_email=? and U_sex=?";
+	         String sql = "update users set u_name=?, u_pw=?, u_dang=?, u_go=?, u_we=?, u_ho=?, u_no=? where u_id=? and u_email=?";
 	         
 	         psmt = conn.prepareStatement(sql);
 	         psmt.setString(1, update_User.getU_name());
 	         psmt.setString(2, update_User.getU_pw());
-	         psmt.setString(3, update_User.getU_id());
-	         psmt.setString(4, update_User.getU_email());
-	         psmt.setInt(5, update_User.getU_sex());
+	         psmt.setInt(3, update_User.getU_dang());
+	         psmt.setInt(4, update_User.getU_go());
+	         psmt.setInt(5, update_User.getU_we());
+	         psmt.setInt(6, update_User.getU_ho());
+	         psmt.setInt(7, update_User.getU_no());
+	         psmt.setString(8, update_User.getU_id());
+	         psmt.setString(9, update_User.getU_email());
 	         cnt = psmt.executeUpdate();
 	  
 	      } catch (SQLException e) {
@@ -80,34 +85,34 @@ public class UserDAO {
 	      return cnt;
 	   }
 	   
-	   // 질병 수정
-	   public int Disease_update(DiseaseDTO update_Disease) {
-	      
-	      try {
-	         connection();
-	         
-	         String sql = "update Disease "
-	               + "set dis_dang=?, dis_go=?,"
-	               + "dis_we=?, dis_ho=?, dis_no=?"
-	               + "where dis_id=?";
-	         
-	         psmt = conn.prepareStatement(sql);
-	         psmt.setString(1, update_Disease.getDis_dang());
-	         psmt.setString(2, update_Disease.getDis_go());
-	         psmt.setString(3, update_Disease.getDis_we());
-	         psmt.setString(4, update_Disease.getDis_ho());
-	         psmt.setInt(5, update_Disease.getDis_no());
-	         psmt.setString(5, update_Disease.getDis_id());
-	         cnt = psmt.executeUpdate();
-	         
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         close();
-	      }
-	      return cnt;
-	   }
-	   
+//	   // 질병 수정
+//	   public int Disease_update(DiseaseDTO update_Disease) {
+//	      
+//	      try {
+//	         connection();
+//	         
+//	         String sql = "update Disease "
+//	               + "set dis_dang=?, dis_go=?,"
+//	               + "dis_we=?, dis_ho=?, dis_no=?"
+//	               + "where dis_id=?";
+//	         
+//	         psmt = conn.prepareStatement(sql);
+//	         psmt.setString(1, update_Disease.getDis_dang());
+//	         psmt.setString(2, update_Disease.getDis_go());
+//	         psmt.setString(3, update_Disease.getDis_we());
+//	         psmt.setString(4, update_Disease.getDis_ho());
+//	         psmt.setInt(5, update_Disease.getDis_no());
+//	         psmt.setString(5, update_Disease.getDis_id());
+//	         cnt = psmt.executeUpdate();
+//	         
+//	      } catch (SQLException e) {
+//	         e.printStackTrace();
+//	      } finally {
+//	         close();
+//	      }
+//	      return cnt;
+//	   }
+//	   
 	   
 	   // 회원 정보 수정페이지 비번 체크
 	   public int User_update_check(String u_id, String u_pw) {
