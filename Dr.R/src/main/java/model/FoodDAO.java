@@ -53,7 +53,37 @@ public class FoodDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+	public ArrayList<FoodDTO> season_food(int month) {
+		
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+		
+		try {
+
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select food_code, food_name, food_image, food_good from Food where food_month=? order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, month);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int getFoodCode = rs.getInt(1);
+				String getName = rs.getString(2);
+				String getImage= rs.getString(3);
+				String getGood = rs.getString(4);
+				
+				FoodDTO food = new FoodDTO(getFoodCode, getName, getImage, getGood);
+				list.add(food);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { // 무조건적으로 실행되는 finally
+			close();
+		} // end finally
+		return list;
+	}
+
 }

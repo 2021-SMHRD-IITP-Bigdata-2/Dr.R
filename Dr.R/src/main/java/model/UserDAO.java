@@ -86,34 +86,6 @@ public class UserDAO {
 	      return cnt;
 	   }
 	   
-//	   // 질병 수정
-//	   public int Disease_update(DiseaseDTO update_Disease) {
-//	      
-//	      try {
-//	         connection();
-//	         
-//	         String sql = "update Disease "
-//	               + "set dis_dang=?, dis_go=?,"
-//	               + "dis_we=?, dis_ho=?, dis_no=?"
-//	               + "where dis_id=?";
-//	         
-//	         psmt = conn.prepareStatement(sql);
-//	         psmt.setString(1, update_Disease.getDis_dang());
-//	         psmt.setString(2, update_Disease.getDis_go());
-//	         psmt.setString(3, update_Disease.getDis_we());
-//	         psmt.setString(4, update_Disease.getDis_ho());
-//	         psmt.setInt(5, update_Disease.getDis_no());
-//	         psmt.setString(5, update_Disease.getDis_id());
-//	         cnt = psmt.executeUpdate();
-//	         
-//	      } catch (SQLException e) {
-//	         e.printStackTrace();
-//	      } finally {
-//	         close();
-//	      }
-//	      return cnt;
-//	   }
-//	   
 	   
 	   // 회원 정보 수정페이지 비번 체크
 	   public int User_update_check(String u_id, String u_pw) {
@@ -305,21 +277,24 @@ public class UserDAO {
 		return check;
 	}
 
-	public int insertUser(UserDTO uDto) {
-		int cnt = -1;
-		// 아이디, 비밀번호, 이메일, 닉네임, 성별
+	public int user_insert(UserDTO user) {
 
 		try {
-			conn = connection();
+			connection();
 
-			String sql = "insert into USERS values(?, ?, ?, ?, ?)";
+			String sql = "insert into USERS values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, uDto.getU_id());
-			psmt.setString(2, uDto.getU_pw());
-			psmt.setString(3, uDto.getU_email());
-			psmt.setString(4, uDto.getU_name());
-			psmt.setInt(5, uDto.getU_sex()); // 남자면 1 여자면 0
+			psmt.setString(1, user.getU_id());
+			psmt.setString(2, user.getU_pw());
+			psmt.setString(3, user.getU_email());
+			psmt.setString(4, user.getU_name());
+			psmt.setInt(5, user.getU_sex()); // 남자면 1 여자면 0
+			psmt.setInt(6,  user.getU_dang());
+			psmt.setInt(7,  user.getU_go());
+			psmt.setInt(8,  user.getU_we());
+			psmt.setInt(9,  user.getU_ho());
+			psmt.setInt(10,  user.getU_no());
 
 			cnt = psmt.executeUpdate();
 			// 재대로 됬으면 값 result == 1
