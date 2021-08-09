@@ -15,7 +15,6 @@
 	if (month != null) {
 		int mon = Integer.parseInt(month);
 		food = dao.season_food(mon);
-
 	}
 %>
 <!DOCTYPE html>
@@ -30,7 +29,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="jquery-3.6.0.min.js"></script>
 <!-- Title -->
 <title>제철 농산물</title>
 
@@ -68,6 +67,23 @@ button {
 	font-size: 16px;
 	padding: 3px 5px;
 }
+.btn10{
+    position: relative;
+	left: 50%;
+    line-height: 60px;
+	transform: translateX(-50%);
+	width: 60px;
+	height: 60px;
+	background: #f3f5f8;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+	border: none;
+	/* cursor: pointer; */
+	/* transition: 0.4s; */
+	/* display: inline; */
+	font-size: 15px;
+}
+
 
 .list1 {
 	/* visibility: hidden; */
@@ -173,7 +189,7 @@ button {
 									</script>
 									<li><a href="member_info.html">마이 페이지</a></li>
 									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-									<li><a href="Season_products.html">제철 식재료</a></li>
+									<li><a href="Season_products.jsp?month=1">제철 식재료</a></li>
 
 
 									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
@@ -226,11 +242,11 @@ button {
 							<option value="10">10월</option>
 							<option value="11">11월</option>
 							<option value="12">12월</option>
-		 					<input type="submit" value="선택">
-					</select></td>
-				</ul>
-			</tr>
-		</table>
+                        </select></td>
+                        <td><input type="submit" value="선택" class="btn10"></td>
+                    </ul>
+                </tr>
+            </table>
 	</div>
 	</form>
 
@@ -277,7 +293,13 @@ button {
 
 		</div>
 		<p>
+			
 			<button id="load" class="btn">더보기</button>
+<%-- 			<% if (food != null){ %>
+			<script>
+			$("#load").css("visibility","hidden");
+			</script>
+			<%} %> --%>
 		</p>
 
 

@@ -34,14 +34,6 @@ public class SeasonfoodCon extends HttpServlet {
 //		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 }
