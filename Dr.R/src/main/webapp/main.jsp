@@ -1,15 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="model.UserDTO"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+    pageEncoding="euc-kr"%>
+<% 
+	UserDTO user = (UserDTO)session.getAttribute("login_User");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="EUC-KR">
+    <meta charset="euc-kr">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
     <!-- Title -->
     <title>Dr.R main</title>
 
@@ -118,6 +123,7 @@
                                     <li><a href="Season_products.html">제철 식재료</a></li>
                                     <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
                                     <li><a href="Guide.html">이용 안내</a></li>
+                                    <% if(user == null){ %>
                                     <!-- 로그인 -->
                                     <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
                                     </li>
@@ -131,6 +137,10 @@
                                             <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
                                         </div>
                                     </li>
+                                    <%} else{ %>
+                                    <li><a href="logout.jsp" style="background-color: rgb(236, 236, 236);">로그아웃</a>
+                                    </li>
+                                    <%} %>
                             </div>
                         </div>
 
