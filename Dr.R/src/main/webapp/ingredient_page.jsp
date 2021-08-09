@@ -238,12 +238,11 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 						<section class="small-receipe-area section-padding-80-0">
 							<div class="container">
 								<h5 class="test_font" align="center" style="font-size: 25px;">
-									<%= detail.getFood_name() %><span>과(와) 관련된 요리 목록이에요!</span>
+									<%= detail.getFood_name() %><span>와(과) 관련된 요리 목록이에요!</span>
 								</h5>
 								<h5 align="center" style="margin-bottom: 50px;"></h5>
 								<div class="row">
 
-						
 									<!-- 레시피/ 식재료 글 시작-->
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-small-receipe-area d-flex">
@@ -258,13 +257,15 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 												<span>당뇨</span>
 												<!-- 음식 명-->
 												<a href="receipe-post.html">
-													<h5>우엉이 세상을 정복한다</h5>
+													<h5>오이</h5>
 												</a>
 
 											</div>
 										</div>
 									</div>
 									<!-- 레시피/식재료 글 종료-->
+			
+			
 
 
 
