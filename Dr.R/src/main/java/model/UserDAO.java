@@ -313,7 +313,156 @@ public class UserDAO {
 		return cnt;
 	}
 	
-	
+	// 아이디찾기에서 사용하는 서블릿
+		public int seekId(String email) {
+			
+			String id = "오잉?";
+			int cnt = -1;		
+			String sql = "select U_ID from USERS where U_EMAIL = ?";
+
+			try {
+				conn = connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				ResultSet rs = pstmt.executeQuery();
+
+				
+				
+				if (rs.next()) {
+				// 해당하는 email이 있는 경우
+					UserDTO UDto = new UserDTO();
+					UDto.setU_id(rs.getString("U_ID"));
+					// 저 아이디를 DTO에 저장해놓기 
+					// 그래야 나중에 jsp에서 보여줄 수 있으니까
+					cnt = 1;
+				}else {
+				// 해당하는 email이 없는 경우	
+					cnt = -1;
+				}
+				
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+
+			return cnt;
+
+		}
+		
+		
+		
+		
+		// 아이디찾기에서 사용하는 서블릿
+		public int seekPw(String id, String email) {
+			
+//			String id = "오잉?";
+			
+			
+			int cnt = 0;		
+			String sql = "select U_EMAIL from USERS where U_ID = ?";
+//			select U_PW from USERS where U_ID = ?
+			try {
+				conn = connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				ResultSet rs = pstmt.executeQuery();
+
+				
+				
+				if (rs.next()) {
+				// 해당하는 id가 있는 경우
+					//이제 이메일이 있는데 그 이메일이랑 아이디랑 매칭되야지
+					if (rs.getString("U_EMAIL").equals(email)) {
+						cnt = 1;
+					}
+					else {
+//						if (rs.getString("U_EMAIL") != email)
+						cnt = -1;
+					}
+//					
+					
+					// 저 아이디를 DTO에 저장해놓기 
+					// 그래야 나중에 jsp에서 보여줄 수 있으니까
+				}else {
+				// 해당하는 id가 없는 경우
+				// 존재하지 않는 경우
+					cnt = 0;
+				}
+				
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+
+			}
+
+			return cnt;
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//이메일 넣으면 id알려주는 메소드
+		public UserDTO getUser_email(String email) {
+			UserDTO UDto = new UserDTO();
+			String sql = "select U_ID from USERS where U_EMAIL = ? ";
+			
+			try {
+				conn = connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, email);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					UDto.setU_id(rs.getString("U_ID"));
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			return UDto;
+			
+		}
+		
+		//id넣으면 pw알려주는 메소드
+		public UserDTO getUser(String id) {
+			UserDTO UDto = new UserDTO();
+			String sql = "select U_PW from USERS where U_ID = ? ";
+			
+			try {
+				conn = connection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					UDto.setU_pw(rs.getString("U_PW"));
+					UDto.setU_id(rs.getString("U_ID"));
+					UDto.setU_email(rs.getString("U_EMAIL"));
+					
+				}
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			return UDto;
+			
+		}
+		
+
 		
 	
 
