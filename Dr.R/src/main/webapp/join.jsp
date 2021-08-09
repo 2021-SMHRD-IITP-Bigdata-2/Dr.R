@@ -79,7 +79,7 @@ td{
 
 <body width="100%" height="100%">
 
-	<form action="join2.html" method="post" class="joinForm">
+	<form action="joinCon" method="post" class="joinForm">
 		<br> <a href="login.html"> <span class="backspace"> <
 		</span>
 		</a>
@@ -109,13 +109,13 @@ td{
 					id="pw2" onchange="pw_check()" class="id2 input next" placeholder="  비밀번호 재입력"> 
 					
 					<input
-					type="text" name="nick" class="id2 input next"
+					type="text" id="nick" name="nick" class="id2 input next"
 					placeholder="  닉네임 입력">
 
 				<div align="center" class="next">
-					<input type="radio" id="man" name="gender" value="man" required
+					<input type="radio" id="man" name="gender" value="1" required
 						checked /> <label for="man">남자</label> <input type="radio"
-						id="woman" name="gender" value="woman" required /> <label
+						id="woman" name="gender" value="0" required /> <label
 						for="woman">여자</label>
 				</div>
 
@@ -124,15 +124,15 @@ td{
                 <div align="center" class="tdiv">
                     <table style="margin-top: 5%; margin-bottom: 0%;">
                       <tr class="checkbox" align="left">
-                        <td class="td_font_size"><label><input type="checkbox" name="disease"><span style="margin-left:8px;">당뇨</span></label></td>
-                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">고혈압</span></label></td>
+                        <td class="td_font_size"><label><input type="checkbox" name="disease" value="당뇨"><span style="margin-left:8px;">당뇨</span></label></td>
+                        <td><label><input type="checkbox" name="disease" value="고혈압"><span style="margin-left:8px;">고혈압</span></label></td>
                       </tr>
                       <tr class="checkbox" align="left">
-                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">위장병</span></label></td>
-                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">호흡기 질환</span></label></td>
+                        <td><label><input type="checkbox" name="disease" value="위장"><span style="margin-left:8px;">위장병</span></label></td>
+                        <td><label><input type="checkbox" name="disease" value="호흡기"><span style="margin-left:8px;">호흡기 질환</span></label></td>
                       </tr>
                       <tr class="checkbox" align="left">
-                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">해당없음</span></label></td>
+                        <td><label><input type="checkbox" name="disease" value="해당없음"><span style="margin-left:8px;">해당없음</span></label></td>
                     </table>
                   </div>
 
@@ -160,6 +160,7 @@ td{
 				if(data == "true"){
 					idcheck.innerHTML = "사용불가능한 아이디입니다 :p";
 					idcheck.style.color="red";
+					input.focus();
 				}
 				else{
 					idcheck.innerHTML = "사용가능한 아이디입니다 XD";
@@ -185,6 +186,7 @@ td{
 				if(data1 == "true"){
 					emailcheck.innerHTML = "사용불가능한 이메일입니다 :p";
 					emailcheck.style.color="red";
+					input2.focus();
 				}
 				else{
 					emailcheck.innerHTML = "사용가능한 이메일입니다 XD";
