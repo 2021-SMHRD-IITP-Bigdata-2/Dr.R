@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원가입 페이지 1</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="Handmade.css">
 <script src="jquery-3.6.0.min.js"></script>
 <style>
@@ -104,9 +104,11 @@ td{
 					<span class="check" id="email_check"> </span>
 				</div>
 
-				<input type="password" name="pw" class="id2 input next"
+				<input type="password" id="pw" name="pw" class="id2 input next"
 					placeholder="  비밀번호 입력"> <input type="password"
-					class="id2 input next" placeholder="  비밀번호 재입력"> <input
+					id="pw2" onchange="pw_check()" class="id2 input next" placeholder="  비밀번호 재입력"> 
+					
+					<input
 					type="text" name="nick" class="id2 input next"
 					placeholder="  닉네임 입력">
 
@@ -193,6 +195,19 @@ td{
 				alert("실패 !!!!");
 			}
 		});
+	}
+</script>
+<script>
+	function pw_check(){
+		var pw = document.getElementById("pw");
+		var pw2 = document.getElementById("pw2");
+		
+		if(pw.value == pw2.value){
+			alert("비밀번호가 일치합니다!");
+		}else{
+			alert("비밀번호가 일치하지 않습니다ㅜㅜ");
+			pw2.focus();
+		}
 	}
 </script>
 </body>
