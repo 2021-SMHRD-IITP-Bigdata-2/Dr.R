@@ -1,34 +1,35 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.UserDAO;
 
 
-
-
 @WebServlet("/idCheckCon")
 public class idCheckCon extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		UserDAO uDao = new UserDAO();
-		int cnt_id = uDao.confirmID(id);
-		request.setAttribute("id", id);
-		request.setAttribute("cnt_id", cnt_id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("join1.html");
-		dispatcher.forward(request, response);
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String u_id = request.getParameter("u_id");
 		
-	
-	
+		UserDAO dao = new UserDAO();
+		boolean check = dao.confirmID(u_id);
+		System.out.println(check);
+
+		PrintWriter out = response.getWriter();
+		out.print(check);
+		
+
+		
+//		response.sendRedirect("join2.html?res="+cnt);
 	}
 
 }

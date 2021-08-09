@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
 
@@ -246,72 +247,62 @@ public class UserDAO {
 		return user;
 	}
 
-	public int confirmID(String userid) {
-		int cnt = -1;
-		String sql = "select U_ID from USERS where U_ID=?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	
+	public boolean confirmID(String userid) {
+		boolean check = false;
 
 		try {
-			conn = connection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			rs = pstmt.executeQuery();
+			connection();
+			
+			String sql = "select U_ID from USERS where U_ID=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, userid);
+			
+			rs = psmt.executeQuery();
+			
 			if (rs.next()) {
-				cnt = 1;
-				// 아이디가 중복되는 경우 1저장
+				check = true;
+				// 아이디가 중복되는 경우 true저장
 			} else {
-				cnt = -1;
-				// 사용가능한 아이디인 경우 -1저장
+				check = false;
+				// 사용가능한 아이디인 경우 false저장
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			close();
 		}
 
-		return cnt;
-		// 중복되면 1출력
-		// 중복안되면 -1출력 = 사용가능한 경우
+		return check;
 	}
 
-	public int confirmEmail(String useremail) {
-		int cnt = -1;
-		String sql = "select U_EMAIL from USERS where U_EMAIL=?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	public boolean confirmEmail(String useremail) {
+		boolean check = false;
 
 		try {
-			conn = connection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, useremail);
-			rs = pstmt.executeQuery();
+			
+			connection();
+			
+			String sql = "select u_email from users where u_email=?";
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, useremail);
+			rs = psmt.executeQuery();
+			
 			if (rs.next()) {
-				cnt = 1;
+				check=true;
 				// 아이디가 중복되는 경우 1저장
 			} else {
-				cnt = -1;
+				check=false;
 				// 사용가능한 아이디인 경우 -1저장
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			close();
 		}
 
-		return cnt;
-		// 중복되면 1출력
-		// 중복안되면 -1출력 = 사용가능한 경우
+		return check;
 	}
 
 	public int insertUser(UserDTO uDto) {

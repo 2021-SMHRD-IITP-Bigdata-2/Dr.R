@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입 페이지 1</title>
   <link rel="stylesheet" href="Handmade.css">
-
+	<script src="jquery-3.6.0.min.js"></script>
   <style>
     .input1 {
       margin-left: 20px;
@@ -56,7 +56,7 @@ background-color: lightgrey;
 
 <body width="100%" height="100%">
 
-  <form action="index.html" method="post" class="loginForm">
+  <form action="join2.html" method="post" class="loginForm">
     <br>
     <a href="login.html">
       <span class="backspace">
@@ -66,13 +66,13 @@ background-color: lightgrey;
     </div>
     <div>
       <div class="textform">
-      	<form action="idCheckCon" method="post">
+
 	        <div>
-	          <input type="text" name="id" class="id input1" placeholder="  ID 입력">
-	          <input type="submit" value="중복체크" class="btn4" onclick=""></input>
-	          <span class="check">체크결과</span>
+	          <input type="text"id="id" name="id" class="id input1" placeholder="  ID 입력">
+	          <button type="button" class="btn4" id="check1">중복체크</button>
+	          <span class="check" id="id_check">체크결과</span>
 	        </div> 
-		</form>
+	
 
         <div>
           <input type="text" name="email" class="id input1 next" placeholder="  이메일 입력">
@@ -94,16 +94,41 @@ background-color: lightgrey;
           <label for="woman">여자</label>
         </div>
         <div align="center">
-          <button type="button" class="btn3 next">
-            <a href="join2.html" style="color:white;">다음으로</a>
-          </button>
+          <input type="submit" value="다음으로" class="btn3 next">
+           <!--  <a href="join2.html" style="color:white;">다음으로</a>
+          </button> -->
         </div>
         </table>
       </div>
     </div>
   </form>
 
-
+<script>
+	$("#check1").click(function(){
+		var u_id = $("#id").val();
+		
+		$.ajax({
+			url: 'idCheckCon?u_id='+u_id,
+			method: "get",
+			type:"get",
+			succeess : function(data){
+				if(data == 1){
+					$("#id_check").text("사용중인 아이디입니다 :p");
+					$("#id_check").css("color","red");
+					
+				}else if(data == 0){
+					$("#id_check").text("사용가능한 아이디입니다 :)");
+				}else if(u_id==""){
+					$("#id_check").text("아이디를 입력해주세요 !");
+					$("#id_check").css("color", "darkgray");
+				}
+			},
+			error: function(){
+				console.log("실패");
+			}
+		});
+	});
+</script>
 </body>
 
 </html>
