@@ -79,6 +79,13 @@ public class UserDTO {
 		this.u_id = u_id;
 		this.u_pw = u_pw;
 	}
+	
+	public UserDTO() {
+	}
+	
+	
+	
+	
 
 	public String getU_id() {
 		return u_id;
