@@ -16,7 +16,7 @@
 .joinForm {
   position:absolute;
   width:350px;
-  height:700px;
+  height:750px;
   padding: 30px, 20px;
   background-color:#ffffff;
   top:40%;
