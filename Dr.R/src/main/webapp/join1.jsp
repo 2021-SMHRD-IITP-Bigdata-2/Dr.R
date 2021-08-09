@@ -12,6 +12,26 @@
 <link rel="stylesheet" href="Handmade.css">
 <script src="jquery-3.6.0.min.js"></script>
 <style>
+
+.joinForm {
+  position:absolute;
+  width:350px;
+  height:700px;
+  padding: 30px, 20px;
+  background-color:#ffffff;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  margin-top: 10%;
+}
+
+td{
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(54, 54, 54);
+}
+
 .input1 {
 	margin-left: 20px;
 	width: 300px;
@@ -47,6 +67,7 @@
 	font-size: 12px;
 }
 
+
 .check {
 	margin-left: 30px;
 	font-size: 13px;
@@ -58,7 +79,7 @@
 
 <body width="100%" height="100%">
 
-	<form action="join2.html" method="post" class="loginForm">
+	<form action="join2.html" method="post" class="joinForm">
 		<br> <a href="login.html"> <span class="backspace"> <
 		</span>
 		</a>
@@ -71,7 +92,7 @@
 					<input type="text" id="id" name="id" class="id input1"
 						placeholder="  ID 입력"> <input type="button" class="btn4"
 						value="중복체크" onclick="idCheck()"> <span class="check"
-						id="id_check">아이디를 입력하세요</span>
+						id="id_check"> </span>
 
 				</div>
 
@@ -80,7 +101,7 @@
 					<input type="text" id="email" name="email" class="id input1 next"
 						placeholder="  이메일 입력"> <input type="button" class="btn4"
 						style="margin-top: 15px" value="중복체크" onclick="emailCheck()">
-					<span class="check" id="email_check">이메일을 입력하세요</span>
+					<span class="check" id="email_check"> </span>
 				</div>
 
 				<input type="password" name="pw" class="id2 input next"
@@ -95,8 +116,26 @@
 						id="woman" name="gender" value="woman" required /> <label
 						for="woman">여자</label>
 				</div>
-				<div align="center">
-					<input type="submit" value="다음으로" class="btn3 next">
+
+                <p class="mainname" style="margin-top: 35px; font-size: 20px;">내 건강상황에 해당되는<br>항목을 체크해주세요!</p>
+
+                <div align="center" class="tdiv">
+                    <table style="margin-top: 5%; margin-bottom: 0%;">
+                      <tr class="checkbox" align="left">
+                        <td class="td_font_size"><label><input type="checkbox" name="disease"><span style="margin-left:8px;">당뇨</span></label></td>
+                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">고혈압</span></label></td>
+                      </tr>
+                      <tr class="checkbox" align="left">
+                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">위장병</span></label></td>
+                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">호흡기 질환</span></label></td>
+                      </tr>
+                      <tr class="checkbox" align="left">
+                        <td><label><input type="checkbox" name="disease"><span style="margin-left:8px;">해당없음</span></label></td>
+                    </table>
+                  </div>
+
+				<div align="center" >
+					<input type="submit" value="가입하기" class="btn3 next">
 					<!--  <a href="join2.html" style="color:white;">다음으로</a>
           </button> -->
 				</div>
