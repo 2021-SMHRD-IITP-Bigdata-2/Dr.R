@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%
-request.setCharacterEncoding("EUC-KR");
 String name = request.getParameter("name");
 
 FoodDAO dao = new FoodDAO();
@@ -19,9 +18,8 @@ for(int i = 0; i<food.size();i++){
 		continue;
 }
 
-System.out.println(name);
-/* FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood_name(), food.get(cnt).getFood_content(), food.get(cnt).getFood_image(), food.get(cnt).getFood_month(), food.get(cnt).getFood_good());
- */ 
+FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood_name(), food.get(cnt).getFood_content(), food.get(cnt).getFood_image(), food.get(cnt).getFood_month(), food.get(cnt).getFood_good());
+
 
 
 %>
@@ -58,7 +56,7 @@ System.out.println(name);
 	text-align: left;
 }
 </style>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -155,17 +153,18 @@ System.out.println(name);
                                     </script>
 									<li><a href="member_info.html">마이 페이지</a></li>
 									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-									<li><a href="Season_products.html">제철 식재료</a></li>
+									<li><a href="Season_products.jsp?month=1">제철 식재료</a></li>
 
 
 									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
 									<li><a href="Guide.html">이용 안내</a></li>
+									
 									<!-- 로그인 -->
 									<li><a href="login.html"
 										style="background-color: rgb(236, 236, 236);">Login</a></li>
 
 									<!-- 회원가입 -->
-									<li><a href="join1.html"
+									<li><a href="join.jsp"
 										style="background-color: rgb(236, 236, 236);">Join</a></li>
 
 									<!-- 검색 -->
@@ -201,33 +200,30 @@ System.out.println(name);
 					<div class="single-blog-area mb-80">
 						<!-- Thumbnail -->
 						<class class="blog-thumbnail"> <img
-							src="http://www.lampcook.com/wi_files/food_farm_img/94.jpg
-                                "
+							src="<%= detail.getFood_image() %>"
 							alt=""> <br>
 						<br>
 						<br>
 						
-					<%-- 	<h3 class="test_font"><%= detail.getFood_name()  %></h3>
+					 	<h3 class="test_font"><%= detail.getFood_name()  %></h3>
 						<span class="test_font1" style="color: rgb(100, 181, 213);">제철:
 							<span class="test_font1" style="color: rgb(100, 181, 213);">
 								<%=  detail.getFood_month()%>월</span>
-						</span> &nbsp <span class="test_font1" style="color: rgb(141, 35, 35);"><%=  detail.getFood_good()  %> <span class="test_font1" style="color: rgb(141, 35, 35);">
+						</span> &nbsp <span class="test_font1" style="color: rgb(141, 35, 35);">
+						<%=  detail.getFood_good()  %>
+						<span class="test_font1" style="color: rgb(141, 35, 35);">
 								에 좋아요</span>
 						</span>
 						<hr>
 						<br>
- --%>
+
 
 						<!-- 상세 내용 -->
 						<h4 class="test_font"
 							style="font-size: 25px; margin-bottom: 30px;">상세 내용</h4>
 						</class>
 						<div style="color: black; text-align: left;">
-							<p class="black_font">-산후 부기제거에 좋고, 점막과 피부저항력에 좋음</p>
-							<p class="black_font">-항산화산소를 없애고 항암에 효과가 높음</p>
-							<p class="black_font">-노화방지와 동맥경화에 좋음-혈액순환을 돕고, 냉증과 어깨 결림에 좋음</p>
-							<p class="black_font">-생활 습관병이나 감기예방에 좋음-침침한 눈을 밝게 만들고, 간 기능을
-								향상시킴</p>
+							<p class="black_font"><%= detail.getFood_content() %></p>
 						</div>
 						<br>
 						<hr>
@@ -242,11 +238,12 @@ System.out.println(name);
 						<section class="small-receipe-area section-padding-80-0">
 							<div class="container">
 								<h5 class="test_font" align="center" style="font-size: 25px;">
-									도훈 <span>님의 건강에 맞춰 음식을 추천해드려요!</span>
+									<%= detail.getFood_name() %><span>과(와) 관련된 요리 목록이에요!</span>
 								</h5>
 								<h5 align="center" style="margin-bottom: 50px;"></h5>
 								<div class="row">
 
+						
 									<!-- 레시피/ 식재료 글 시작-->
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-small-receipe-area d-flex">
