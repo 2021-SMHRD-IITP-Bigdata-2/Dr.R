@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비밀번호 찾기 페이지</title>
+    <title>��й�ȣ ã�� ������</title>
     <link rel="stylesheet" href="Handmade.css">
 <style>
   td{
@@ -22,26 +24,32 @@
 
     <br>
     <a href="login.html" >
-        <span class="backspace"> </span>
+        <span class="backspace"> < </span>
       </a>
-    <p class="mainname">비밀번호 찾기</p>
+    <p class="mainname">��й�ȣ ã��</p>
         <table>
           <tr>
             <td class="s_">
-              <a href="search_id.html">아이디</a>
+              <a href="search_id.html">���̵�</a>
             </td>
             <td>
-              <a href="search_pw.html">비밀번호</a>
+              <a href="search_pw.html">��й�ȣ</a>
             </td>
           </tr>
 
         </table>
         <div class="idForm" align="center">
-          <input type="text" class="id" name = "id" placeholder="  아이디 입력">
+          <input type="text" class="id" name = "id" placeholder="  ���̵� �Է�">
           <br>
           <br>
-          <input type="text" class="id" name = "email" placeholder="  이메일 입력">
-          <input type="submit" class="btn2" value="비밀번호 찾기">
+          <input type="text" class="id" name = "email" placeholder="  �̸��� �Է�">
+            <input type="submit" class="btn2" value="��й�ȣ ã��"><br>
+            <span class="check"><%=request.getAttribute("message") %></span><br>
+            <span class="check"><%=request.getAttribute("seekpw") %></span><br>
+
+            
+            
+            
           </div>
         </form>
     </body>
