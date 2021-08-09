@@ -1,5 +1,9 @@
+<%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=euc-kr"
     pageEncoding="euc-kr"%>
+<% 
+	UserDTO user = (UserDTO)session.getAttribute("login_User");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,6 +123,7 @@
                                     <li><a href="Season_products.html">제철 식재료</a></li>
                                     <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
                                     <li><a href="Guide.html">이용 안내</a></li>
+                                    <% if(user == null){ %>
                                     <!-- 로그인 -->
                                     <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
                                     </li>
@@ -132,6 +137,10 @@
                                             <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
                                         </div>
                                     </li>
+                                    <%} else{ %>
+                                    <li><a href="logout.jsp" style="background-color: rgb(236, 236, 236);">로그아웃</a>
+                                    </li>
+                                    <%} %>
                             </div>
                         </div>
 
