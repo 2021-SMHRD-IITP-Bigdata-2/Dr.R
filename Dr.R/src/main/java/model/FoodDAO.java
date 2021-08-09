@@ -55,9 +55,9 @@ public class FoodDAO {
 	}
 
 	public ArrayList<FoodDTO> season_food(int month) {
-		
+
 		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
-		
+
 		try {
 
 			connection();
@@ -72,10 +72,43 @@ public class FoodDAO {
 			while (rs.next()) {
 				int getFoodCode = rs.getInt(1);
 				String getName = rs.getString(2);
-				String getImage= rs.getString(3);
+				String getImage = rs.getString(3);
 				String getGood = rs.getString(4);
-				
+
 				FoodDTO food = new FoodDTO(getFoodCode, getName, getImage, getGood);
+				list.add(food);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { // 무조건적으로 실행되는 finally
+			close();
+		} // end finally
+		return list;
+	}
+
+	public ArrayList<FoodDTO> all_food() {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select * from Food order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int getFoodCode = rs.getInt(1);
+				String getName = rs.getString(2);
+				String getContent = rs.getString(3);
+				String getImage = rs.getString(4);
+				int getMonth = rs.getInt(5);
+				String getGood = rs.getString(6);
+
+				FoodDTO food = new FoodDTO(getFoodCode, getName, getContent, getImage, getMonth, getGood);
 				list.add(food);
 			}
 		} catch (SQLException e) {

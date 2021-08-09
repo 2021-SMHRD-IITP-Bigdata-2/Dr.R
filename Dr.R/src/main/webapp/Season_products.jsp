@@ -266,7 +266,7 @@ button {
 				<div class="col-12 col-sm-6 col-lg-4 list1">
 					<div class="single-small-receipe-area d-flex">
 						<!-- Receipe Thumb -->
-						<a href="ingredient_page.jsp?name=<%=food.get(i).getFood_code()%>">
+						<a href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">
 							<div class="receipe-thumb">
 								<img src="<%= food.get(i).getFood_image() %>" alt="">
 							</div> <!-- Receipe Content -->
