@@ -28,6 +28,14 @@ public class FoodDTO {
 		this.food_good = food_good;
 	}
 
+	
+
+	public FoodDTO(String food_name, String food_content, String food_image) {
+		this.food_name = food_name;
+		this.food_content = food_content;
+		this.food_image = food_image;
+	}
+
 	public int getFood_code() {
 		return food_code;
 	}

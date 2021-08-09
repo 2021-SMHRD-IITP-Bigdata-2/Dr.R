@@ -86,6 +86,7 @@ public class FoodDAO {
 		return list;
 	}
 
+
 	public ArrayList<FoodDTO> all_food() {
 
 		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
@@ -116,6 +117,148 @@ public class FoodDAO {
 		} finally { // 무조건적으로 실행되는 finally
 			close();
 		} // end finally
+		return list;
+	}
+
+
+
+	public ArrayList<FoodDTO> food_dang() {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%당뇨%' order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_content = rs.getString(2);
+				String food_image = rs.getString(3);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+
+	public ArrayList<FoodDTO> food_go() {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%고혈압%' order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_content = rs.getString(2);
+				String food_image = rs.getString(3);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+
+	public ArrayList<FoodDTO> food_we() {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%위장%' order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_content = rs.getString(2);
+				String food_image = rs.getString(3);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+
+	public ArrayList<FoodDTO> food_ho() {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%호흡기%' order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_content = rs.getString(2);
+				String food_image = rs.getString(3);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
 		return list;
 	}
 
