@@ -13,13 +13,23 @@
 	
 	FoodDAO dao = new FoodDAO();
 	FoodDTO season = dao.seasonal_food(month);
-/* 	ArrayList<FoodDTO> food = dao.seasonal_food(month); */
-/* 	Random rd = new Random();
-	int i = rd.nextInt(food.size()); */
+
+	ArrayList<String> dis = new ArrayList<>();
+	ArrayList<FoodDTO> food;
 	
-/* 	session.setAttribute("today", new Random().nextInt(food.size()));
-	
-	FoodDTO season = food.get((int)session.getAttribute("today")); */
+	if(user != null){
+		if(user.getU_dang() == 1)
+			dis.add("당뇨");
+		if(user.getU_go() == 1)
+			dis.add("고혈압");
+		if(user.getU_we() == 1)
+			dis.add("위장");
+		if(user.getU_ho() == 1)
+			dis.add("호흡기");
+		food = dao.food_custom(dis);
+	}else{
+		food = dao.season_food(month);
+	}
 	
 	
 %>
@@ -157,15 +167,15 @@
                                     <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
                                     <!-- 검색 -->
+                                    <%} else{ %>
+                                    <li><a href="logout.jsp" style="background-color: rgb(236, 236, 236);">로그아웃</a>
+                                    </li>
+                                    <%} %>
                                     <li>
                                         <div class="search-btn">
                                             <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
                                         </div>
                                     </li>
-                                    <%} else{ %>
-                                    <li><a href="logout.jsp" style="background-color: rgb(236, 236, 236);">로그아웃</a>
-                                    </li>
-                                    <%} %>
                             </div>
                         </div>
 
@@ -246,85 +256,35 @@
             <h5 align="center" style="margin-bottom: 50px;"></h5>
             <div class="row">
 
-                <!-- 레시피/ 식재료 글 시작-->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <a href="recipe_page.html">
-                            <img src="img/bg-img/sr1.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <!-- 좋은 질병 표시-->
-                            <span>당뇨</span>
-                            <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 레시피/식재료 글 종료-->
-                <!-- 레시피/ 식재료 글 시작-->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <a href="recipe_page.html">
-                            <img src="img/bg-img/sr1.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <!-- 좋은 질병 표시-->
-                            <span>당뇨</span>
-                            <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 레시피/식재료 글 종료-->
-                <!-- 레시피/ 식재료 글 시작-->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <a href="recipe_page.html">
-                            <img src="img/bg-img/sr1.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <!-- 좋은 질병 표시-->
-                            <span>당뇨</span>
-                            <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 레시피/식재료 글 종료-->
-                <!-- 레시피/ 식재료 글 시작-->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <a href="recipe_page.html">
-                            <img src="img/bg-img/sr1.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <!-- 좋은 질병 표시-->
-                            <span>당뇨</span>
-                            <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+               <% for (int i=0; i < food.size(); i++){	%>
+				<!-- 레시피/ 식재료 글 시작-->
+				<div class="col-12 col-sm-6 col-lg-4 list1">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
+
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= food.get(i).getFood_image() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content " style="padding-left: 10px">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
+								<%= food.get(i).getFood_good()%> <%}%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+						</div>
+					</div>
+				</div>
+				<!-- 레시피/식재료 글 종료-->
+
+				<% } %>
                 <!-- 레시피/식재료 글 종료-->
                 </div>
                 <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_recipe.html'">더보기</button></div>
@@ -349,7 +309,7 @@
                         </h5>
           <%} else{%>
            <h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name() %> 님의 건강에 맞춰 추천해드리는 
-                            <br>8<span>월의 제철 식재료에요!</span>
+                            <br><%=month %><span>월의 제철 식재료에요!</span>
                             
                         </h5>
                         <%} %>
