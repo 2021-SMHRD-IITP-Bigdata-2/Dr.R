@@ -33,7 +33,7 @@ public class RecipeDTO {
 		return recipe_name;
 	}
 
-	public void setRecipe_name(String recipe_name) {
+	public void setRecipe_name(String recipe_name) {			
 		this.recipe_name = recipe_name;
 	}
 
