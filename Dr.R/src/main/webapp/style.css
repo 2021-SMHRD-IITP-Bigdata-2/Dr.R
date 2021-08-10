@@ -870,7 +870,7 @@ textarea:focus {
     flex: 0 0 100px;
     max-width: 100px;
     width: 100px;
-    padding-right: 20px; }
+    /* padding-right: 20px; */ }
   .single-small-receipe-area .receipe-content span {
     font-size: 12px;
     display: block;

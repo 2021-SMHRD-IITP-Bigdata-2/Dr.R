@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.FoodDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <%
 	
 
@@ -32,7 +32,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="jquery-3.6.0.min.js"></script>
+<script src="jquery-3.6.0.min.js"></script>
 <!-- Title -->
 <title>제철 농산물</title>
 
@@ -70,10 +70,11 @@ button {
 	font-size: 16px;
 	padding: 3px 5px;
 }
-.btn10{
-    position: relative;
+
+.btn10 {
+	position: relative;
 	left: 50%;
-    line-height: 60px;
+	line-height: 60px;
 	transform: translateX(-50%);
 	width: 60px;
 	height: 60px;
@@ -86,7 +87,6 @@ button {
 	/* display: inline; */
 	font-size: 15px;
 }
-
 
 .list1 {
 	/* visibility: hidden; */
@@ -186,30 +186,32 @@ button {
 								<ul>
 
 									<!-- 그 외 메뉴 -->
-                                    <script>
+									<script>
                                         // 로그인 했으면 마이페이지로 이동,
                                         // 로그인 하지 않았으면 로그인 페이지로 이동
                                     </script>
-                                    <li><a href="member_info.html">마이 페이지</a></li>
-                                    <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-                                    
-                                    
-                                    <li><a href="Season_products.jsp">제철 식재료</a></li>
-                                    <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
-                                    <li><a href="Guide.html">이용 안내</a></li>
-                                    <!-- 로그인 -->
-                                    <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
-                                    </li>
+									<li><a href="member_info.html">마이 페이지</a></li>
+									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
-                                    <!-- 회원가입 -->
-                                    <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
-                                    <!-- 검색 -->
-                                    <li>
-                                        <div class="search-btn">
-                                            <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
-                                        </div>
-                                    </li>
+									<li><a href="Season_products.jsp">제철 식재료</a></li>
+									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
+									<li><a href="Guide.html">이용 안내</a></li>
+									<!-- 로그인 -->
+									<li><a href="login.html"
+										style="background-color: rgb(236, 236, 236);">Login</a></li>
+
+									<!-- 회원가입 -->
+									<li><a href="join.jsp"
+										style="background-color: rgb(236, 236, 236);">Join</a></li>
+
+									<!-- 검색 -->
+									<li>
+										<div class="search-btn">
+											<i class="fa fa-search" aria-hidden="true"
+												style="font-size: 30px;"></i>
+										</div>
+									</li>
 							</div>
 						</div>
 
@@ -221,40 +223,36 @@ button {
 	</header>
 	<!-- ##### 헤더 종료 부분 / 삭제하지 마시오 ##### -->
 	<form action="SeasonfoodCon" method="post">
-	<!-- 질병 탭-->
-	<hr>
-	<div align="center">
-		<table class=>
-			<tr>
-				<ul style="text-align: center;">
-					<td><span class="test_font" style="font-weight: bold;">
-					<%if (month == null){ %>
-					1
-					<%} else{ %>
-					<%=month %>
-					<%} %>
-					</span>
-						<span class="test_font"
-						style="font-weight: bold; margin-right: 30px;">월의 농수산물</span></td>
-					<td><select class="test_dropdown" style="background: violet;" name="month">
-							<option value="1">1월</option>
-							<option value="2">2월</option>
-							<option value="3">3월</option>
-							<option value="4">4월</option>
-							<option value="5">5월</option>
-							<option value="6">6월</option>
-							<option value="7">7월</option>
-							<option value="8">8월</option>
-							<option value="9">9월</option>
-							<option value="10">10월</option>
-							<option value="11">11월</option>
-							<option value="12">12월</option>
-                        </select></td>
-                        <td><input type="submit" value="선택" class="btn10"></td>
-                    </ul>
-                </tr>
-            </table>
-	</div>
+		<!-- 질병 탭-->
+		<hr>
+		<div align="center">
+			<table class=>
+				<tr>
+					<ul style="text-align: center;">
+						<td><span class="test_font" style="font-weight: bold;">
+								<%if (month == null){ %> 1 <%} else{ %> <%=month %> <%} %>
+						</span> <span class="test_font"
+							style="font-weight: bold; margin-right: 30px;">월의 농수산물</span></td>
+						<td><select class="test_dropdown" style="background: violet;"
+							name="month">
+								<option value="1">1월</option>
+								<option value="2">2월</option>
+								<option value="3">3월</option>
+								<option value="4">4월</option>
+								<option value="5">5월</option>
+								<option value="6">6월</option>
+								<option value="7">7월</option>
+								<option value="8">8월</option>
+								<option value="9">9월</option>
+								<option value="10">10월</option>
+								<option value="11">11월</option>
+								<option value="12">12월</option>
+						</select></td>
+						<td><input type="submit" value="선택" class="btn10"></td>
+					</ul>
+				</tr>
+			</table>
+		</div>
 	</form>
 
 
@@ -262,55 +260,58 @@ button {
 
 	<!-- ##### 맞춤 레시피 추천 시작 ##### -->
 	<hr>
-	
+
 	<section class="small-receipe-area ">
 		<div class="container">
 			<h5 align="center" style="margin-bottom: 50px;"></h5>
 			<div class="row">
-	
-	<% for (int i=0; i < food.size(); i++){	%>
-							<!-- 레시피/ 식재료 글 시작-->
+
+				<% for (int i=0; i < food.size(); i++){	%>
+				<!-- 레시피/ 식재료 글 시작-->
 				<div class="col-12 col-sm-6 col-lg-4 list1">
 					<div class="single-small-receipe-area d-flex">
 						<!-- Receipe Thumb -->
-						<a href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">
-							<div class="receipe-thumb">
-								<img src="<%= food.get(i).getFood_image() %>" alt="">
-							</div> <!-- Receipe Content -->
-							<div class="receipe-content">
-								<br>
-								<!-- 좋은 질병 표시-->
-								<span>
-								<% if(food.get(i).getFood_good() != null){%>
-								<%= food.get(i).getFood_good()%>
-								<%}%>
-								</span>
-								<!-- 음식 명-->
-								<h5><%= food.get(i).getFood_name() %></h5>
-						</a>
+
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= food.get(i).getFood_image() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content " style="padding-left: 10px">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
+								<%= food.get(i).getFood_good()%> <%}%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+						</div>
 					</div>
 				</div>
+				<!-- 레시피/식재료 글 종료-->
+
+				<% } %>
+
+
+
+
 			</div>
-			<!-- 레시피/식재료 글 종료-->
-			
-	<% } %>
+			<p>
 
-
-
-
-		</div>
-		<p>
-			
-			<button id="load" class="btn">더보기</button>
-<%-- 			<% if (food != null){ %>
+				<button id="load" class="btn">더보기</button>
+				<%-- 			<% if (food != null){ %>
 			<script>
 			$("#load").css("visibility","hidden");
 			</script>
 			<%} %> --%>
-		</p>
+			</p>
 
 
-		<!-- 건드려야 하는 곳 -->
+			<!-- 건드려야 하는 곳 -->
 		</div>
 		</div>
 
@@ -371,7 +372,6 @@ button {
 		<script src="js/plugins/plugins.js"></script>
 		<!-- Active js -->
 		<script src="js/active.js"></script>
-		
 </body>
 
 </html>
