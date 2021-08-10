@@ -1,88 +1,98 @@
-<%@page import="model.FoodDAO"%>
-<%@page import="model.FoodDTO"%>
+<%@page import="model.RecipeDTO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.RecipeDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+   
 <%
-	ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
-	FoodDAO dao = new FoodDAO();
-	
-	food = dao.food_dang();
-%>
-    <!DOCTYPE html>
+response.setCharacterEncoding("euc-kr");
+
+String name = request.getParameter("name");
+
+//식재료 관련
+RecipeDAO dao = new RecipeDAO();
+RecipeDTO recipe = dao.search_recipe(name);
+
+/* 
+recipe = dao.all_recipe(); */
+
+
+/* int cnt = -1;
+for (int i = 0; i < recipe.size(); i++) {
+	if (recipe.get(i).getRecipe_name().equals(name)) {
+		cnt = i;
+	} else
+		continue;
+}*/
+
+/* RecipeDTO detail = new RecipeDTO(recipe.get(1).getRecipe_code(), recipe.get(1).getRecipe_name(), 
+		recipe.get(1).getRecipe_method(), recipe.get(1).getRecipe_food(), recipe.get(1).getRecipe_img(), 
+		recipe.get(1).getRecipe_cook1(), recipe.get(1).getRecipe_cook2()); */
+%> 
+    
+    
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <style>
+        #menu1 ul {
+            width: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #menu1 ul li {
+            float: left;
+            width: 25%;
+            height: 100px;
+            line-height: 60px;
+            text-align: center;
+        }
+
+        #menu1 ul li a {
+            display: block;
+        }
+
+        #menu1 ul li a:hover {
+            color: gray;
+        }
+
+        .like {
+            background-color: white;
+            padding: 0px 5px;
+            border-radius: 10px;
+            border: white;
+        }
+    </style>
+    <meta charset="euc-kr">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .row {
-            display: flex;
-        }
 
-        .left{
-            text-align: left;
-        }
-        .btn {
-            position: relative;
-            /* left: 40%; */
-            transform: translateX(-50%);
-            margin-bottom: 40px;
-            width: 100px;
-            height: 40px;
-            background: rgb(244, 105, 19);
-            color: white;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: 0.4s;
-            display: inline;
-            border-radius: 12px;
-            margin-left: 100px;
-            font-family: 'allfonts';
-        }
-        .list1 {
-            /* visibility: hidden; */
-            display: none;
-            /* display: ; */
-        }
-    </style>
-    <script src="jquery-3.6.0.min.js"></script>
-    <script>
-        let num1 = 0;
-        let num2 = 4;
-        $(function () {
-            $(".list1").slice(num1, num2).attr("style", "display:flex");
-            $("#load").click(function () {
-                num1 += 4;
-                num2 += 4;
-                if (num1 < $(".list1").length) {
-                    console.log("클릭됨");
-                    $(".list1").slice(num1, num2).attr("style", "display:flex");
-                }
-
-                else {
-                    alert("더이상 없습니다 !!! ");
-                }
-            });
-        });
-    </script>
     <!-- Title -->
-    <title>질병 레시피 - 당뇨</title>
+    <title>레시피 상세 페이지</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(".like").click(function () {
+                $("#like").attr("src", "https://image.flaticon.com/icons/png/128/39/39559.png");
+            });
+        });
 
+
+    </script>
 </head>
 
-<body>
+<body style="font-family:'allfonts'">
     <!-- 레시피 대표 이미지 -->
     <div id="preloader" algin="center">
         <i class="circle-preloader"></i>
@@ -174,37 +184,6 @@
         <!-- 메뉴관련 끝 -->
     </header>
     <!-- ##### 헤더 종료 부분 / 삭제하지 마시오 ##### -->
-
-    <!-- 질병 탭-->
-    <hr>
-    <div>
-        <ul style="text-align: center; ">
-            <a class="test_font" style="font-size: 20px;" href="Disease_high_blood_pressure.html">고혈압</a>
-            &nbsp&nbsp
-            <a class="test_font" style="font-size: 20px; border-bottom: 2px solid #adadad;" href="Disease_Diabetes.html">당뇨병</a>
-            &nbsp&nbsp
-            <a class="test_font" style="font-size: 20px;" href="Disease_respiratory.html">호흡기질환</a>
-            &nbsp&nbsp
-            <a class="test_font" style="font-size: 20px;  " href="Disease_gastroenteritis.html">위장병</a>
-        </ul>
-    </div>
-    <br>
-    <div>
-        <ul style="text-align: center;">
-            <a class="test_font1" style="font-size: 17px; " href="Disease_Diabetes.html">정보</a>
-            &nbsp&nbsp
-            &nbsp&nbsp
-            
-            <a class="test_font1" style="font-size: 17px;border-bottom: 2px solid #adadad; " href="Disease_Diabetes_food.jsp">식재료</a>
-            &nbsp&nbsp
-            &nbsp&nbsp
-
-            <a class="test_font1" style="font-size: 17px; " href="Disease_Diabetes_recipe.html">레시피</a>
-        </ul>
-
-    </div>
-
-
     <hr>
 
 
@@ -213,92 +192,92 @@
     <!-- ##### Blog Area Start ##### -->
     <div class="blog-area section-padding-80" align="center">
         <div class="container">
-            <!-- <div class="row"></div> -->
+            <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="blog-posts-area">
 
                         <!-- Single Blog Area -->
                         <div class="single-blog-area mb-80">
                             <!-- Thumbnail -->
-                            <!-- <class class="blog-thumbnail">
-                                <div align="center" class="test_font" style="font-size: 25px; font-weight: bold;">
-                                    <span style="color: brown;">당뇨<span style="color: black;">에 좋은 레시피에요!</span></span>
+                            <class class="blog-thumbnail">
+                                <img src="<%=recipe.getRecipe_img() %>" alt="">
+                                <br><br><br>
+                                <!-- 이름 -->
+                                
+                                <h3 class="test_font"><span style="margin-left: 30px;"><%=recipe.getRecipe_name() %></span>
+                                    <button class="like"><a href='saveCon?recipe_name=<%=recipe.getRecipe_name() %>'><img id="like"
+                                            src="https://image.flaticon.com/icons/png/128/31/31611.png"
+                                            style="width:30px; height:30px;"></a></button>
+                                </h3>
+                                <p style="font-size: 17px; color: rgb(130, 78, 0); font-family: allfonts">조리 방법 : <%=recipe.getRecipe_method() %>
+                                </p>
+
+                                <div>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <a class="test_font1" style="font-size: 25px;">재료 정보</a>
+                                    <br>
+                                    <br>
+                                    <p style="font-size: 17px; color: black;"><%=recipe.getRecipe_food() %>
+                                    </p>
                                 </div>
-
-                                <hr>
                                 <br>
+                                <hr>
+
+                                <br>
+                                <br>
+
+
+
+
+
+                                <!-- Post Date -->
+
                             </class>
-                            <section class="small-receipe-area section-padding-80-0">
-                                <div class="container">
-                                <div class="row"> -->
-                    
-    <!-- ##### 맞춤 레시피 추천 시작 ##### -->
-    <!-- <hr> -->
-    <section class="small-receipe-area" >
-        <div class="container">
-            <!-- <h5 class="test_font" align="center" style="font-size: 25px;">도훈
-                <span>님의 건강에 맞춰 음식을 추천해드려요!</span>
-            </h5> -->
-            <div align="center" class="test_font" style="font-size: 25px; font-weight: bold;">
-                <span style="color: brown;">당뇨<span style="color: black;">에 좋은 레시피에요!</span></span>
-            </div>
-            <h5 align="center" style="margin-bottom: 50px;"></h5>
-            <div class="row">
+                            <!-- 건드려야 하는 곳 -->
+                            <h4 class="test_font" style="font-size: 25px; margin-bottom: 30px;">조리과정</h4>
+                            <div align="center" style="color: black; text-align: left;">
+                            <%if (recipe.getRecipe_cook1() != null){ %>
+                                <img alt="" style="width: 100%;"
+                                    src="<%=recipe.getRecipe_cook1() %>">
+                                <br>
+                                <img alt=""
+                                    src="<%=recipe.getRecipe_cook2() %>">
+                                    <%}else{ %>
+                                     <p style="font-size: 17px; color: black;" align="center">현재 레시피 준비중입니다 ..!
+                                    </p>
+                                    <%} %>
+                            </div>
+                            <!-- 건드려야 하는 곳 -->
 
-    <!-- 레시피/ 식재료 글 시작-->
-    		<% for(int i = 0; i < food.size(); i++) {%>
-               <div class="col-12 col-sm-6 col-lg-4 list1">
-				<div class="single-small-receipe-area d-flex">
-					<!-- Receipe Thumb -->
-
-					<div class="receipe-thumb" style="padding: 0px">
-						<img style="height: 100px;"
-							src="<%= food.get(i).getFood_image() %>" alt="">
-					</div>
-					<!-- Receipe Content -->
-					<div class="receipe-content " style="padding-left: 10px; text-align:left;">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
-							<%= food.get(i).getFood_good()%> <%}%>
-						</span>
-						<!-- 음식 명-->
-						<span class="test_font"
-							style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
-						<a class="test_font"
-							style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-							href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
-					</div>
-				</div>
-			</div>
-			
-			<% } %>
-    <!-- 레시피/식재료 글 종료-->
-
-    </div>
-    <p><button id="load" class="btn">더보기</button></p>
-
-
-
-                        <!-- 건드려야 하는 곳 -->
+                            <br><br><br>
+                        </div>
                     </div>
+
+                    <!-- 댓글 공간 -->
+                    <hr>
+                    <form>
+                        <textarea rows="5" cols="50" style="border: 1px solid gray;"></textarea>
+                        <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="댓글작성">
+                    </form>
+                    <hr>
+                    <div align="left">
+                    <div style="color: darkgray;">도훈잉님</div>
+                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">고구마죽 넘 맛있어요 ~</div>
+                    <div style="color: darkgray;">도훈잉님</div>
+                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">고구마죽 넘 맛있어요 ~</div>
                 </div>
-
-
-
+                
+                </div>
             </div>
-
         </div>
-
-    </div>
 
 
     </div>
     </div>
     </div>
     <!-- ##### Blog Area End ##### -->
-
-
 
 
 
@@ -333,8 +312,6 @@
                                 </div>
                             </footer>
                             <!-- ##### Footer Area Start ##### -->
-
-
 
 
 

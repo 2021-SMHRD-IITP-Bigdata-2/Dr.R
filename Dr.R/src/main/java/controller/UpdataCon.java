@@ -49,7 +49,7 @@ public class UpdataCon extends HttpServlet {
 		
 		if(cnt > 0) {
 			session.setAttribute("login_User", user);
-			response.sendRedirect("join1.html");
+			response.sendRedirect("main.jsp");
 		}
 		else {
 			response.sendRedirect("member_info_change2.jsp");

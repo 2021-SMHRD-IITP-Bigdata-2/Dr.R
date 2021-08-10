@@ -5,17 +5,17 @@ public class RecipeDTO {
 	private int recipe_code;
 	private String recipe_name;
 	private String recipe_method;
-	private String recipe_fod;
+	private String recipe_food;
 	private String recipe_img;
 	private String recipe_cook1;
 	private String recipe_cook2;
 
-	public RecipeDTO(int recipe_code, String recipe_name, String recipe_method, String recipe_fod, String recipe_img,
+	public RecipeDTO(int recipe_code, String recipe_name, String recipe_method, String recipe_food, String recipe_img,
 			String recipe_cook1, String recipe_cook2) {
 		this.recipe_code = recipe_code;
 		this.recipe_name = recipe_name;
 		this.recipe_method = recipe_method;
-		this.recipe_fod = recipe_fod;
+		this.recipe_food = recipe_food;
 		this.recipe_img = recipe_img;
 		this.recipe_cook1 = recipe_cook1;
 		this.recipe_cook2 = recipe_cook2;
@@ -45,12 +45,12 @@ public class RecipeDTO {
 		this.recipe_method = recipe_method;
 	}
 
-	public String getRecipe_fod() {
-		return recipe_fod;
+	public String getRecipe_food() {
+		return recipe_food;
 	}
 
-	public void setRecipe_fod(String recipe_fod) {
-		this.recipe_fod = recipe_fod;
+	public void setRecipe_food(String recipe_food) {
+		this.recipe_food = recipe_food;
 	}
 
 	public String getRecipe_img() {
@@ -80,7 +80,7 @@ public class RecipeDTO {
 	@Override
 	public String toString() {
 		return "RecipeDTO [recipe_code=" + recipe_code + ", recipe_name=" + recipe_name + ", recipe_method="
-				+ recipe_method + ", recipe_fod=" + recipe_fod + ", recipe_img=" + recipe_img + ", recipe_cook1="
+				+ recipe_method + ", recipe_food=" + recipe_food + ", recipe_img=" + recipe_img + ", recipe_cook1="
 				+ recipe_cook1 + ", recipe_cook2=" + recipe_cook2 + "]";
 	}
 	

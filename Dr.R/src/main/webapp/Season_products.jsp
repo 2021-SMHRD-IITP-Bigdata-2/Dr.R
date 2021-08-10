@@ -97,12 +97,12 @@ button {
 <script src="jquery-3.6.0.min.js"></script>
 <script>
 	let num1 = 0;
-	let num2 = 4;
+	let num2 = 8;
 	$(function() {
 		$(".list1").slice(num1, num2).attr("style", "display:flex");
 		$("#load").click(function() {
-			num1 += 4;
-			num2 += 4;
+			num1 += 8;
+			num2 += 8;
 			if (num1 <= $(".list1").length) {
 				console.log("Å¬¸¯µÊ");
 				$(".list1").slice(num1, num2).attr("style", "display:flex");

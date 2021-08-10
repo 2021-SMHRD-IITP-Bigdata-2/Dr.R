@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,12 @@ public class LoginCon extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setCharacterEncoding("UTF-8"); 
+		response.setContentType("text/html; charset=UTF-8");
+
+		PrintWriter out = response.getWriter();
+		
+		
 		String u_id = request.getParameter("u_id");
 		String u_pw = request.getParameter("u_pw");
 		
@@ -23,7 +31,6 @@ public class LoginCon extends HttpServlet {
 		UserDTO user = dao.user_login(u_id, u_pw);
 		
 		if(user != null) {
-			
 			HttpSession session = request.getSession();
 			session.setAttribute("login_User", user);
 			
@@ -31,8 +38,8 @@ public class LoginCon extends HttpServlet {
 			response.sendRedirect("main.jsp");
 		}else {
 			System.out.println("실패");
-			// 로그인 실패 후 이동페이지
 			response.sendRedirect("login.html");
+			// 로그인 실패 후 이동페이지
 		}
 	}
 
