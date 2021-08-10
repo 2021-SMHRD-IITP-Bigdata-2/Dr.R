@@ -15,13 +15,16 @@
 	if (month != null) {
 		int mon = Integer.parseInt(month);
 		food = dao.season_food(mon);
+	}else{
+		int mon = 1;
+		food = dao.season_food(mon);
 	}
 %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -160,7 +163,7 @@ button {
 						id="deliciousNav">
 
 						<!-- 로고 -->
-						<a class="nav-brand" href="index.html"><img
+						<a class="nav-brand" href="main.jsp"><img
 							src="img/core-img/logo.png" alt=""></a>
 
 						<!-- Navbar Toggler -->
@@ -183,32 +186,30 @@ button {
 								<ul>
 
 									<!-- 그 외 메뉴 -->
-									<script>
-										// 로그인 했으면 마이페이지로 이동,
-										// 로그인 하지 않았으면 로그인 페이지로 이동
-									</script>
-									<li><a href="member_info.html">마이 페이지</a></li>
-									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-									<li><a href="Season_products.jsp?month=1">제철 식재료</a></li>
+                                    <script>
+                                        // 로그인 했으면 마이페이지로 이동,
+                                        // 로그인 하지 않았으면 로그인 페이지로 이동
+                                    </script>
+                                    <li><a href="member_info.html">마이 페이지</a></li>
+                                    <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
+                                    
+                                    
+                                    <li><a href="Season_products.jsp">제철 식재료</a></li>
+                                    <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
+                                    <li><a href="Guide.html">이용 안내</a></li>
+                                    <!-- 로그인 -->
+                                    <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
+                                    </li>
 
+                                    <!-- 회원가입 -->
+                                    <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
-									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
-									<li><a href="Guide.html">이용 안내</a></li>
-									<!-- 로그인 -->
-									<li><a href="login.html"
-										style="background-color: rgb(236, 236, 236);">Login</a></li>
-
-									<!-- 회원가입 -->
-									<li><a href="join1.html"
-										style="background-color: rgb(236, 236, 236);">Join</a></li>
-
-									<!-- 검색 -->
-									<li>
-										<div class="search-btn">
-											<i class="fa fa-search" aria-hidden="true"
-												style="font-size: 30px;"></i>
-										</div>
-									</li>
+                                    <!-- 검색 -->
+                                    <li>
+                                        <div class="search-btn">
+                                            <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
+                                        </div>
+                                    </li>
 							</div>
 						</div>
 
@@ -226,7 +227,13 @@ button {
 		<table class=>
 			<tr>
 				<ul style="text-align: center;">
-					<td><span class="test_font" style="font-weight: bold;"><%=month %></span>
+					<td><span class="test_font" style="font-weight: bold;">
+					<%if (month == null){ %>
+					1
+					<%} else{ %>
+					<%=month %>
+					<%} %>
+					</span>
 						<span class="test_font"
 						style="font-weight: bold; margin-right: 30px;">월의 농수산물</span></td>
 					<td><select class="test_dropdown" style="background: violet;" name="month">
@@ -330,7 +337,7 @@ button {
 						class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
 						<!-- Footer Logo -->
 						<div class="footer-logo">
-							<a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+							<a href="main.jsp"><img src="img/core-img/logo.png" alt=""></a>
 						</div>
 						<!-- Copywrite -->
 						<p>
