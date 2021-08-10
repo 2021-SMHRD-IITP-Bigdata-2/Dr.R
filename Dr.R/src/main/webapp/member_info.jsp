@@ -1,3 +1,11 @@
+<%@page import="model.UserDTO"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<% UserDTO User = (UserDTO)session.getAttribute("login_User"); %>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,8 +67,8 @@ h5{
           <br>
           <br>
           
-          <h5 style="font-size: 18px;">Ãµ»çµµÈÆ</h5>
-          <h5>ehgns1004@naver.com</h5>
+          <h5 style="font-size: 18px;"><%= User.getU_name() %>´Ô</h5>
+          <h5><%= User.getU_email() %></h5>
         </div>
 
         <br><br><br>
