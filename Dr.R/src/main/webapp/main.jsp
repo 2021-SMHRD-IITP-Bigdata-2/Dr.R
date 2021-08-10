@@ -185,7 +185,7 @@
             <!-- <div class="row"> -->
             
             <div class="single-hero-slide bg-img" style="background-image: url(<%= season.getFood_image()%>
-            );">
+            ); height:700px;">
 
                 <div class="container h-100">
 
