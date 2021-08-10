@@ -1,8 +1,11 @@
+<%@page import="java.util.Date"%>
 <%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=euc-kr"
     pageEncoding="euc-kr"%>
 <% 
 	UserDTO user = (UserDTO)session.getAttribute("login_User");
+	Date time = new Date();
+	int month = time.getMonth()+1;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +93,7 @@
                     <nav class="classy-navbar justify-content-between" id="deliciousNav">
 
                         <!-- 로고 -->
-                        <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                        <a class="nav-brand" href="main.jsp"><img src="img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -120,7 +123,7 @@
                                     <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
 
-                                    <li><a href="Season_products.html">제철 식재료</a></li>
+                                    <li><a href="Season_products.jsp">제철 식재료</a></li>
                                     <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
                                     <li><a href="Guide.html">이용 안내</a></li>
                                     <% if(user == null){ %>
@@ -129,7 +132,7 @@
                                     </li>
 
                                     <!-- 회원가입 -->
-                                    <li><a href="join1.html" style="background-color: rgb(236, 236, 236);">Join</a></li>
+                                    <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
                                     <!-- 검색 -->
                                     <li>
@@ -156,7 +159,9 @@
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slide -->
+        
             <!-- <div class="row"> -->
+            
             <div class="single-hero-slide bg-img" style="background-image: url(http://www.lampcook.com//wi_files/food_fish/fish_dic/20.jpg
             );">
 
@@ -171,14 +176,16 @@
                                 <!-- 오늘의 식재료 추천 기능 
                                 제철 월에서 랜덤으로 추출하여 해당 식재료 상세내용 출력하기
                                 span태그 안의 내용을 해당 값으로 바꿔주면 됨 -->
-                                <h2 data-animation="fadeInUp" data-delay="300ms">꽃게</h2>
+                                <h1 data-animation="fadeInUp" data-delay="300ms" style="color:white;">오늘의 식재료</h1>
+                                 <h2 data-animation="fadeInUp" data-delay="300ms">꽃게</h2>
+                                <h6 data-animation="fadeInUp" data-delay="300ms" style="color:white;">제철 : 8월</h6>
                                 <p data-animation="fadeInUp" data-delay="700ms" style="color: aliceblue;">
                                     지방이 적고 단백질이
                                     많으며 필수 아미노산이 풍부해 어린이 성장발육과 회복기 환자에게 매우 좋은 음식이다. 또한 간장과 심장을 강화시키는 타우린이 많이 함유되어 성인병
                                     예방에도 좋다. 꽃게에 함유된 철분과 칼슘, 인 등은 여성의 빈혈에 탁월한 효능을 발휘하며 노화방지에도 효과가 있다.
                                 </p>
                                 <!-- 버튼을 눌러서 페이지 이동할 때 식재료 이름 넘기게 url 설정하기 -->
-                                <a href="ingredient_page.html" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">정보 보기</a>
+                                <a href="ingredient_page.jsp" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">정보 보기</a>
                             </div>
                         </div>
                     </div>
@@ -207,7 +214,13 @@
     <section class="small-receipe-area section-padding-80-0">
         <!-- 이건 로그인 했을때 닉네임이 출력되게 , 로그인 안하면 로그인 후 서비스를 이용할 수 있다는 내용 출력 -->
         <div class="container">
-            <h5 class="test_font" align="center" style="font-size: 25px;">도훈
+        <%if(user == null){ %>
+	          <h5 class="test_font" align="center" style="font-size: 25px;">
+	                <span>로그인을 하시면 건강에 맞춰 음식을 추천해드려요!</span>
+	            </h5>
+	            <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='login.html'">로그인</button></div>
+          <%} else{%>
+            <h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name() %>
                 <span>님의 건강에 맞춰 음식을 추천해드려요!</span>
             </h5>
             <h5 align="center" style="margin-bottom: 50px;"></h5>
@@ -296,7 +309,7 @@
                 </div>
                 <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_recipe.html'">더보기</button></div>
                 <!-- ##### 맞춤 레시피 추천 종료 ##### -->
-
+			<%} %>
 
 
 
@@ -310,18 +323,25 @@
                 <section class="small-receipe-area section-padding-80-0">
                     <hr><br><br>
                     <div class="container">
-                        <h5 class="test_font" align="center" style="font-size: 25px;">8
+                     <%if(user == null){ %>
+	          <h5 class="test_font" align="center" style="font-size: 25px;"><%=month %>
                             <span>월의 제철 식재료에요!</span>
                         </h5>
+          <%} else{%>
+           <h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name() %> 님의 건강에 맞춰 추천해드리는 
+                            <br>8<span>월의 제철 식재료에요!</span>
+                            
+                        </h5>
+                        <%} %>
                         <h5 align="center" style="margin-bottom: 50px;"></h5>
                         <div class="row">
 
-                            <!-- 레시피/ 식재료 글 시작-->
+                           <!-- 레시피/ 식재료 글 시작-->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
-                        <a href="ingredient_page.html">
                         <div class="receipe-thumb">
+                            <a href="recipe_page.html">
                             <img src="img/bg-img/sr1.jpg" alt="">
                         </div>
                         <!-- Receipe Content -->
@@ -330,8 +350,8 @@
                             <!-- 좋은 질병 표시-->
                             <span>당뇨</span>
                             <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>                          
-                        </a>
+                                <h5>우엉이 세상을 정복한다</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -340,8 +360,8 @@
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
-                        <a href="ingredient_page.html">
                         <div class="receipe-thumb">
+                            <a href="recipe_page.html">
                             <img src="img/bg-img/sr1.jpg" alt="">
                         </div>
                         <!-- Receipe Content -->
@@ -350,8 +370,8 @@
                             <!-- 좋은 질병 표시-->
                             <span>당뇨</span>
                             <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>                          
-                        </a>
+                                <h5>우엉이 세상을 정복한다</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -360,8 +380,8 @@
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
-                        <a href="ingredient_page.html">
                         <div class="receipe-thumb">
+                            <a href="recipe_page.html">
                             <img src="img/bg-img/sr1.jpg" alt="">
                         </div>
                         <!-- Receipe Content -->
@@ -370,8 +390,8 @@
                             <!-- 좋은 질병 표시-->
                             <span>당뇨</span>
                             <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>                          
-                        </a>
+                                <h5>우엉이 세상을 정복한다</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -380,8 +400,8 @@
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
-                        <a href="ingredient_page.html">
                         <div class="receipe-thumb">
+                            <a href="recipe_page.html">
                             <img src="img/bg-img/sr1.jpg" alt="">
                         </div>
                         <!-- Receipe Content -->
@@ -390,14 +410,21 @@
                             <!-- 좋은 질병 표시-->
                             <span>당뇨</span>
                             <!-- 음식 명-->
-                                <h5>우엉이 세상을 정복한다</h5>                          
-                        </a>
+                                <h5>우엉이 세상을 정복한다</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
                 <!-- 레시피/식재료 글 종료-->
-            </div>
-                <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_season_ingredient.html'">더보기</button></div>
+                </div>
+               <!-- <<div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_ingredient.html'">더보기</button></div>
+ -->
+             <div align="center">
+	                <%if (user == null){ %>
+	                <button id="btn" style="margin-left: 100px;" onclick="location.href='Season_products.jsp?month=<%=month%>'">더보기</button></div> 
+	                <%} else{%>
+	                <button id="btn" style="margin-left: 100px;" onclick="location.href='custom_season_ingredient.html?month=<%=month%>'">더보기</button></div> 
+	                <%}%>
                 </section>
 
                             
@@ -419,7 +446,7 @@
                                             class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
                                             <!-- Footer Logo -->
                                             <div class="footer-logo">
-                                                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                                                <a href="main.jsp"><img src="img/core-img/logo.png" alt=""></a>
                                             </div>
                                             <!-- Copywrite -->
                                             <p>
