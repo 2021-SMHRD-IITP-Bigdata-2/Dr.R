@@ -288,7 +288,7 @@
 				<% } %>
                 <!-- 레시피/식재료 글 종료-->
                 </div>
-                <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_recipe.html'">더보기</button></div>
+                <div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_ingredient.html'">더보기</button></div>
                 <!-- ##### 맞춤 레시피 추천 종료 ##### -->
 			<%} %>
 
