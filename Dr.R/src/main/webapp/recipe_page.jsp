@@ -5,6 +5,8 @@
     pageEncoding="EUC-KR"%>
    
 <%
+response.setCharacterEncoding("euc-kr");
+
 String name = request.getParameter("name");
 
 //식재료 관련
@@ -63,7 +65,7 @@ for (int i = 0; i < recipe.size(); i++) {
             border: white;
         }
     </style>
-    <meta charset="UTF-8">
+    <meta charset="euc-kr">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -203,9 +205,9 @@ for (int i = 0; i < recipe.size(); i++) {
                                 <!-- 이름 -->
                                 
                                 <h3 class="test_font"><span style="margin-left: 30px;"><%=recipe.getRecipe_name() %></span>
-                                    <button class="like"><img id="like"
+                                    <button class="like"><a href='saveCon?recipe_name=<%=recipe.getRecipe_name() %>'><img id="like"
                                             src="https://image.flaticon.com/icons/png/128/31/31611.png"
-                                            style="width:30px; height:30px;"></button>
+                                            style="width:30px; height:30px;"></a></button>
                                 </h3>
                                 <p style="font-size: 17px; color: rgb(130, 78, 0); font-family: allfonts">조리 방법 : <%=recipe.getRecipe_method() %>
                                 </p>
