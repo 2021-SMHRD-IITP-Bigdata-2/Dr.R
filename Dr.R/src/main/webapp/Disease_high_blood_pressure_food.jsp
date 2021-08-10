@@ -1,3 +1,4 @@
+<%@page import="model.FoodDAO"%>
 <%@page import="model.FoodDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
