@@ -71,7 +71,7 @@
 
 
 
-<body>
+<body style="font-family:'allfonts'">
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
@@ -140,7 +140,7 @@
                                          // visible : true or false
                                       </script>
                                     <%}%> --%>
-                                    <li id="mypage"><a href="member_info.html">마이 페이지</a></li>
+                                    <li id="mypage"><a href="member_info.jsp">마이 페이지</a></li>
                                     
                                     <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
@@ -205,7 +205,7 @@
                                     <%= season.getFood_content() %>
                                 </p>
                                 <!-- 버튼을 눌러서 페이지 이동할 때 식재료 이름 넘기게 url 설정하기 -->
-                                <a href="ingredient_page.jsp" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">정보 보기</a>
+                                <a href="ingredient_page.jsp?name=<%=season.getFood_name() %>" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">정보 보기</a>
                             </div>
                         </div>
                     </div>
