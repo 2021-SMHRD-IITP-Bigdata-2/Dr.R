@@ -261,5 +261,54 @@ public class FoodDAO {
 
 		return list;
 	}
+	
+	
+	
+	
+	// 제철음식 뽑을때 사용하는 DAO
+	
+	public ArrayList<FoodDTO> seasonal_food(int MONTH) {
+
+		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			
+			String sql = "select * from food where FOOD_MONTH = ?";
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1,MONTH);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int FOOD_CODE = rs.getInt("FOOD_CODE");
+				String FOOD_NAME = rs.getString("FOOD_NAME");
+				String FOOD_CONTENT = rs.getString("FOOD_CONTENT");
+				String FOOD_IMAGE = rs.getString("FOOD_IMAGE");
+				int FOOD_MONTH = rs.getInt("FOOD_MONTH");
+				String FOOD_GOOD = rs.getString("FOOD_GOOD");
+				
+				
+
+				FoodDTO food = new FoodDTO(FOOD_CODE,FOOD_NAME,FOOD_CONTENT,FOOD_IMAGE,FOOD_MONTH,FOOD_GOOD);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+	
+	
+	
 
 }
