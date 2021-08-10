@@ -80,7 +80,7 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 
 </head>
 
-<body>
+<body >
 	<!-- Preloader -->
 	<div id="preloader" algin="center">
 		<i class="circle-preloader"></i> <img src="img/core-img/salad.png"

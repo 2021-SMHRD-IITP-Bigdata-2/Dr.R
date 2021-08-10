@@ -71,7 +71,7 @@
 
 
 
-<body>
+<body class="test_font">
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
@@ -173,7 +173,7 @@
     <hr>
 
     <section class="hero-area">
-        <div class="hero-slides owl-carousel">
+        <div class="hero-slides owl-carousel" style="padding:50px 10px;">
             <!-- Single Hero Slide -->
         
             <!-- <div class="row"> -->
@@ -188,11 +188,11 @@
 
                         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                             <!-- 글자 상자 속성 -->
-                            <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                            <div class="hero-slides-content" style="margin-left:50px;"data-animation="fadeInUp" data-delay="100ms">
                                 <!-- 오늘의 식재료 추천 기능 
                                 제철 월에서 랜덤으로 추출하여 해당 식재료 상세내용 출력하기
                                 span태그 안의 내용을 해당 값으로 바꿔주면 됨 -->
-                                <h1 data-animation="fadeInUp" data-delay="300ms" style="color:white;">추천 식재료</h1>
+                                <h1 data-animation="fadeInUp" data-delay="300ms" style="color:white;">오늘의 식재료</h1>
                                  <h2 data-animation="fadeInUp" data-delay="300ms"><%=season.getFood_name() %></h2>
                                 <h6 data-animation="fadeInUp" data-delay="300ms" style="color:white;">제철 : <%=season.getFood_month() %>월</h6>
                                 <p data-animation="fadeInUp" data-delay="700ms" style="color: aliceblue;">
