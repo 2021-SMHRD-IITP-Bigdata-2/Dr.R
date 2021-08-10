@@ -9,9 +9,10 @@ String name = request.getParameter("name");
 
 //식재료 관련
 RecipeDAO dao = new RecipeDAO();
-ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
+RecipeDTO recipe = dao.search_recipe(name);
 
-recipe = dao.all_recipe();
+/* 
+recipe = dao.all_recipe(); */
 
 
 /* int cnt = -1;
@@ -89,7 +90,7 @@ for (int i = 0; i < recipe.size(); i++) {
     </script>
 </head>
 
-<body>
+<body style="font-family:'allfonts'">
     <!-- 레시피 대표 이미지 -->
     <div id="preloader" algin="center">
         <i class="circle-preloader"></i>
@@ -197,15 +198,16 @@ for (int i = 0; i < recipe.size(); i++) {
                         <div class="single-blog-area mb-80">
                             <!-- Thumbnail -->
                             <class class="blog-thumbnail">
-                                <img src="<%=recipe.get(0).getRecipe_name() %>" alt="">
+                                <img src="<%=recipe.getRecipe_img() %>" alt="">
                                 <br><br><br>
                                 <!-- 이름 -->
-                                <h3 class="test_font"><span style="margin-left: 30px;">??</span>
+                                
+                                <h3 class="test_font"><span style="margin-left: 30px;"><%=recipe.getRecipe_name() %></span>
                                     <button class="like"><img id="like"
                                             src="https://image.flaticon.com/icons/png/128/31/31611.png"
                                             style="width:30px; height:30px;"></button>
                                 </h3>
-                                <p style="font-size: 17px; color: rgb(130, 78, 0); font-family: allfonts">조리 방법 : ??
+                                <p style="font-size: 17px; color: rgb(130, 78, 0); font-family: allfonts">조리 방법 : <%=recipe.getRecipe_method() %>
                                 </p>
 
                                 <div>
@@ -215,7 +217,7 @@ for (int i = 0; i < recipe.size(); i++) {
                                     <a class="test_font1" style="font-size: 25px;">재료 정보</a>
                                     <br>
                                     <br>
-                                    <p style="font-size: 17px; color: black;">??
+                                    <p style="font-size: 17px; color: black;"><%=recipe.getRecipe_food() %>
                                     </p>
                                 </div>
                                 <br>
@@ -234,11 +236,16 @@ for (int i = 0; i < recipe.size(); i++) {
                             <!-- 건드려야 하는 곳 -->
                             <h4 class="test_font" style="font-size: 25px; margin-bottom: 30px;">조리과정</h4>
                             <div align="center" style="color: black; text-align: left;">
+                            <%if (recipe.getRecipe_cook1() != null){ %>
                                 <img alt="" style="width: 100%;"
-                                    src="??">
+                                    src="<%=recipe.getRecipe_cook1() %>">
                                 <br>
                                 <img alt=""
-                                    src="??">
+                                    src="<%=recipe.getRecipe_cook2() %>">
+                                    <%}else{ %>
+                                     <p style="font-size: 17px; color: black;" align="center">현재 레시피 준비중입니다 ..!
+                                    </p>
+                                    <%} %>
                             </div>
                             <!-- 건드려야 하는 곳 -->
 

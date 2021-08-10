@@ -89,6 +89,39 @@ public class RecipeDAO {
 		return list;
 	}
 	
+	public RecipeDTO search_recipe(String name) {
+		
+		RecipeDTO recipe = null;
+		
+		try {
+
+			connection();
+
+			String sql = "select * from Recipe where recipe_name = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, name);
+			rs = psmt.executeQuery();
+
+			if(rs.next()) {
+				int getrecipe_code = rs.getInt(1);
+				String getrecipe_name = rs.getString(2);
+				String getrecipe_method = rs.getString(3);
+				String getrecipe_food = rs.getString(4);
+				String getrecipe_img = rs.getString(5);
+				String getrecipe_cook1 = rs.getString(6);
+				String getrecipe_cook2 = rs.getString(7);
+
+				recipe = new RecipeDTO(getrecipe_code, getrecipe_name, getrecipe_method, getrecipe_food, getrecipe_img, getrecipe_cook1, getrecipe_cook2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { // 무조건적으로 실행되는 finally
+			close();
+		} // end finally
+		return recipe;
+	}
+	
 	
 	// 해당 식재료와 관련된 레시피 DAO
 	public ArrayList<RecipeDTO> recipe_food(String name) {

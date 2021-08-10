@@ -63,7 +63,7 @@ public class FoodDAO {
 			connection();
 
 			// 3. Äõ¸®¹® ½ÇÇà
-			String sql = "select food_code, food_name, food_image, food_good from Food where food_month=? order by food_name";
+			String sql = "select food_code, food_name, food_image, food_good from Food where food_month=? ";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, month);
