@@ -8,7 +8,7 @@
     
 <%
 	
-	String month = request.getParameter("month");
+	//String month = request.getParameter("month");
 
 	ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
 	FoodDAO dao = new FoodDAO();
@@ -280,7 +280,9 @@
 						<div class="receipe-content " style="padding-left: 10px">
 							<br>
 							<!-- 좋은 질병 표시-->
-							<span class="test_font">
+							<span class="test_font"><% if(food.get(i).getFood_good() != null){%>
+							
+							<%= food.get(i).getFood_good() %><%}%>
 							</span>
 							<!-- 음식 명-->
 							<span class="test_font"
@@ -291,9 +293,9 @@
 						</div>
                 </div>
             </div>
+        <% } %>
         </div>
         <!-- 레시피/식재료 글 종료-->
-        <% } %>
         
     <p><button id="load" class="btn">더보기</button></p>
 
