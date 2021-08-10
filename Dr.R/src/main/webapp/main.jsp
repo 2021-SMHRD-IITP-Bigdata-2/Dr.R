@@ -46,6 +46,7 @@
 	
     <!-- Title -->
     <title>Dr.R main</title>
+    
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/salad.png">
@@ -256,7 +257,7 @@
             <h5 align="center" style="margin-bottom: 50px;"></h5>
             <div class="row">
 
-               <% for (int i=0; i < food.size(); i++){	%>
+               <% for (int i=0; i < 8; i++){	%>
 				<!-- 레시피/ 식재료 글 시작-->
 				<div class="col-12 col-sm-6 col-lg-4 list1">
 					<div class="single-small-receipe-area d-flex">
@@ -278,7 +279,7 @@
 								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
 							<a class="test_font"
 								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-								href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+								href="custom_ingredient.html<%-- ?name=<%= food.get(i).getFood_name()%> --%>">상세보기</a>
 						</div>
 					</div>
 				</div>

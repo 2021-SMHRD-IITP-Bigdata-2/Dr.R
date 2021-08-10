@@ -331,19 +331,28 @@ public class FoodDAO {
 		try {
 			connection();
 
-			String sql = "select distinct food_name, food_good, food_content, food_image where food_good like '%?%' ? food_good like '%?%' ? food_good like '%?%' ? food_good like '%?%'";
+			String sql = "select distinct food_name, food_good, food_content, food_image from food where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(2, con[0]);
-			psmt.setString(4, con[1]);
-			psmt.setString(6, con[2]);
-			for (int i = 0; i < arr.size(); i += 2) {
-
-				psmt.setString(1, arr.get(0));
-				psmt.setString(3, arr.get(1));
-				psmt.setString(5, arr.get(2));
-				psmt.setString(7, arr.get(3));
-
+			
+//			psmt.setString(1, "");
+//			psmt.setString(3, "");
+//			psmt.setString(5, "");
+//			psmt.setString(7, "");
+//			psmt.setString(2, con[0]);
+//			psmt.setString(4, con[1]);
+//			psmt.setString(6, con[2]);
+			
+			int num = 1;
+			
+			for (int i = 0; i < arr.size(); i ++) {
+				String good = '%'+arr.get(i)+'%';
+				psmt.setString(num, good);
+				num += 1;
+			}
+			for(int i = num; i <= 4; i++) {
+				String a = '%'+""+'%';
+				psmt.setString(i, a);
 			}
 
 			rs = psmt.executeQuery();
