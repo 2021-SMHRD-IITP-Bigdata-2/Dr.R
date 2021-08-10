@@ -30,10 +30,11 @@ public class FoodDTO {
 
 	
 
-	public FoodDTO(String food_name, String food_content, String food_image) {
+	public FoodDTO(String food_name, String food_content, String food_image, String food_good) {
 		this.food_name = food_name;
 		this.food_content = food_content;
 		this.food_image = food_image;
+		this.food_good = food_good;
 	}
 
 	public int getFood_code() {

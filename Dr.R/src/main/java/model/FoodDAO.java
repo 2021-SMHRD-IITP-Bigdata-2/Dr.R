@@ -130,7 +130,7 @@ public class FoodDAO {
 			connection();
 
 			// 3. Äõ¸®¹® ½ÇÇà
-			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%´ç´¢%' order by food_name";
+			String sql = "select distinct food_name, food_content, food_image, food_good from food where food_good like '%´ç´¢%' order by food_name";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -140,8 +140,9 @@ public class FoodDAO {
 				String food_name = rs.getString(1);
 				String food_content = rs.getString(2);
 				String food_image = rs.getString(3);
+				String food_good = rs.getString(4);
 
-				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
 
 				list.add(food);
 			}
@@ -165,7 +166,7 @@ public class FoodDAO {
 			connection();
 
 			// 3. Äõ¸®¹® ½ÇÇà
-			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%°íÇ÷¾Ð%' order by food_name";
+			String sql = "select distinct food_name, food_content, food_image, food_good from food where food_good like '%°íÇ÷¾Ð%' order by food_name";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -175,8 +176,9 @@ public class FoodDAO {
 				String food_name = rs.getString(1);
 				String food_content = rs.getString(2);
 				String food_image = rs.getString(3);
+				String food_good = rs.getString(4);
 
-				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
 
 				list.add(food);
 			}
@@ -200,7 +202,7 @@ public class FoodDAO {
 			connection();
 
 			// 3. Äõ¸®¹® ½ÇÇà
-			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%À§Àå%' order by food_name";
+			String sql = "select distinct food_name, food_content, food_image, food_good from food where food_good like '%À§Àå%' order by food_name";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -210,8 +212,9 @@ public class FoodDAO {
 				String food_name = rs.getString(1);
 				String food_content = rs.getString(2);
 				String food_image = rs.getString(3);
+				String food_good = rs.getString(4);
 
-				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
 
 				list.add(food);
 			}
@@ -235,7 +238,7 @@ public class FoodDAO {
 			connection();
 
 			// 3. Äõ¸®¹® ½ÇÇà
-			String sql = "select distinct food_name, food_content, food_image from food where food_good like '%È£Èí±â%' order by food_name";
+			String sql = "select distinct food_name, food_content, food_image, food_good from food where food_good like '%È£Èí±â%' order by food_name";
 
 			psmt = conn.prepareStatement(sql);
 
@@ -245,8 +248,10 @@ public class FoodDAO {
 				String food_name = rs.getString(1);
 				String food_content = rs.getString(2);
 				String food_image = rs.getString(3);
+				String food_good = rs.getString(4);
 
-				FoodDTO food = new FoodDTO(food_name, food_content, food_image);
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
+
 
 				list.add(food);
 			}
