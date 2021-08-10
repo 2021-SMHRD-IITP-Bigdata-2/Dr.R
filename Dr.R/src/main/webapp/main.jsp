@@ -71,7 +71,7 @@
 
 
 
-<body>
+<body style="font-family:'allfonts'">
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
@@ -140,7 +140,7 @@
                                          // visible : true or false
                                       </script>
                                     <%}%> --%>
-                                    <li id="mypage"><a href="member_info.html">마이 페이지</a></li>
+                                    <li id="mypage"><a href="member_info.jsp">마이 페이지</a></li>
                                     
                                     <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
