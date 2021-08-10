@@ -71,7 +71,7 @@
 
 
 
-<body class="test_font">
+<body>
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
@@ -129,13 +129,19 @@
                                 <ul>
 
                                     <!-- 그 외 메뉴 -->
-                                    <script>
-                                        // 로그인 했으면 마이페이지로 이동,
-                                        // 로그인 하지 않았으면 로그인 페이지로 이동
-                                        // 로그인 했을 때만 마이페이지, 맞춤레시피 탭 보이게 style속성 바꿔주기 
-                                        // visible : true or false
-                                    </script>
-                                    <li><a href="member_info.html">마이 페이지</a></li>
+                                   
+                                    <%-- <% if (user == null){ %>
+                                    	 <script>
+                                    	 	var li = document.getElementById("mypage");
+                                    	 	li.style.visibility='hidden';
+                                         // 로그인 했으면 마이페이지로 이동,
+                                         // 로그인 하지 않았으면 로그인 페이지로 이동
+                                         // 로그인 했을 때만 마이페이지, 맞춤레시피 탭 보이게 style속성 바꿔주기 
+                                         // visible : true or false
+                                      </script>
+                                    <%}%> --%>
+                                    <li id="mypage"><a href="member_info.html">마이 페이지</a></li>
+                                    
                                     <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
 
