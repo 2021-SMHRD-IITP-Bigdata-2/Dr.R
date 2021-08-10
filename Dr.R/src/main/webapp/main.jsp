@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Random"%>
+<%@page import="model.FoodDAO"%>
+<%@page import="model.FoodDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=euc-kr"
@@ -6,6 +10,18 @@
 	UserDTO user = (UserDTO)session.getAttribute("login_User");
 	Date time = new Date();
 	int month = time.getMonth()+1;
+	
+	FoodDAO dao = new FoodDAO();
+	FoodDTO season = dao.seasonal_food(month);
+/* 	ArrayList<FoodDTO> food = dao.seasonal_food(month); */
+/* 	Random rd = new Random();
+	int i = rd.nextInt(food.size()); */
+	
+/* 	session.setAttribute("today", new Random().nextInt(food.size()));
+	
+	FoodDTO season = food.get((int)session.getAttribute("today")); */
+	
+	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,7 +178,7 @@
         
             <!-- <div class="row"> -->
             
-            <div class="single-hero-slide bg-img" style="background-image: url(http://www.lampcook.com//wi_files/food_fish/fish_dic/20.jpg
+            <div class="single-hero-slide bg-img" style="background-image: url(<%= season.getFood_image()%>
             );">
 
                 <div class="container h-100">
@@ -176,13 +192,11 @@
                                 <!-- 오늘의 식재료 추천 기능 
                                 제철 월에서 랜덤으로 추출하여 해당 식재료 상세내용 출력하기
                                 span태그 안의 내용을 해당 값으로 바꿔주면 됨 -->
-                                <h1 data-animation="fadeInUp" data-delay="300ms" style="color:white;">오늘의 식재료</h1>
-                                 <h2 data-animation="fadeInUp" data-delay="300ms">꽃게</h2>
-                                <h6 data-animation="fadeInUp" data-delay="300ms" style="color:white;">제철 : 8월</h6>
+                                <h1 data-animation="fadeInUp" data-delay="300ms" style="color:white;">추천 식재료</h1>
+                                 <h2 data-animation="fadeInUp" data-delay="300ms"><%=season.getFood_name() %></h2>
+                                <h6 data-animation="fadeInUp" data-delay="300ms" style="color:white;">제철 : <%=season.getFood_month() %>월</h6>
                                 <p data-animation="fadeInUp" data-delay="700ms" style="color: aliceblue;">
-                                    지방이 적고 단백질이
-                                    많으며 필수 아미노산이 풍부해 어린이 성장발육과 회복기 환자에게 매우 좋은 음식이다. 또한 간장과 심장을 강화시키는 타우린이 많이 함유되어 성인병
-                                    예방에도 좋다. 꽃게에 함유된 철분과 칼슘, 인 등은 여성의 빈혈에 탁월한 효능을 발휘하며 노화방지에도 효과가 있다.
+                                    <%= season.getFood_content() %>
                                 </p>
                                 <!-- 버튼을 눌러서 페이지 이동할 때 식재료 이름 넘기게 url 설정하기 -->
                                 <a href="ingredient_page.jsp" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">정보 보기</a>

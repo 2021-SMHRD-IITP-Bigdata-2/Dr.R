@@ -267,10 +267,11 @@ public class FoodDAO {
 	
 	// 제철음식 뽑을때 사용하는 DAO
 	
-	public ArrayList<FoodDTO> seasonal_food(int MONTH) {
+	public FoodDTO seasonal_food(int MONTH) {
 
 		ArrayList<FoodDTO> list = new ArrayList<FoodDTO>();
-
+		FoodDTO season = null;
+		
 		try {
 			connection();
 
@@ -296,6 +297,8 @@ public class FoodDAO {
 
 				list.add(food);
 			}
+			
+			season = list.get(list.size()/2-1);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -305,7 +308,7 @@ public class FoodDAO {
 
 		} // end finally
 
-		return list;
+		return season;
 	}
 	
 	
