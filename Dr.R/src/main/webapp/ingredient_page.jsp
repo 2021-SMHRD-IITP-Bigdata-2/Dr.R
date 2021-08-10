@@ -273,7 +273,7 @@ recipe = dao2.recipe_food(name);
 													style="font-weight: bold; font-size: 20px; color: black;"><%=recipe.get(i).getRecipe_name() %></span>
 												<a class="test_font"
 													style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-													href="ingredient_page.jsp?name=<%=recipe.get(i).getRecipe_name() %>">상세보기</a>
+													href="recipe_page.jsp?name=<%=recipe.get(i).getRecipe_name() %>">상세보기</a>
 											</div>
 										</div>
 									</div>
