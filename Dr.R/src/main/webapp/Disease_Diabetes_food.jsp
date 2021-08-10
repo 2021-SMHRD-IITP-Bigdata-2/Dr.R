@@ -256,7 +256,7 @@
 							src="<%= food.get(i).getFood_image() %>" alt="">
 					</div>
 					<!-- Receipe Content -->
-					<div class="receipe-content " style="padding-left: 10px">
+					<div class="receipe-content " style="padding-left: 10px; text-align:left;">
 						<br>
 						<!-- 좋은 질병 표시-->
 						<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
