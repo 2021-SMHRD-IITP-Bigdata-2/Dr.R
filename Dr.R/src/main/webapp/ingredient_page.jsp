@@ -14,15 +14,16 @@ ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
 
 food = dao.all_food();
 int cnt = -1;
-for(int i = 0; i<food.size();i++){
-	if(food.get(i).getFood_name().equals(name)){
-		cnt=i;
-	}else
+for (int i = 0; i < food.size(); i++) {
+	if (food.get(i).getFood_name().equals(name)) {
+		cnt = i;
+	} else
 		continue;
 }
 
-FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood_name(), food.get(cnt).getFood_content(), food.get(cnt).getFood_image(), food.get(cnt).getFood_month(), food.get(cnt).getFood_good());
-
+FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood_name(),
+		food.get(cnt).getFood_content(), food.get(cnt).getFood_image(), food.get(cnt).getFood_month(),
+		food.get(cnt).getFood_good());
 
 
 
@@ -30,18 +31,7 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 RecipeDAO dao2 = new RecipeDAO();
 ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
 
-recipe = dao2.all_recipe();
-
-/* int cnt2 = -1;
-for(int i = 0; i<recipe.size();i++){
-	if(recipe.get(i).getRecipe_name().equals(name)){
-		cnt2=i;
-	}else
-		continue;
-} */
-
-/* RecipeDTO detail2 = new RecipeDTO(recipe.get(cnt).getRecipe_code(), recipe.get(cnt).getRecipe_name(), recipe.get(cnt).getRecipe_method(), recipe.get(cnt).getRecipe_food(), recipe.get(cnt).getRecipe_img(), recipe.get(cnt).getRecipe_cook1(), recipe.get(cnt).getRecipe_cook2());
- */
+recipe = dao2.recipe_food(name);
 %>
 
 
@@ -100,7 +90,7 @@ for(int i = 0; i<recipe.size();i++){
 
 </head>
 
-<body >
+<body>
 	<!-- Preloader -->
 	<div id="preloader" algin="center">
 		<i class="circle-preloader"></i> <img src="img/core-img/salad.png"
@@ -167,30 +157,32 @@ for(int i = 0; i<recipe.size();i++){
 								<ul>
 
 									<!-- 그 외 메뉴 -->
-                                    <script>
-                                        // 로그인 했으면 마이페이지로 이동,
-                                        // 로그인 하지 않았으면 로그인 페이지로 이동
-                                    </script>
-                                    <li><a href="member_info.html">마이 페이지</a></li>
-                                    <li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-                                    
-                                    
-                                    <li><a href="Season_products.jsp">제철 식재료</a></li>
-                                    <li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
-                                    <li><a href="Guide.html">이용 안내</a></li>
-                                    <!-- 로그인 -->
-                                    <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
-                                    </li>
+									<script>
+										// 로그인 했으면 마이페이지로 이동,
+										// 로그인 하지 않았으면 로그인 페이지로 이동
+									</script>
+									<li><a href="member_info.html">마이 페이지</a></li>
+									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
 
-                                    <!-- 회원가입 -->
-                                    <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
-                                    <!-- 검색 -->
-                                    <li>
-                                        <div class="search-btn">
-                                            <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
-                                        </div>
-                                    </li>
+									<li><a href="Season_products.jsp">제철 식재료</a></li>
+									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
+									<li><a href="Guide.html">이용 안내</a></li>
+									<!-- 로그인 -->
+									<li><a href="login.html"
+										style="background-color: rgb(236, 236, 236);">Login</a></li>
+
+									<!-- 회원가입 -->
+									<li><a href="join.jsp"
+										style="background-color: rgb(236, 236, 236);">Join</a></li>
+
+									<!-- 검색 -->
+									<li>
+										<div class="search-btn">
+											<i class="fa fa-search" aria-hidden="true"
+												style="font-size: 30px;"></i>
+										</div>
+									</li>
 							</div>
 						</div>
 
@@ -217,19 +209,18 @@ for(int i = 0; i<recipe.size();i++){
 					<div class="single-blog-area mb-80">
 						<!-- Thumbnail -->
 						<class class="blog-thumbnail"> <img
-							src="<%= detail.getFood_image() %>"
-							alt=""> <br>
+							src="<%=detail.getFood_image()%>" alt=""> <br>
 						<br>
 						<br>
-						
-					 	<h3 class="test_font"><%= detail.getFood_name()  %></h3>
+
+						<h3 class="test_font"><%=detail.getFood_name()%></h3>
 						<span class="test_font1" style="color: rgb(100, 181, 213);">제철:
 							<span class="test_font1" style="color: rgb(100, 181, 213);">
-								<%=  detail.getFood_month()%>월</span>
+								<%=detail.getFood_month()%>월
+						</span>
 						</span> &nbsp <span class="test_font1" style="color: rgb(141, 35, 35);">
-						<%=  detail.getFood_good()  %>
-						<span class="test_font1" style="color: rgb(141, 35, 35);">
-								에 좋아요</span>
+							<%=detail.getFood_good()%> <span class="test_font1"
+							style="color: rgb(141, 35, 35);"> 에 좋아요</span>
 						</span>
 						<hr>
 						<br>
@@ -240,7 +231,7 @@ for(int i = 0; i<recipe.size();i++){
 							style="font-size: 25px; margin-bottom: 30px;">상세 내용</h4>
 						</class>
 						<div style="color: black; text-align: left;">
-							<p class="black_font"><%= detail.getFood_content() %></p>
+							<p class="black_font"><%=detail.getFood_content()%></p>
 						</div>
 						<br>
 						<hr>
@@ -250,15 +241,6 @@ for(int i = 0; i<recipe.size();i++){
 						<h4 class="test_font"
 							style="font-size: 25px; margin-bottom: 30px;">관련 레시피</h4>
 
-		<% for (int i=0; i < recipe.size(); i++){	%>
-					<% if(recipe.get(i).getRecipe_food().contains(name)){ 
-					System.out.println("있음");
-					}else {
-					System.out.println("없음");
-					}
-		
-		}%>
-
 
 
 						<!-- ##### 맞춤 레시피 추천 시작 ##### -->
@@ -266,46 +248,41 @@ for(int i = 0; i<recipe.size();i++){
 						<section class="small-receipe-area section-padding-80-0">
 							<div class="container">
 								<h5 class="test_font" align="center" style="font-size: 25px;">
-									<%= detail.getFood_name() %><span>와(과) 관련된 요리 목록이에요!</span>
+									<%=detail.getFood_name()%><span>와(과) 관련된 요리 목록이에요!</span>
 								</h5>
 								<h5 align="center" style="margin-bottom: 50px;"></h5>
 								<div class="row">
+								
+								
+						<%for(int i = 0; i < recipe.size(); i ++) {%>
+									<!-- 레시피/ 식재료 글 시작-->
+									<div class="col-12 col-sm-6 col-lg-4 list1">
+										<div class="single-small-receipe-area d-flex" style="text-align:left;">
+											<!-- Receipe Thumb -->
 
-				<% for (int i=0; i < recipe.size(); i++){	%>
-					<% if(recipe.get(i).getRecipe_food().contains(name)){ %>
-				<!-- 레시피/ 식재료 글 시작-->
-				<div class="col-12 col-sm-6 col-lg-4 list1">
-					<div class="single-small-receipe-area d-flex">
-						<!-- Receipe Thumb -->
-
-						<div class="receipe-thumb" style="padding: 0px">
-							<img style="height: 100px;"
-								src="<%= recipe.get(i).getRecipe_img() %>" alt="">
-						</div>
-						<!-- Receipe Content -->
-						<div class="receipe-content " style="padding-left: 10px">
-							<br>
-							<!-- 좋은 질병 표시-->
-							<span class="test_font"> <%=recipe.get(i).getRecipe_method()%>
-							</span>
-							<!-- 음식 명-->
-							<span class="test_font"
-								style="font-weight: bold; font-size: 20px; color: black;"><%= recipe.get(i).getRecipe_name() %></span>
-							<a class="test_font"
-								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-								href="ingredient_page.jsp?name=<%= recipe.get(i).getRecipe_name() %>">상세보기</a>
-						</div>
-					</div>
-				</div>
-				<!-- 레시피/식재료 글 종료-->
-
-				<% } }%>
-			
-			
-
-
-
+											<div class="receipe-thumb" style="padding: 0px">
+												<img style="height: 100px;" src="<%=recipe.get(i).getRecipe_img() %>" alt="">
+											</div>
+											<!-- Receipe Content -->
+											<div class="receipe-content " style="padding-left: 10px">
+												<br>
+												<!-- 좋은 질병 표시-->
+												<span class="test_font"><%=recipe.get(i).getRecipe_method() %> </span>
+												<!-- 음식 명-->
+												<span class="test_font"
+													style="font-weight: bold; font-size: 20px; color: black;"><%=recipe.get(i).getRecipe_name() %></span>
+												<a class="test_font"
+													style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+													href="ingredient_page.jsp?name=<%=recipe.get(i).getRecipe_name() %>">상세보기</a>
+											</div>
+										</div>
+									</div>
+									<!-- 레시피/식재료 글 종료-->
+						<%} %>
 								</div>
+
+
+
 
 
 							</div>
@@ -339,7 +316,9 @@ for(int i = 0; i<recipe.size();i++){
 					<p>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						Dr.R &copy;
-						<script>document.write(new Date().getFullYear());</script>
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
 						| Project Team : 2X4=8 | Made By - ksj,kmj,hjg, kdh
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>

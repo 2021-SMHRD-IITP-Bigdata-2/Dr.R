@@ -91,7 +91,7 @@ public class RecipeDAO {
 	
 	
 	// 해당 식재료와 관련된 레시피 DAO
-	public ArrayList<RecipeDTO> recipe_food() {
+	public ArrayList<RecipeDTO> recipe_food(String name) {
 
 		ArrayList<RecipeDTO> list = new ArrayList<RecipeDTO>();
 
@@ -99,10 +99,13 @@ public class RecipeDAO {
 			connection();
 
 			// 3. 쿼리문 실행
-			String sql = "select * from recipe where recipe_food like '%???%' order by recipe_name";
+			String sql = "select * from recipe where recipe_food like ? or recipe_food like ? order by recipe_name";
 
-			psmt = conn.prepareStatement(sql);
-
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			String name1 = '%'+name+"("+'%';
+			String name2 = '%'+name+" "+'%';
+			psmt.setString(1, name1);
+			psmt.setString(2, name2);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -117,7 +120,6 @@ public class RecipeDAO {
 				RecipeDTO recipe = new RecipeDTO(getrecipe_code, getrecipe_name, getrecipe_method, getrecipe_food, getrecipe_img, getrecipe_cook1, getrecipe_cook2);
 				list.add(recipe);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
