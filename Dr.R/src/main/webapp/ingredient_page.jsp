@@ -1,3 +1,5 @@
+<%@page import="model.RecipeDTO"%>
+<%@page import="model.RecipeDAO"%>
 <%@page import="model.FoodDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.FoodDAO"%>
@@ -6,6 +8,7 @@
 <%
 String name = request.getParameter("name");
 
+// 식재료 관련
 FoodDAO dao = new FoodDAO();
 ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
 
@@ -22,6 +25,23 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 
 
 
+
+// 레시피 관련
+RecipeDAO dao2 = new RecipeDAO();
+ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
+
+recipe = dao2.all_recipe();
+
+/* int cnt2 = -1;
+for(int i = 0; i<recipe.size();i++){
+	if(recipe.get(i).getRecipe_name().equals(name)){
+		cnt2=i;
+	}else
+		continue;
+} */
+
+/* RecipeDTO detail2 = new RecipeDTO(recipe.get(cnt).getRecipe_code(), recipe.get(cnt).getRecipe_name(), recipe.get(cnt).getRecipe_method(), recipe.get(cnt).getRecipe_food(), recipe.get(cnt).getRecipe_img(), recipe.get(cnt).getRecipe_cook1(), recipe.get(cnt).getRecipe_cook2());
+ */
 %>
 
 
@@ -230,6 +250,17 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 						<h4 class="test_font"
 							style="font-size: 25px; margin-bottom: 30px;">관련 레시피</h4>
 
+		<% for (int i=0; i < recipe.size(); i++){	%>
+					<% if(recipe.get(i).getRecipe_food().contains(name)){ 
+					System.out.println("있음");
+					}else {
+					System.out.println("없음");
+					}
+		
+		}%>
+
+
+
 						<!-- ##### 맞춤 레시피 추천 시작 ##### -->
 						<hr>
 						<section class="small-receipe-area section-padding-80-0">
@@ -240,27 +271,35 @@ FoodDTO detail = new FoodDTO(food.get(cnt).getFood_code(), food.get(cnt).getFood
 								<h5 align="center" style="margin-bottom: 50px;"></h5>
 								<div class="row">
 
-									<!-- 레시피/ 식재료 글 시작-->
-									<div class="col-12 col-sm-6 col-lg-4">
-										<div class="single-small-receipe-area d-flex">
-											<!-- Receipe Thumb -->
-											<div class="receipe-thumb">
-												<img src="img/bg-img/sr1.jpg" alt="">
-											</div>
-											<!-- Receipe Content -->
-											<div class="receipe-content recipe">
-												<br>
-												<!-- 좋은 질병 표시-->
-												<span>당뇨</span>
-												<!-- 음식 명-->
-												<a href="receipe-post.html">
-													<h5>오이</h5>
-												</a>
+				<% for (int i=0; i < recipe.size(); i++){	%>
+					<% if(recipe.get(i).getRecipe_food().contains(name)){ %>
+				<!-- 레시피/ 식재료 글 시작-->
+				<div class="col-12 col-sm-6 col-lg-4 list1">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
 
-											</div>
-										</div>
-									</div>
-									<!-- 레시피/식재료 글 종료-->
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= recipe.get(i).getRecipe_img() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content " style="padding-left: 10px">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <%=recipe.get(i).getRecipe_method()%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= recipe.get(i).getRecipe_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="ingredient_page.jsp?name=<%= recipe.get(i).getRecipe_name() %>">상세보기</a>
+						</div>
+					</div>
+				</div>
+				<!-- 레시피/식재료 글 종료-->
+
+				<% } }%>
 			
 			
 

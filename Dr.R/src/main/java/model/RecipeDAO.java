@@ -89,4 +89,49 @@ public class RecipeDAO {
 		return list;
 	}
 	
+	
+	// 해당 식재료와 관련된 레시피 DAO
+	public ArrayList<RecipeDTO> recipe_food() {
+
+		ArrayList<RecipeDTO> list = new ArrayList<RecipeDTO>();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select * from recipe where recipe_food like '%???%' order by recipe_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int getrecipe_code = rs.getInt(1);
+				String getrecipe_name = rs.getString(2);
+				String getrecipe_method = rs.getString(3);
+				String getrecipe_food = rs.getString(4);
+				String getrecipe_img = rs.getString(5);
+				String getrecipe_cook1 = rs.getString(6);
+				String getrecipe_cook2 = rs.getString(7);
+
+				RecipeDTO recipe = new RecipeDTO(getrecipe_code, getrecipe_name, getrecipe_method, getrecipe_food, getrecipe_img, getrecipe_cook1, getrecipe_cook2);
+				list.add(recipe);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+	
+	
+	
+	
+	
+	
 }
