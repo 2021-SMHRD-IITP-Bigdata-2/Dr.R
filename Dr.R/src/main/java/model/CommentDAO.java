@@ -48,11 +48,12 @@ public class CommentDAO {
 			connection();
 			
 			//3. 쿼리문 실행
-			String sql = "insert into comments values(cmt_num.nextval, ?, ?, sysdate)";
+			String sql = "insert into comments values(cmt_num.nextval, ?, sysdate, ?, ?)";
 			
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, comment.getCmt_id());
-			psmt.setString(2, comment.getCmt_content());
+			psmt.setString(1, comment.getCmt_content());
+			psmt.setInt(2, comment.getCmt_recipe());
+			psmt.setString(3, comment.getCmt_id());
 					
 			cnt = psmt.executeUpdate(); //변경 Update()
 			
@@ -66,7 +67,7 @@ public class CommentDAO {
 		return cnt;
 	}
 	
-	public ArrayList<CommentDTO> comment_select(int code) {
+	public ArrayList<CommentDTO> comment_select(int recipe) {
 		//나에게 온 메세지들을 저장할 수 있는 ArrayList객체 생성
 				ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 				
@@ -75,23 +76,21 @@ public class CommentDAO {
 					connection();
 					
 					//3. 쿼리문 실행
-					String sql = "select cmt_content, cmt_time, cmt_recipe, cmt_id from comments where cmt_code=?";
+					String sql = "select cmt_content, cmt_time, cmt_id from comments where cmt_recipe=?";
 //					select cmt_content, cmt_time, cmt_id from comments where cmt_recipe = 레시피코드;
 //					insert into comments values(cmt_num.nextval, 댓글내용, sysdate, 레시피코드, 회원아이디);
 					
 					psmt = conn.prepareStatement(sql);
-					psmt.setInt(1, code);
+					psmt.setInt(1, recipe);
 					
 					rs = psmt.executeQuery();
 					
 					while(rs.next()) {
 						String getContent = rs.getString(1);
-						String getSendDate = rs.getString(2);
-						int recipe = rs.getInt(3);
-						String getcmt_id = rs.getString(4);
+						String getTime = rs.getString(2);
+						String getcmt_id = rs.getString(3);
 						
-						CommentDTO comment = new CommentDTO((Integer) null, getContent, getSendDate, recipe, getcmt_id);
-						
+						CommentDTO comment = new CommentDTO(getContent, getTime, getcmt_id);
 						list.add(comment);
 					}
 					
