@@ -30,11 +30,10 @@ for (int i = 0; i < recipe.size(); i++) {
 /* RecipeDTO detail = new RecipeDTO(recipe.get(1).getRecipe_code(), recipe.get(1).getRecipe_name(), 
 		recipe.get(1).getRecipe_method(), recipe.get(1).getRecipe_food(), recipe.get(1).getRecipe_img(), 
 		recipe.get(1).getRecipe_cook1(), recipe.get(1).getRecipe_cook2()); */
+
 		
 ArrayList<CommentDTO> comment = new ArrayList<CommentDTO>();
-CommentDAO dao1 = new CommentDAO();
-
-comment = dao1.comment_select(1);		
+CommentDAO dao1 = new CommentDAO();		
 %> 
     
     
@@ -269,11 +268,13 @@ comment = dao1.comment_select(1);
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
                     <hr>
+                    <% //for(int ) %>
                     <div align="left">
                     <div style="color: darkgray;"><%= %></div>
                     <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
                     <div style="color: darkgray;">µµÈÆÀ×´Ô</div>
                     <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
+                    <%// } %>
                 </div>
                 
                 </div>
