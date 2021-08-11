@@ -69,11 +69,11 @@ public class MyfoodDAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
-				list[1] = rs.getString(1);
-				list[2] = rs.getString(2);
-				list[3] = rs.getString(3);
-				list[4] = rs.getString(4);
-				list[5] = rs.getString(5);
+				list[0] = rs.getString(1);
+				list[1] = rs.getString(2);
+				list[2] = rs.getString(3);
+				list[3] = rs.getString(4);
+				list[4] = rs.getString(5);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

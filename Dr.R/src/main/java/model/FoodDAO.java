@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FoodDAO {
 
@@ -307,50 +308,50 @@ public class FoodDAO {
 		return season;
 	}
 
-	public ArrayList<FoodDTO> food_custom(ArrayList<String> arr) {
+	public ArrayList<FoodDTO> food_custom(ArrayList<String> arr, String[] myfood) {
 		ArrayList<FoodDTO> list = new ArrayList<>();
 
 		int size = arr.size() - 2;
-		String[] con = { "and", "and", "and" };
-//		if(size==2)
-//			con[0] = "or";
-//		else if(size==3)
-//			con[1] = "or";
+		String[] con = { "and", "and", "and" };	
+		String[] con2 = {"or", "or", "or", "or" };
 
 		while (size >= 0) {
 			con[size] = "or";
 			size -= 1;
 		}
 
-		for (int i = 0; i < con.length; i++) {
-			System.out.println(con[i]);
+		for (int i = myfood.length-1; i >= 0; i--) {
+			if(myfood[i] != null) {
+				for(int j = 0; j < i; j++)
+					con2[j] = "and";
+			}
 		}
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i));
-		}
+			
+		
 		try {
 			connection();
 
-			String sql = "select distinct food_name, food_good, food_content, food_image from food where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
+			String sql = "select distinct food_name, food_good, food_content, food_image from (select * from food where food_name not like ? " + con2[0] + " food_name not like ? " + con2[1] 
+					+ " food_name not like ? " + con2[2] + " food_name not like ? " + con2[3] + " food_name not like ?)  "
+					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
 
 			psmt = conn.prepareStatement(sql);
 			
-//			psmt.setString(1, "");
-//			psmt.setString(3, "");
-//			psmt.setString(5, "");
-//			psmt.setString(7, "");
-//			psmt.setString(2, con[0]);
-//			psmt.setString(4, con[1]);
-//			psmt.setString(6, con[2]);
+			for (int i = 0; i < myfood.length; i++) {
+				if(myfood[i] != null)
+					psmt.setString(i+1, '%'+myfood[i]+'%');
+				else
+					psmt.setString(i+1, "%%");
+			}
 			
-			int num = 1;
+			int num = 6;
 			
 			for (int i = 0; i < arr.size(); i ++) {
 				String good = '%'+arr.get(i)+'%';
 				psmt.setString(num, good);
 				num += 1;
 			}
-			for(int i = num; i <= 4; i++) {
+			for(int i = num; i <= 9; i++) {
 				String a = '%'+""+'%';
 				psmt.setString(i, a);
 			}
