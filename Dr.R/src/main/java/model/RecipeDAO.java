@@ -192,5 +192,53 @@ public class RecipeDAO {
 
 		return list;
 	}
+	
+	
+	
+	// °íÇ÷¾Ð ·¹½ÃÇÇ
+	public ArrayList<RecipeDTO> recipe_go() {
+
+		ArrayList<RecipeDTO> list = new ArrayList<RecipeDTO>();
+
+		try {
+			connection();
+
+			// 3. Äõ¸®¹® ½ÇÇà
+			String sql = "select * from V_GO ";
+//			String sql = "select distinct food_name, food_content, food_image, food_good from food where food_good like '%°íÇ÷¾Ð%' order by food_name";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int RECIPE_CODE = rs.getInt(1);
+				String RECIPE_NAME = rs.getString(2);
+				String RECIPE_METHOD = rs.getString(3);
+				String RECIPE_FOOD = rs.getString(4);
+				String RECIPE_IMG = rs.getString(5);
+				String RECIPE_COOK1 = rs.getString(6);
+				String RECIPE_COOK2 = rs.getString(7);
+
+				RecipeDTO recipe = new RecipeDTO(RECIPE_CODE, RECIPE_NAME, RECIPE_METHOD, RECIPE_FOOD,RECIPE_IMG,RECIPE_COOK1,RECIPE_COOK2 );
+
+				list.add(recipe);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+	
+	
+	
+	
+	
 
 }
