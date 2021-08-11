@@ -327,8 +327,7 @@ if (user != null) {
 							<!-- 좋은 질병 표시-->
 							<span class="test_font"> <%
  if (food.get(i).getFood_good() != null) {
- %>
-								<%=food.get(i).getFood_good()%> <%
+ %> <%=food.get(i).getFood_good()%> <%
  }
  %>
 							</span>
@@ -406,11 +405,10 @@ if (user != null) {
 									<br>
 									<!-- 좋은 질병 표시-->
 									<span class="test_font"> <%
- if (food.get(i).getFood_good() != null) {
- %>
-										<%=food.get(i).getFood_good()%> <%
- }
- %>
+									 if (food.get(i).getFood_good() != null) {
+									 %> <%=food.get(i).getFood_good()%> <%
+									 }
+									 %>
 									</span>
 									<!-- 음식 명-->
 									<span class="test_font"
