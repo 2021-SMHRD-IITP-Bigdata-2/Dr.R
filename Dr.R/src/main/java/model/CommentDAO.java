@@ -66,7 +66,7 @@ public class CommentDAO {
 		return cnt;
 	}
 	
-	public ArrayList<CommentDTO> comment_select(String id) {
+	public ArrayList<CommentDTO> comment_select(int code) {
 		//나에게 온 메세지들을 저장할 수 있는 ArrayList객체 생성
 				ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
 				
@@ -75,25 +75,24 @@ public class CommentDAO {
 					connection();
 					
 					//3. 쿼리문 실행
-					String sql = "select num, send_name, content, sendDate from web_message where receive_email=?";
+					String sql = "select cmt_content, cmt_time, cmt_recipe, cmt_id from comments where cmt_code=?";
 //					select cmt_content, cmt_time, cmt_id from comments where cmt_recipe = 레시피코드;
 //					insert into comments values(cmt_num.nextval, 댓글내용, sysdate, 레시피코드, 회원아이디);
 					
 					psmt = conn.prepareStatement(sql);
-					psmt.setString(1, id);
+					psmt.setInt(1, code);
 					
 					rs = psmt.executeQuery();
 					
 					while(rs.next()) {
+						String getContent = rs.getString(1);
+						String getSendDate = rs.getString(2);
+						int recipe = rs.getInt(3);
+						String getcmt_id = rs.getString(4);
 						
-						int getNum = rs.getInt(1);
-						String getSend_name = rs.getString(2);
-						String getContent = rs.getString(3);
-						String getSendDate = rs.getString(4);
+						CommentDTO comment = new CommentDTO((Integer) null, getContent, getSendDate, recipe, getcmt_id);
 						
-//						CommentDTO message = new CommentDTO();
-						
-//						list.add(message);
+						list.add(comment);
 					}
 					
 				} catch (SQLException e) {
