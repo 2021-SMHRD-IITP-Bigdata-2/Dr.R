@@ -379,6 +379,63 @@ public class FoodDAO {
 
 		return list;
 	}
+	
+	public ArrayList<FoodDTO> food_custom(ArrayList<String> arr) {
+		ArrayList<FoodDTO> list = new ArrayList<>();
+
+		int size = arr.size() - 2;
+		String[] con = { "and", "and", "and" };	
+
+		while (size >= 0) {
+			con[size] = "or";
+			size -= 1;
+		}
+		
+		try {
+			connection();
+
+			String sql = "select distinct food_name, food_good, food_content, food_image from food "
+					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
+
+			psmt = conn.prepareStatement(sql);
+			
+			int num = 1;
+			
+			for (int i = 0; i < arr.size(); i ++) {
+				String good = '%'+arr.get(i)+'%';
+				psmt.setString(num, good);
+				num += 1;
+			}
+			for(int i = num; i <= 4; i++) {
+				String a = '%'+""+'%';
+				psmt.setString(i, a);
+			}
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_good = rs.getString(2);
+				String food_content = rs.getString(3);
+				String food_image = rs.getString(4);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+
+	
 
 	// 식재료 검색
 	public FoodDTO search_food(String name) {

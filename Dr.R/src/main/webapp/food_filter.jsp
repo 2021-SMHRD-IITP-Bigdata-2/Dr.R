@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="jquery-3.6.0.min.js"></script>
     <!-- Title -->
-    <title>제철 농산물</title>
+    <title>알러지 음식</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">

@@ -74,6 +74,10 @@ public class MyfoodDAO {
 				list[2] = rs.getString(3);
 				list[3] = rs.getString(4);
 				list[4] = rs.getString(5);
+			}else {
+				for (int i = 0; i < list.length; i++) {
+					list[i] = null;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

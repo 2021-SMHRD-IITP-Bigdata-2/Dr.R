@@ -16,7 +16,7 @@ FoodDAO dao = new FoodDAO();
 FoodDTO season = dao.seasonal_food(month);
 
 MyfoodDAO mf = new MyfoodDAO();
-String[] myfood = new String[5];
+/* String[] myfood = new String[5]; */
 
 /* if(user != null){
 	myfood = mf.select_not(user.getU_id());
@@ -34,7 +34,10 @@ if (user != null) {
 		dis.add("¿ß¿Â");
 	if (user.getU_ho() == 1)
 		dis.add("»£»Ì±‚");
-	food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	if(mf.select_not(user.getU_id())[0] != null)
+		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	else 
+		food = dao.food_custom(dis);
 } else {
 	food = dao.season_food(month);
 }

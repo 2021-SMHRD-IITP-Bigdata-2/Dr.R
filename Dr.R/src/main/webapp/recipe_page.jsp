@@ -14,26 +14,11 @@ String name = request.getParameter("name");
 //½ÄÀç·á °ü·Ã
 RecipeDAO dao = new RecipeDAO();
 RecipeDTO recipe = dao.search_recipe(name);
-
 /* 
-recipe = dao.all_recipe(); */
+CommentDAO dao2 = new CommentDAO();
+ArrayList<CommentDTO> comment = dao2.comment_select(recipe.getRecipe_code());
+System.out.println(comment.get(0).getCmt_content()); */
 
-
-/* int cnt = -1;
-for (int i = 0; i < recipe.size(); i++) {
-	if (recipe.get(i).getRecipe_name().equals(name)) {
-		cnt = i;
-	} else
-		continue;
-}*/
-
-/* RecipeDTO detail = new RecipeDTO(recipe.get(1).getRecipe_code(), recipe.get(1).getRecipe_name(), 
-		recipe.get(1).getRecipe_method(), recipe.get(1).getRecipe_food(), recipe.get(1).getRecipe_img(), 
-		recipe.get(1).getRecipe_cook1(), recipe.get(1).getRecipe_cook2()); */
-
-		
-ArrayList<CommentDTO> comment = new ArrayList<CommentDTO>();
-CommentDAO dao1 = new CommentDAO();		
 %> 
     
     
@@ -268,13 +253,16 @@ CommentDAO dao1 = new CommentDAO();
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
                     <hr>
-                    <% //for(int ) %>
+                    
                     <div align="left">
-                    <div style="color: darkgray;"><%= %></div>
+                 <%--   <%  if(!comment.isEmpty()) {
+                   for(int i=0; i< comment.size(); i++){ %>
+                    <div style="color: darkgray;"><%= comment.get(i).getCmt_id() %></div>
+                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;"><%= comment.get(i).getCmt_content() %></div>                   
+                   <%}} %> --%>
+                    <!-- <div style="color: darkgray;">µµÈÆÀ×´Ô</div>
                     <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
-                    <div style="color: darkgray;">µµÈÆÀ×´Ô</div>
-                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
-                    <%// } %>
+                     -->
                 </div>
                 
                 </div>
