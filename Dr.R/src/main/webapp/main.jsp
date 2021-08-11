@@ -6,41 +6,41 @@
 <%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=euc-kr"
 	pageEncoding="euc-kr"%>
-<% 
-	UserDTO user = (UserDTO)session.getAttribute("login_User");
-	Date time = new Date();
-	int month = time.getMonth()+1;
-	
-	FoodDAO dao = new FoodDAO();
-	FoodDTO season = dao.seasonal_food(month);
+<%
+UserDTO user = (UserDTO) session.getAttribute("login_User");
+Date time = new Date();
+int month = time.getMonth() + 1;
 
-	ArrayList<String> dis = new ArrayList<>();
-	ArrayList<FoodDTO> food;
-	
-	if(user != null){
-		if(user.getU_dang() == 1)
-			dis.add("당뇨");
-		if(user.getU_go() == 1)
-			dis.add("고혈압");
-		if(user.getU_we() == 1)
-			dis.add("위장");
-		if(user.getU_ho() == 1)
-			dis.add("호흡기");
-		food = dao.food_custom(dis);
-	}else{
-		food = dao.season_food(month);
-	}
-	%>
+FoodDAO dao = new FoodDAO();
+FoodDTO season = dao.seasonal_food(month);
+
+ArrayList<String> dis = new ArrayList<>();
+ArrayList<FoodDTO> food;
+
+if (user != null) {
+	if (user.getU_dang() == 1)
+		dis.add("당뇨");
+	if (user.getU_go() == 1)
+		dis.add("고혈압");
+	if (user.getU_we() == 1)
+		dis.add("위장");
+	if (user.getU_ho() == 1)
+		dis.add("호흡기");
+	food = dao.food_custom(dis);
+} else {
+	food = dao.season_food(month);
+}
+%>
 <script>
-	if (user != null){ 
-	 	$("#mypage").attr("style", "display:flex");
-	}else
+	if (user != null) {
+		$("#mypage").attr("style", "display:flex");
+	} else
 		$("#mypage").attr("style", "display:none");
-    // 로그인 했으면 마이페이지로 이동,
-    // 로그인 하지 않았으면 로그인 페이지로 이동
-    // 로그인 했을 때만 마이페이지, 맞춤레시피 탭 보이게 style속성 바꿔주기 
-    // visible : true or false
- </script>
+	// 로그인 했으면 마이페이지로 이동,
+	// 로그인 하지 않았으면 로그인 페이지로 이동
+	// 로그인 했을 때만 마이페이지, 맞춤레시피 탭 보이게 style속성 바꿔주기 
+	// visible : true or false
+</script>
 
 
 
@@ -114,6 +114,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
+					<!-- 검색 바  -->
 					<form action="#" method="post">
 						<input type="search" name="search"
 							placeholder="Type any keywords...">
@@ -165,16 +166,22 @@
 
 									<!-- 그 외 메뉴 -->
 
-									<%if(user != null){ %>
+									<%
+									if (user != null) {
+									%>
 									<li id="mypage"><a href="member_info.jsp">마이 페이지</a></li>
 
 									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
-									<%} %>
+									<%
+									}
+									%>
 
 									<li><a href="Season_products.jsp">제철 식재료</a></li>
 									<li><a href="Disease_high_blood_pressure.html">질병 정보</a></li>
 									<li><a href="Guide.html">이용 안내</a></li>
-									<% if(user == null){ %>
+									<%
+									if (user == null) {
+									%>
 									<!-- 로그인 -->
 									<li><a href="login.html"
 										style="background-color: rgb(236, 236, 236);">로그인</a></li>
@@ -184,10 +191,14 @@
 										style="background-color: rgb(236, 236, 236);">회원가입</a></li>
 
 									<!-- 검색 -->
-									<%} else{ %>
+									<%
+									} else {
+									%>
 									<li><a href="logout.jsp"
 										style="background-color: rgb(236, 236, 236);">로그아웃</a></li>
-									<%} %>
+									<%
+									}
+									%>
 									<li>
 										<div class="search-btn">
 											<i class="fa fa-search" aria-hidden="true"
@@ -213,7 +224,7 @@
 			<!-- <div class="row"> -->
 
 			<div class="single-hero-slide bg-img"
-				style="background-image: url(<%= season.getFood_image()%>
+				style="background-image: url(<%=season.getFood_image()%>
             ); height:700px;">
 
 				<div class="container h-100">
@@ -230,18 +241,18 @@
                                 span태그 안의 내용을 해당 값으로 바꿔주면 됨 -->
 								<h1 data-animation="fadeInUp" data-delay="300ms"
 									style="color: white;">오늘의 식재료</h1>
-								<h2 data-animation="fadeInUp" data-delay="300ms"><%=season.getFood_name() %></h2>
+								<h2 data-animation="fadeInUp" data-delay="300ms"><%=season.getFood_name()%></h2>
 								<h6 data-animation="fadeInUp" data-delay="300ms"
 									style="color: white;">
 									제철 :
-									<%=season.getFood_month() %>월
+									<%=season.getFood_month()%>월
 								</h6>
 								<p data-animation="fadeInUp" data-delay="700ms"
 									style="color: aliceblue;">
-									<%= season.getFood_content() %>
+									<%=season.getFood_content()%>
 								</p>
 								<!-- 버튼을 눌러서 페이지 이동할 때 식재료 이름 넘기게 url 설정하기 -->
-								<a href="ingredient_page.jsp?name=<%=season.getFood_name() %>"
+								<a href="ingredient_page.jsp?name=<%=season.getFood_name()%>"
 									class="btn delicious-btn" data-animation="fadeInUp"
 									data-delay="1000ms">정보 보기</a>
 							</div>
@@ -271,7 +282,9 @@
 	<section class="small-receipe-area section-padding-80-0">
 		<!-- 이건 로그인 했을때 닉네임이 출력되게 , 로그인 안하면 로그인 후 서비스를 이용할 수 있다는 내용 출력 -->
 		<div class="container">
-			<%if(user == null){ %>
+			<%
+			if (user == null) {
+			%>
 			<h5 class="test_font" align="center" style="font-size: 25px;">
 				<span>로그인을 하시면 건강에 맞춰 음식을 추천해드려요!</span>
 			</h5>
@@ -279,14 +292,18 @@
 				<button id="btn" style="margin-left: 100px;"
 					onclick="location.href='login.html'">로그인</button>
 			</div>
-			<%} else{%>
-			<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name() %>
+			<%
+			} else {
+			%>
+			<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name()%>
 				<span>님의 건강에 맞춰 음식을 추천해드려요!</span>
 			</h5>
 			<h5 align="center" style="margin-bottom: 50px;"></h5>
 			<div class="row">
 
-				<% for (int i=0; i < 8; i++){	%>
+				<%
+				for (int i = 0; i < 8; i++) {
+				%>
 				<!-- 레시피/ 식재료 글 시작-->
 				<div class="col-12 col-sm-6 col-lg-4 list1">
 					<div class="single-small-receipe-area d-flex">
@@ -294,18 +311,22 @@
 
 						<div class="receipe-thumb" style="padding: 0px">
 							<img style="height: 100px;"
-								src="<%= food.get(i).getFood_image() %>" alt="">
+								src="<%=food.get(i).getFood_image()%>" alt="">
 						</div>
 						<!-- Receipe Content -->
 						<div class="receipe-content " style="padding-left: 10px">
 							<br>
 							<!-- 좋은 질병 표시-->
-							<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
-								<%= food.get(i).getFood_good()%> <%}%>
+							<span class="test_font"> <%
+ if (food.get(i).getFood_good() != null) {
+ %>
+								<%=food.get(i).getFood_good()%> <%
+ }
+ %>
 							</span>
 							<!-- 음식 명-->
 							<span class="test_font"
-								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+								style="font-weight: bold; font-size: 20px; color: black;"><%=food.get(i).getFood_name()%></span>
 							<a class="test_font"
 								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
 								href="custom_ingredient.html<%-- ?name=<%= food.get(i).getFood_name()%> --%>">상세보기</a>
@@ -314,7 +335,9 @@
 				</div>
 				<!-- 레시피/식재료 글 종료-->
 
-				<% } %>
+				<%
+				}
+				%>
 				<!-- 레시피/식재료 글 종료-->
 			</div>
 			<div align="center">
@@ -322,7 +345,9 @@
 					onclick="location.href='custom_ingredient.html'">더보기</button>
 			</div>
 			<!-- ##### 맞춤 레시피 추천 종료 ##### -->
-			<%} %>
+			<%
+			}
+			%>
 
 
 
@@ -337,20 +362,28 @@
 				<hr>
 				<br> <br>
 				<div class="container">
-					<%if(user == null){ %>
-					<h5 class="test_font" align="center" style="font-size: 25px;"><%=month %>
+					<%
+					if (user == null) {
+					%>
+					<h5 class="test_font" align="center" style="font-size: 25px;"><%=month%>
 						<span>월의 제철 식재료에요!</span>
 					</h5>
-					<%} else{%>
-					<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name() %>
-						님의 건강에 맞춰 추천해드리는 <br><%=month %><span>월의 제철 식재료에요!</span>
+					<%
+					} else {
+					%>
+					<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name()%>
+						님의 건강에 맞춰 추천해드리는 <br><%=month%><span>월의 제철 식재료에요!</span>
 
 					</h5>
-					<%} %>
+					<%
+					}
+					%>
 					<h5 align="center" style="margin-bottom: 50px;"></h5>
 					<div class="row">
 
-						<% for (int i=0; i < 8; i++){	%>
+						<%
+						for (int i = 0; i < 8; i++) {
+						%>
 						<!-- 레시피/ 식재료 글 시작-->
 						<div class="col-12 col-sm-6 col-lg-4 list1">
 							<div class="single-small-receipe-area d-flex">
@@ -358,18 +391,22 @@
 
 								<div class="receipe-thumb" style="padding: 0px">
 									<img style="height: 100px;"
-										src="<%= food.get(i).getFood_image() %>" alt="">
+										src="<%=food.get(i).getFood_image()%>" alt="">
 								</div>
 								<!-- Receipe Content -->
 								<div class="receipe-content " style="padding-left: 10px">
 									<br>
 									<!-- 좋은 질병 표시-->
-									<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
-										<%= food.get(i).getFood_good()%> <%}%>
+									<span class="test_font"> <%
+ if (food.get(i).getFood_good() != null) {
+ %>
+										<%=food.get(i).getFood_good()%> <%
+ }
+ %>
 									</span>
 									<!-- 음식 명-->
 									<span class="test_font"
-										style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+										style="font-weight: bold; font-size: 20px; color: black;"><%=food.get(i).getFood_name()%></span>
 									<a class="test_font"
 										style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
 										href="custom_ingredient.html<%-- ?name=<%= food.get(i).getFood_name()%> --%>">상세보기</a>
@@ -378,20 +415,28 @@
 						</div>
 						<!-- 레시피/식재료 글 종료-->
 
-						<% } %>
+						<%
+						}
+						%>
 						<!-- 레시피/식재료 글 종료-->
 					</div>
 					<!-- <<div align="center"><button id="btn" style="margin-left: 100px;" onclick="location.href='custom_ingredient.html'">더보기</button></div>
  -->
 					<div align="center">
-						<%if (user == null){ %>
+						<%
+						if (user == null) {
+						%>
 						<button id="btn" style="margin-left: 100px;"
 							onclick="location.href='Season_products.jsp?month=<%=month%>'">더보기</button>
 					</div>
-					<%} else{%>
+					<%
+					} else {
+					%>
 					<button id="btn" style="margin-left: 100px;"
 						onclick="location.href='custom_season_ingredient.html?month=<%=month%>'">더보기</button>
-					<%}%>
+					<%
+					}
+					%>
 				</div>
 			</section>
 
@@ -420,7 +465,9 @@
 							<p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Dr.R &copy;
-								<script>document.write(new Date().getFullYear());</script>
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
 								| Project Team : 2X4=8 | Made By - ksj,kmj,hjg, kdh
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>

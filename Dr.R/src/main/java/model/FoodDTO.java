@@ -9,7 +9,9 @@ public class FoodDTO {
 	private int food_month;
 	private String food_good;
 	
-	
+	public FoodDTO() {
+		
+	}
 	
 	public FoodDTO(int food_code, String food_name, String food_content, String food_image, int food_month,
 			String food_good) {
@@ -36,6 +38,9 @@ public class FoodDTO {
 		this.food_image = food_image;
 		this.food_good = food_good;
 	}
+
+	
+	
 
 	public int getFood_code() {
 		return food_code;

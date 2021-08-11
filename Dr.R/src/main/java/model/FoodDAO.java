@@ -378,4 +378,42 @@ public class FoodDAO {
 
 		return list;
 	}
+
+	// 식재료 검색
+	public FoodDTO search_food(String name) {
+		
+		FoodDTO food = new FoodDTO();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select food_code, food_name, food_image, food_good where food_name = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, name);
+			
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				String food_code = rs.getString(1);
+				String food_name = rs.getString(2);
+				String food_image = rs.getString(3);
+				String food_good = rs.getString(4);
+
+				food = new FoodDTO(food_code, food_name, food_image, food_good);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return food;
+	
+	}
 }
