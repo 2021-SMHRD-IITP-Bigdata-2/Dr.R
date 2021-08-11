@@ -76,6 +76,8 @@ public class CommentDAO {
 					
 					//3. 쿼리문 실행
 					String sql = "select num, send_name, content, sendDate from web_message where receive_email=?";
+//					select cmt_content, cmt_time, cmt_id from comments where cmt_recipe = 레시피코드;
+//					insert into comments values(cmt_num.nextval, 댓글내용, sysdate, 레시피코드, 회원아이디);
 					
 					psmt = conn.prepareStatement(sql);
 					psmt.setString(1, id);
