@@ -279,7 +279,7 @@
                 <% for (int i=0; i < recipe.size(); i++){	%>
                 <% 
                 rNum.add(i);
-                session1.setAttribute("rNum", rNum); 
+                session.setAttribute("rNum", rNum); 
                 	//여기서 음식 레시피 번호 저장해서 해당되는 번호만 전송????
                 %>
                <div class="col-12 col-sm-6 col-lg-4 list1 left">
