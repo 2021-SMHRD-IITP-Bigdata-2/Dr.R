@@ -171,7 +171,7 @@ if (user != null) {
 									%>
 									<li id="mypage"><a href="member_info.jsp">마이 페이지</a></li>
 
-									<li><a href="custom_ingredient.html">맞춤 레시피</a></li>
+									<li><a href="custom_ingredient.jsp">맞춤 추천</a></li>
 									<%
 									}
 									%>

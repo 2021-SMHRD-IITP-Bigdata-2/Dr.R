@@ -139,21 +139,33 @@ public class RecipeDAO {
 				String sql = "select * from recipe where recipe_food like ? or recipe_food like ? or recipe_food like ? or recipe_food like ? order by recipe_name";
 
 				PreparedStatement psmt = conn.prepareStatement(sql);
-				String name1 = '%' + name + "(" + '%';
-				String name2 = name + " " + '%';
-				String name3 = '积' + name + " " + '%';
-				String name4 = '积' + name + "(" + '%';
+				String name1 = '%' + name + "(%";
+				String name2 = name + " %";
+				String name3 = '积' + name + " %";
+				String name4 = '积' + name + "(%";
 				psmt.setString(1, name1);
 				psmt.setString(2, name2);
 				psmt.setString(3, name3);
 				psmt.setString(4, name4);
 				rs = psmt.executeQuery();
-			}else {
-				String sql = "select * from recipe where recipe_food like ? or recipe_food like ? or recipe_food like ? or recipe_food like ? order by recipe_name";
+			
+			}else if(name.equals("矮") || name.equals("付") || name.equals("炼") || name.equals("剐")){
+				String sql = "select * from recipe where recipe_food like ? or recipe_food like ? order by recipe_name";
 
 				PreparedStatement psmt = conn.prepareStatement(sql);
-				String name1 = '%' + name + "(" + '%';
-				String name2 = name + " " + '%';
+				String name1 = "% " + name + "(%";
+				String name2 = "% " + name + " %";
+				psmt.setString(1, name1);
+				psmt.setString(2, name2);
+				rs = psmt.executeQuery();
+				
+			
+			}else {
+				String sql = "select * from recipe where recipe_food like ? or recipe_food like ? order by recipe_name";
+
+				PreparedStatement psmt = conn.prepareStatement(sql);
+				String name1 = '%' + name + "(%";
+				String name2 = '%' + name + " %";
 				psmt.setString(1, name1);
 				psmt.setString(2, name2);
 				rs = psmt.executeQuery();
@@ -162,8 +174,8 @@ public class RecipeDAO {
 				String sql = "select * from recipe where recipe_food like ? or recipe_food like ? order by recipe_name";
 
 				PreparedStatement psmt = conn.prepareStatement(sql);
-				String name1 = '%' + name + "(" + '%';
-				String name2 = '%' + name + " " + '%';
+				String name1 = '%' + name + "(%";
+				String name2 = '%' + name + " %";
 				psmt.setString(1, name1);
 				psmt.setString(2, name2);
 				rs = psmt.executeQuery();
