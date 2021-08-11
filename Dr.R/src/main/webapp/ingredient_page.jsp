@@ -218,10 +218,14 @@ recipe = dao2.recipe_food(name);
 							<span class="test_font1" style="color: rgb(100, 181, 213);">
 								<%=detail.getFood_month()%>월
 						</span>
-						</span> &nbsp <span class="test_font1" style="color: rgb(141, 35, 35);">
+						</span> 
+						<% if(detail.getFood_good() != null){%>
+						&nbsp 
+						<span class="test_font1" style="color: rgb(141, 35, 35);">
 							<%=detail.getFood_good()%> <span class="test_font1"
 							style="color: rgb(141, 35, 35);"> 에 좋아요</span>
 						</span>
+								<%}else {}%>
 						<hr>
 						<br>
 
