@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="EUC-KR">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,8 +13,7 @@
     <style>
         .row {
             display: flex;
-        }
-        .btn {
+        }.btn {
             position: relative;
             left: 40%;
             transform: translateX(-50%);
@@ -27,7 +28,7 @@
             transition: 0.4s;
             display: inline;
             border-radius: 12px;
-            /* margin-left: 20px; */
+            margin-left: 20px;
             font-family: 'allfonts';
             margin-left: 50px;
         }
@@ -47,18 +48,18 @@
                 num1 += 4;
                 num2 += 4;
                 if (num1 < $(".list1").length) {
-                    console.log("í´ë¦­ë¨");
+                    console.log("Å¬¸¯µÊ");
                     $(".list1").slice(num1, num2).attr("style", "display:flex");
                 }
 
                 else {
-                    alert("ë”ì´ìƒ ì—†ìŠµë‹ˆë‹¤ !!! ");
+                    alert("´õÀÌ»ó ¾ø½À´Ï´Ù !!! ");
                 }
             });
         });
     </script>
     <!-- Title -->
-    <title>ë§žì¶¤ ì‹ìž¬ë£Œ</title>
+    <title>¸ÂÃã ·¹½ÃÇÇ</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -78,7 +79,7 @@
         <img src="img/core-img/salad.png" alt="">
     </div>
 
-    <!-- ê²€ìƒ‰ì°½ -->
+    <!-- °Ë»öÃ¢ -->
     <div class="search-wrapper">
         <!-- Close Btn -->
         <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
@@ -95,20 +96,20 @@
         </div>
     </div>
 
-    <!-- ##### í—¤ë” ì‹œìž‘ ë¶€ë¶„/ ì‚­ì œ í•˜ì§€ ë§ˆì‹œì˜¤ ##### -->
+    <!-- ##### Çì´õ ½ÃÀÛ ºÎºÐ/ »èÁ¦ ÇÏÁö ¸¶½Ã¿À ##### -->
     <header class="header-area">
 
 
 
 
-        <!-- ë©”ë‰´ê´€ë ¨ ì‹œìž‘ -->
+        <!-- ¸Þ´º°ü·Ã ½ÃÀÛ -->
         <div class="delicious-main-menu">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-                    <!-- ë©”ë‰´ / ë””ìžì¸ -->
+                    <!-- ¸Þ´º / µðÀÚÀÎ -->
                     <nav class="classy-navbar justify-content-between" id="deliciousNav">
 
-                        <!-- ë¡œê³  -->
+                        <!-- ·Î°í -->
                         <a class="nav-brand" href="main.jsp"><img src="img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
@@ -116,38 +117,38 @@
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
 
-                        <!-- ë©”ë‰´ / ëª¨ë°”ì¼ í™”ë©´ 3ì¤„ ë²„íŠ¼ ìƒì„± -->
+                        <!-- ¸Þ´º / ¸ð¹ÙÀÏ È­¸é 3ÁÙ ¹öÆ° »ý¼º -->
                         <div class="classy-menu">
 
-                            <!-- ë©”ë‰´ / ëª¨ë°”ì¼ í™”ë©´ 3ì¤„ ë²„íŠ¼ ë‹«ê¸° -->
+                            <!-- ¸Þ´º / ¸ð¹ÙÀÏ È­¸é 3ÁÙ ¹öÆ° ´Ý±â -->
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
 
-                            <!-- ë©”ë‰´ ë¬¶ìŒ -->
+                            <!-- ¸Þ´º ¹­À½ -->
                             <div class="classynav">
                                 <ul>
 
-                                    <!-- ê·¸ ì™¸ ë©”ë‰´ -->
+                                    <!-- ±× ¿Ü ¸Þ´º -->
                                     <script>
-                                        // ë¡œê·¸ì¸ í–ˆìœ¼ë©´ ë§ˆì´íŽ˜ì´ì§€ë¡œ ì´ë™,
-                                        // ë¡œê·¸ì¸ í•˜ì§€ ì•Šì•˜ìœ¼ë©´ ë¡œê·¸ì¸ íŽ˜ì´ì§€ë¡œ ì´ë™
+                                        // ·Î±×ÀÎ ÇßÀ¸¸é ¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿,
+                                        // ·Î±×ÀÎ ÇÏÁö ¾Ê¾ÒÀ¸¸é ·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿
                                     </script>
-                                    <li><a href="member_info.html">ë§ˆì´ íŽ˜ì´ì§€</a></li>
-                                    <li><a href="custom_ingredient.html">ë§žì¶¤ ë ˆì‹œí”¼</a></li>
-                                    
-                                    
-                                    <li><a href="Season_products.jsp">ì œì²  ì‹ìž¬ë£Œ</a></li>
-                                    <li><a href="Disease_high_blood_pressure.html">ì§ˆë³‘ ì •ë³´</a></li>
-                                    <li><a href="Guide.html">ì´ìš© ì•ˆë‚´</a></li>
-                                    <!-- ë¡œê·¸ì¸ -->
+                                    <li><a href="member_info.html">¸¶ÀÌ ÆäÀÌÁö</a></li>
+                                    <li><a href="custom_ingredient.html">¸ÂÃã ·¹½ÃÇÇ</a></li>
+                                    <li><a href="Season_products.jsp">Á¦Ã¶ ½ÄÀç·á</a></li>
+
+
+                                    <li><a href="Disease_high_blood_pressure.html">Áúº´ Á¤º¸</a></li>
+                                    <li><a href="Guide.html">ÀÌ¿ë ¾È³»</a></li>
+                                    <!-- ·Î±×ÀÎ -->
                                     <li><a href="login.html" style="background-color: rgb(236, 236, 236);">Login</a>
                                     </li>
 
-                                    <!-- íšŒì›ê°€ìž… -->
+                                    <!-- È¸¿ø°¡ÀÔ -->
                                     <li><a href="join.jsp" style="background-color: rgb(236, 236, 236);">Join</a></li>
 
-                                    <!-- ê²€ìƒ‰ -->
+                                    <!-- °Ë»ö -->
                                     <li>
                                         <div class="search-btn">
                                             <i class="fa fa-search" aria-hidden="true" style="font-size: 30px;"></i>
@@ -160,37 +161,27 @@
                 </div>
             </div>
         </div>
-        <!-- ë©”ë‰´ê´€ë ¨ ë -->
+        <!-- ¸Þ´º°ü·Ã ³¡ -->
     </header>
-    <!-- ##### í—¤ë” ì¢…ë£Œ ë¶€ë¶„ / ì‚­ì œí•˜ì§€ ë§ˆì‹œì˜¤ ##### -->
+    <!-- ##### Çì´õ Á¾·á ºÎºÐ / »èÁ¦ÇÏÁö ¸¶½Ã¿À ##### -->
     
     
-    <!-- ##### ë§žì¶¤ ë ˆì‹œí”¼ ì¶”ì²œ ì‹œìž‘ ##### -->
+    <!-- ##### ¸ÂÃã ·¹½ÃÇÇ ÃßÃµ ½ÃÀÛ ##### -->
     <hr>
     <div>
         <ul style="text-align: center; ">
-            <a class="test_font" style="font-size: 30px; border-bottom: 2px solid #adadad;" href="custom_ingredient.html">ì‹ìž¬ë£Œ</a>
+            <a class="test_font" style="font-size: 30px;" href="custom_ingredient.html">½ÄÀç·á</a>
             &nbsp&nbsp
-            <a class="test_font" style="font-size: 30px;" href="custom_recipe.html">ë ˆì‹œí”¼</a>
+            <a class="test_font" style="font-size: 30px; border-bottom: 2px solid #adadad;" href="custom_recipe.html">·¹½ÃÇÇ</a>
         </ul>
     </div>
     <br>
     </div>
-    <div>
-        <ul style="text-align: center;">
-            <a class="test_font1" style="font-size: 17px;" href="custom_ingredient.html">ì¼ë°˜</a>
-            &nbsp&nbsp
-            &nbsp&nbsp
 
-            <a class="test_font1" style="font-size: 17px; border-bottom: 2px solid #adadad;" href="Disease_Diabetes_recipe.html">ì œì² </a>
-        </ul>
-
-    </div>
     <br>
-    <hr>
     <br>
-    <h5 class="test_font" align="center" style="font-size: 25px; margin-top: 20px;">ë„í›ˆ
-        <span>ë‹˜ì˜ ê±´ê°•ì— ë§žì¶° ìŒì‹ì„ ì¶”ì²œí•´ë“œë ¤ìš”!</span>
+       <h5 class="test_font" align="center" style="font-size: 25px; margin-top: 20px;">µµÈÆ
+        <span>´ÔÀÇ °Ç°­¿¡ ¸ÂÃç À½½ÄÀ» ÃßÃµÇØµå·Á¿ä!</span>
     </h5>
     
     
@@ -198,14 +189,14 @@
             <div class="container">
             <div class="row">
 
-    <!-- ##### ë§žì¶¤ ë ˆì‹œí”¼ ì¶”ì²œ ì‹œìž‘ ##### -->
+    <!-- ##### ¸ÂÃã ·¹½ÃÇÇ ÃßÃµ ½ÃÀÛ ##### -->
     <hr>
     <section class="small-receipe-area ">
         <div class="container">
             <h5 align="center" style="margin-bottom: 50px;"></h5>
             <div class="row">
 
-                <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+                <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
                 <div class="col-12 col-sm-6 col-lg-4 list1">
                     <div class="single-small-receipe-area d-flex">
                         <!-- Receipe Thumb -->
@@ -216,16 +207,16 @@
                             <!-- Receipe Content -->
                             <div class="receipe-content">
                                 <br>
-                                <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                                <span>ë‹¹ë‡¨</span>
-                                <!-- ìŒì‹ ëª…-->
-                                <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                                <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                                <span>´ç´¢</span>
+                                <!-- À½½Ä ¸í-->
+                                <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                         </a>
                     </div>
                 </div>
             </div>
-            <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-            <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+            <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+            <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
             <div class="col-12 col-sm-6 col-lg-4 list1">
                 <div class="single-small-receipe-area d-flex">
                     <!-- Receipe Thumb -->
@@ -236,16 +227,16 @@
                         <!-- Receipe Content -->
                         <div class="receipe-content">
                             <br>
-                            <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                            <span>ë‹¹ë‡¨</span>
-                            <!-- ìŒì‹ ëª…-->
-                            <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                            <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                            <span>´ç´¢</span>
+                            <!-- À½½Ä ¸í-->
+                            <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                     </a>
                 </div>
             </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -256,16 +247,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -276,18 +267,18 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
 
 
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -298,16 +289,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -318,16 +309,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -338,16 +329,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -358,16 +349,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -378,16 +369,16 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
-        <!-- ë ˆì‹œí”¼/ ì‹ìž¬ë£Œ ê¸€ ì‹œìž‘-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
+        <!-- ·¹½ÃÇÇ/ ½ÄÀç·á ±Û ½ÃÀÛ-->
         <div class="col-12 col-sm-6 col-lg-4 list1">
             <div class="single-small-receipe-area d-flex">
                 <!-- Receipe Thumb -->
@@ -398,27 +389,29 @@
                     <!-- Receipe Content -->
                     <div class="receipe-content">
                         <br>
-                        <!-- ì¢‹ì€ ì§ˆë³‘ í‘œì‹œ-->
-                        <span>ë‹¹ë‡¨</span>
-                        <!-- ìŒì‹ ëª…-->
-                        <h5>ìš°ì—‰ì´ ì„¸ìƒì„ ì •ë³µí•œë‹¤</h5>
+                        <!-- ÁÁÀº Áúº´ Ç¥½Ã-->
+                        <span>´ç´¢</span>
+                        <!-- À½½Ä ¸í-->
+                        <h5>¿ì¾ûÀÌ ¼¼»óÀ» Á¤º¹ÇÑ´Ù</h5>
                 </a>
             </div>
         </div>
         </div>
-        <!-- ë ˆì‹œí”¼/ì‹ìž¬ë£Œ ê¸€ ì¢…ë£Œ-->
+        <!-- ·¹½ÃÇÇ/½ÄÀç·á ±Û Á¾·á-->
 
         </div>
-        <p><button id="load" class="btn">ë”ë³´ê¸°</button></p>
+        <p><button id="load" class="btn">´õº¸±â</button></p>
 
 
-               
+    <!-- ##### ¸ÂÃã ·¹½ÃÇÇ ÃßÃµ Á¾·á ##### -->
 
 
 
 
 
-<!-- í¬í„° ì‹œìž‘ë¶€ë¶„ -->
+
+
+<!-- Æ÷ÅÍ ½ÃÀÛºÎºÐ -->
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container h-100">
@@ -446,7 +439,7 @@ Dr.R &copy;<script>document.write(new Date().getFullYear());</script> | Project 
 
 
 
-<!-- js íŒŒì¼ ë¡œë“œ -->
+<!-- js ÆÄÀÏ ·Îµå -->
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
