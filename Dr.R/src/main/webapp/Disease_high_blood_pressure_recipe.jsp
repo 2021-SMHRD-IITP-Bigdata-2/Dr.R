@@ -12,8 +12,13 @@
 	//String month = request.getParameter("month");
 
 	ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
+	ArrayList<Integer> rNum = new ArrayList<Integer>();
+	
 	RecipeDAO dao = new RecipeDAO();
 	recipe = dao.recipe_go();
+	
+	
+	//세션 만들어서 보내기 레시피 페이지로
 	
 	
 	//if (month != null) {
@@ -272,10 +277,18 @@
 		
                 <!-- 레시피/ 식재료 글 시작-->
                 <% for (int i=0; i < recipe.size(); i++){	%>
+                <% 
+                rNum.add(i);
+                session1.setAttribute("rNum", rNum); 
+                	//여기서 음식 레시피 번호 저장해서 해당되는 번호만 전송????
+                %>
                <div class="col-12 col-sm-6 col-lg-4 list1 left">
                 <div class="single-small-receipe-area d-flex">
                     <!-- Receipe Thumb -->
-                    <a href="ingredient_page.html">
+                    <a href="href=recipe_page2.jsp?name=<%= recipe.get(i).getRecipe_name()%>">
+                    
+                    
+                    <!--  <a href="ingredient_page.html">-->
                         <div class="receipe-thumb">
                             <img src="<%=recipe.get(i).getRecipe_img()%>" alt="">
                         </div>
