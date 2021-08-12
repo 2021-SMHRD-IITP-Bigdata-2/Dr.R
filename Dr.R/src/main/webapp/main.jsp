@@ -146,7 +146,7 @@ if (user != null) {
 			<div class="row">
 				<div class="col-12">
 					<!-- °Ë»ö ¹Ù  -->
-					<form action="#" method="post">
+					<form action="UsearchCon" method="post">
 						<input type="search" name="search"
 							placeholder="Type any keywords...">
 						<button type="submit">

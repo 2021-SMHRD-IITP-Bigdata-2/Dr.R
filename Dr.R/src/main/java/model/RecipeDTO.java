@@ -21,6 +21,18 @@ public class RecipeDTO {
 		this.recipe_cook2 = recipe_cook2;
 	}
 
+	
+	
+	public RecipeDTO(int recipe_code, String recipe_name, String recipe_method, String recipe_img) {
+		super();
+		this.recipe_code = recipe_code;
+		this.recipe_name = recipe_name;
+		this.recipe_method = recipe_method;
+		this.recipe_img = recipe_img;
+	}
+
+
+
 	public RecipeDTO() {
 	}
 
