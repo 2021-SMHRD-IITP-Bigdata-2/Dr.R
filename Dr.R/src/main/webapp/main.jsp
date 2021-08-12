@@ -42,16 +42,12 @@ if (user != null) {
 		food2 = dao.food_custom_season(dis, mf.select_not(user.getU_id()), month);
 		session.setAttribute("food1", food1);
 		session.setAttribute("food2", food2);
-/* 		food1 = dao.food_custom(dis, mf.select_not(user.getU_id()), 0);
-		food2 = dao.food_custom(dis, mf.select_not(user.getU_id()), month); */
 	}else{
 		/* 못먹는 음식 없으면 ! */
 		food1 = dao.food_custom(dis);
 		food2 = dao.food_custom_season(dis, month);
 		session.setAttribute("food1", food1);
 		session.setAttribute("food2", food2);
-/* 		food1 = dao.food_custom(dis, 0);
-		food2 = dao.food_custom(dis, month); */
 	}
 } else {
 	food2 = dao.season_food(month);
