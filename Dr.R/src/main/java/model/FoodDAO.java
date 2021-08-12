@@ -580,29 +580,31 @@ public class FoodDAO {
 	}
 
 	// 식재료 검색
-	public FoodDTO search_food(String name) {
+	public ArrayList<FoodDTO> search_food(String name) {
 
-		FoodDTO food = new FoodDTO();
+		ArrayList<FoodDTO> list = new ArrayList<>();
+		FoodDTO food;
+		
 
 		try {
 			connection();
 
 			// 3. 쿼리문 실행
-			String sql = "select food_code, food_name, food_image, food_good where food_name = ?";
+			String sql = "select food_code, food_name, food_image, food_good from food where food_name like ?";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, name);
+			psmt.setString(1, '%'+name+'%');
 
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
-				String food_code = rs.getString(1);
+				int food_code = rs.getInt(1);
 				String food_name = rs.getString(2);
 				String food_image = rs.getString(3);
 				String food_good = rs.getString(4);
 
 				food = new FoodDTO(food_code, food_name, food_image, food_good);
-
+				list.add(food);
 			}
 
 		} catch (SQLException e) {
@@ -613,7 +615,7 @@ public class FoodDAO {
 
 		} // end finally
 
-		return food;
+		return list;
 
 	}
 }

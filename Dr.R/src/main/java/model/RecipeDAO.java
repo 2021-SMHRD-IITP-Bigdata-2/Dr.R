@@ -249,29 +249,31 @@ public class RecipeDAO {
 	}
 	
 	// 레시피 검색
-	public RecipeDTO Usearch_recipe(String name) {
+	public ArrayList<RecipeDTO> Usearch_recipe(String name) {
 			
-		RecipeDTO recipe = new RecipeDTO();
+		ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();;
+		RecipeDTO search;
 
 		try {
 			connection();
 
 			// 3. 쿼리문 실행
-			String sql = "select recipe_code, recipe_name, recipe_method, recipe_img where recipe_food like ? or recipe_food like ? order by recipe_name ?";
+			String sql = "select recipe_code, recipe_name, recipe_method, recipe_img from recipe where recipe_name like ? or recipe_food like ? ";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, name);
+			psmt.setString(1, '%'+name+'%');
+			psmt.setString(2, '%'+name+'%');
 				
 			rs = psmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				int recipe_code = rs.getInt(1);
 				String recipe_name = rs.getString(2);
 				String recipe_method = rs.getString(3);
 				String recipe_img = rs.getString(4);
 
-				recipe = new RecipeDTO(recipe_code, recipe_name, recipe_method, null, recipe_img, null, null);
-
+				search = new RecipeDTO(recipe_code, recipe_name, recipe_method, recipe_img);
+				recipe.add(search);
 			}
 
 		} catch (SQLException e) {
