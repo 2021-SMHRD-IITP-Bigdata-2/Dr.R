@@ -248,9 +248,43 @@ public class RecipeDAO {
 		return list;
 	}
 	
-	
-	
-	
+	// 레시피 검색
+	public RecipeDTO Usearch_recipe(String name) {
+			
+		RecipeDTO recipe = new RecipeDTO();
+
+		try {
+			connection();
+
+			// 3. 쿼리문 실행
+			String sql = "select recipe_code, recipe_name, recipe_method, recipe_img where recipe_food like ? or recipe_food like ? order by recipe_name ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, name);
+				
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				int recipe_code = rs.getInt(1);
+				String recipe_name = rs.getString(2);
+				String recipe_method = rs.getString(3);
+				String recipe_img = rs.getString(4);
+
+				recipe = new RecipeDTO(recipe_code, recipe_name, recipe_method, null, recipe_img, null, null);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return recipe;
+		
+	}
 	
 
 }

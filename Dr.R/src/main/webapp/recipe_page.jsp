@@ -21,6 +21,10 @@ if(dao2.comment_select(recipe.getRecipe_code()) != null){
 	comment = dao2.comment_select(recipe.getRecipe_code());
 }
 
+
+session.setAttribute("recipe_name", name);
+session.setAttribute("recipe_code", recipe.getRecipe_code());
+
 %> 
     
     
@@ -250,8 +254,8 @@ if(dao2.comment_select(recipe.getRecipe_code()) != null){
 
                     <!-- ´ñ±Û °ø°£ -->
                     <hr>
-                    <form action="CommentCon?cmt_recipe=" + <%=recipe.getRecipe_code() %> method="get">
-                        <textarea id = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
+                    <form action="CommentCon?"  method="get">
+                        <textarea name = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
                     <hr>
@@ -260,7 +264,7 @@ if(dao2.comment_select(recipe.getRecipe_code()) != null){
                     <%  if(!comment.isEmpty()) {
                    for(int i=0; i< comment.size(); i++){ %>
                     <div style="color: darkgray;"><%= comment.get(i).getCmt_id() %></div>
-                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;"><%= comment.get(i).getCmt_content() %></div>                   
+                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;"><%= comment.get(i).getCmt_content() %></div>                  
                    <%}} %> 
                      
                 </div>
