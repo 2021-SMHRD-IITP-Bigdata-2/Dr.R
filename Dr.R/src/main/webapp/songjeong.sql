@@ -6,3 +6,5 @@ select u_email from users where u_email='test@test';
 select * from commentss;
 
 select cmt_content, cmt_time, cmt_id from commentss where cmt_recipe=1;
+
+select * from food where food_good like '%°íÇ÷¾Ð%' and food_month=8;

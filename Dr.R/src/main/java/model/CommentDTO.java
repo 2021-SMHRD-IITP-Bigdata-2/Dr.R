@@ -18,12 +18,27 @@ public class CommentDTO {
 
 	
 
+	public CommentDTO(String cmt_content, int cmt_recipe, String cmt_id) {
+		this.cmt_content = cmt_content;
+		this.cmt_recipe = cmt_recipe;
+		this.cmt_id = cmt_id;
+	}
+
+
+
 	public CommentDTO(String cmt_content, String cmt_time, String cmt_id) {
 		this.cmt_content = cmt_content;
 		this.cmt_time = cmt_time;
 		this.cmt_id = cmt_id;
 	}
+	
+	public CommentDTO() {
+		
+	}
 
+	
+	
+	
 
 
 	public int getCmt_code() {
