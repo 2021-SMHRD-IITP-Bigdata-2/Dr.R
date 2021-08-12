@@ -243,12 +243,11 @@ recipe = dao2.recipe_food(name);
 						<br>
 						<!-- 관련 레시피 -->
 						<h4 class="test_font"
-							style="font-size: 25px; margin-bottom: 30px;">관련 레시피</h4>
+							style="font-size: 25px; margin-bottom: 0px;">관련 레시피</h4>
 
 
 
 						<!-- ##### 맞춤 레시피 추천 시작 ##### -->
-						<hr>
 						<section class="small-receipe-area section-padding-80-0">
 							<div class="container">
 								<h5 class="test_font" align="center" style="font-size: 25px;">
