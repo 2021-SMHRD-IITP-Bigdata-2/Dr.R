@@ -21,6 +21,9 @@ public class RecipeDTO {
 		this.recipe_cook2 = recipe_cook2;
 	}
 
+	public RecipeDTO() {
+	}
+
 	public int getRecipe_code() {
 		return recipe_code;
 	}
