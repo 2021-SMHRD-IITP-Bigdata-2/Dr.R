@@ -121,7 +121,7 @@ public class MyfoodDAO {
 
 			String sql = "";
 
-			sql = "update myfood set myfood_not" + size + "=? where myfood_id = ? ";
+			sql = "update myfood set myfood_not" + (size+1) + "=? where myfood_id = ? ";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, notfood);
 			psmt.setString(2, id);
@@ -134,5 +134,38 @@ public class MyfoodDAO {
 		}
 		return cnt;
 	}
+	
+	public int delete_not(String id, String not, int index) {
+
+		try {
+
+			connection();
+
+			String sql = "";
+
+			sql = "update myfood set myfood_not" + (index+1) + "=null where myfood_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

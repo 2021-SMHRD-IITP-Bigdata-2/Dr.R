@@ -8,7 +8,8 @@
 <%
 UserDTO user = (UserDTO)session.getAttribute("login_User");
 MyfoodDAO mf = new MyfoodDAO();
-ArrayList<MyfoodDTO> nf = new ArrayList<MyfoodDTO>();
+String[] nf;
+nf = mf.select_not(user.getU_id());
 
 
 
@@ -16,8 +17,15 @@ ArrayList<MyfoodDTO> nf = new ArrayList<MyfoodDTO>();
 int size = 0;
 
 for (int i=0, j=1; i<5; i++, j++) {
-	if(mf.select_not(user.getU_id())[i] != null){
-		size= j;
+	if(nf[i] != null){
+		size++;
+	}
+}
+int insert_idx=0; 
+for (int i=0; i<5; i++) {
+	if(nf[i] == null){
+		insert_idx= i;
+		break;
 	}
 }
 %>
@@ -273,41 +281,50 @@ button {
 
 
 		<!-- 입력된 식재료 목록 -->
-		<% for (int i = 0 ; i< size; i++) {%>
+		<% for (int i = 0 ; i< 5; i++) {
+		if(nf[i]!=null){%>
+		<form action="delete_notCon" method="post">
 		<div align="center" style="margin-top: 50px;">
 			<table class="test_font food_tb list">
 				<tr>
 					<td class="foodlist"><span class="test_font"
-						style="font-size: 17px; font-weight: bold;" name="list"> 
-						<!-- 사용자가 입력한 식재료 명 출력 -->
-							<%= mf.select_not(user.getU_id())[i] %>
-					</span></td>
-
+						style="font-size: 17px; font-weight: bold;"> 
+							<%= nf[i] %>
+					</span>
+					<!-- 삭제하고자 하는 식재료 이름을 보내기위해서는 span에 name으로가 아니라 hidden을 사용,
+					왜냐면 이방법 아니면 다 null값 뜸 값이 안보내짐 -->
+					<input type="hidden" name="not" value="<%= nf[i] %>"></td>
+					<input type="hidden" name="index" value="<%=i%>"></td>
 					<td class="out">
 						<!-- 삭제 기능 만드는 곳-->
-						<button onclick="location.href=#">-</button>
+						<button>-</button>
 					</td>
 				</tr>
 			</table>
 		</div>
+		</form>
+		<%} %>
 		<%} %>
 
 
 
 		<!-- 새로운 식재료 입력하는 곳-->
 		<%if (size != 5) { %>
-		<form action="insert_notCon" method="post">
-			<table class="test_font food_tb">
+		<form action="update_notCon" method="post">
+			<table class="test_font food_tb" style="margin-top:100px; margin-bottom:100px;">
 				<tr>
 					<td class="foodlist"><input type="text" class="foodlist_text"
 						name="notfood" style="font-size: 17px; font-weight: 600;"
 						placeholder="추가할 식재료를 입력하세요" name="foodname"> </input>
 						</td>
-						<input type="hidden" name="size" value="<%=size%>">
+						<input type="hidden" name="size" value="<%=insert_idx%>">
 					<td class="in"><button style="font-size: 17px; font-weight: 600;">입력</button></td>
 				</tr>
 			</table>
 		</form>
+		<!-- 만약 5개 다 입력되면 입력창 사라짐 우오아 쩐당!! -->
+		<%}else { %>
+		<div style="margin-bottom:100px"></div>
 		<%} %>
 	</div>
 

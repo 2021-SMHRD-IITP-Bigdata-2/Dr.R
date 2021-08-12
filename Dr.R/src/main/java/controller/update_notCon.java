@@ -15,8 +15,8 @@ import model.MyfoodDTO;
 import model.UserDAO;
 import model.UserDTO;
 
-@WebServlet("/insert_notCon")
-public class insert_notCon extends HttpServlet {
+@WebServlet("/update_notCon")
+public class update_notCon extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -1,3 +1,4 @@
+
 <%@page import="model.MyfoodDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Random"%>
@@ -26,6 +27,15 @@ ArrayList<String> dis = new ArrayList<>();
 ArrayList<FoodDTO> food1 = null;
 ArrayList<FoodDTO> food2 = null;
 
+String[] not;
+int size = 0;
+if(user != null){
+ not = mf.select_not(user.getU_id());
+for(int i =0; i < not.length; i++){
+	if(not[i] != null)
+		size++;
+}
+}
 if (user != null) {
 	if (user.getU_dang() == 1)
 		dis.add("당뇨");
@@ -36,7 +46,8 @@ if (user != null) {
 	if (user.getU_ho() == 1)
 		dis.add("호흡기");
 	session.setAttribute("dis", dis);
-	if (mf.select_not(user.getU_id())[0] != null){
+	
+	if (size != 0){
 		/* 못먹는 음식 있으면 !  */
 		food1 = dao.food_custom(dis, mf.select_not(user.getU_id()));
 		food2 = dao.food_custom_season(dis, mf.select_not(user.getU_id()), month);
@@ -49,6 +60,7 @@ if (user != null) {
 		session.setAttribute("food1", food1);
 		session.setAttribute("food2", food2);
 	}
+	System.out.print(food1.size());
 } else {
 	food2 = dao.season_food(month);
 }
@@ -336,7 +348,13 @@ if (user != null) {
 			<div class="row">
 
 				<%
-				for (int i = 0; i < 3; i++) {
+				int number_of_rec = 0;
+				if (food1.size()>=3){
+					number_of_rec = 3;
+				}else{
+					number_of_rec = food1.size();
+				}
+				for (int i = 0; i < number_of_rec; i++) {
 					int j = (new Random().nextInt(food1.size()));
 				%>
 				<!-- 레시피/ 식재료 글 시작-->
