@@ -435,8 +435,6 @@ public class FoodDAO {
 		return list;
 	}
 
-	
-
 	// 식재료 검색
 	public FoodDTO search_food(String name) {
 		
