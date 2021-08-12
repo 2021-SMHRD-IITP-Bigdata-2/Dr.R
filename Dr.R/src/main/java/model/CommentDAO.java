@@ -14,21 +14,26 @@ public class CommentDAO {
 	private ResultSet rs;
 	private int cnt;
 	
-	public void connection() {
-		//1. 오라클 드라이버 동적 로딩
+	public Connection connection() {
 		try {
+			conn = null;
+			// 1.오라클 드라이버 동적 로딩 = 실행할때 찾아간다는 뜻
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			//2. 데이터베이스 연동
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String password = "hr";
-			
+
+			// 2.데이터베이스 연동
+			String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String user = "cgi_3_3";
+			String password = "smhrd3";
+
 			conn = DriverManager.getConnection(url, user, password);
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+		return conn;
+
 	}
 	
 	public void close() {
@@ -69,16 +74,14 @@ public class CommentDAO {
 	
 	public ArrayList<CommentDTO> comment_select(int recipe) {
 		//나에게 온 메세지들을 저장할 수 있는 ArrayList객체 생성
-				ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
+				ArrayList<CommentDTO> list = new ArrayList<>();
 				
 				try {
 					
 					connection();
 					
 					//3. 쿼리문 실행
-					String sql = "select cmt_content, cmt_time, cmt_id from comments where cmt_recipe=?";
-//					select cmt_content, cmt_time, cmt_id from comments where cmt_recipe = 레시피코드;
-//					insert into comments values(cmt_num.nextval, 댓글내용, sysdate, 레시피코드, 회원아이디);
+					String sql = "select cmt_content, cmt_time, cmt_id from commentss where cmt_recipe=?";
 					
 					psmt = conn.prepareStatement(sql);
 					psmt.setInt(1, recipe);
@@ -96,6 +99,7 @@ public class CommentDAO {
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
+					System.out.println("실패");
 				} finally {
 						
 					close();

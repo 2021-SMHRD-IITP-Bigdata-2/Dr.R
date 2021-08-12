@@ -16,7 +16,7 @@ FoodDAO dao = new FoodDAO();
 FoodDTO season = dao.seasonal_food(month);
 
 MyfoodDAO mf = new MyfoodDAO();
-String[] myfood = new String[5];
+/* String[] myfood = new String[5]; */
 
 /* if(user != null){
 	myfood = mf.select_not(user.getU_id());
@@ -34,7 +34,10 @@ if (user != null) {
 		dis.add("위장");
 	if (user.getU_ho() == 1)
 		dis.add("호흡기");
-	food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	if(mf.select_not(user.getU_id())[0] != null)
+		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	else 
+		food = dao.food_custom(dis);
 } else {
 	food = dao.season_food(month);
 }
@@ -303,6 +306,15 @@ if (user != null) {
 			<%
 			} else {
 			%>
+			
+<div align="center" style="margin-top: 7%; margin-bottom: 7%;">
+<h5  class="test_font" align="center" style="font-size: 22px; margin-bottom: 3%;">알러지나 못먹는 식재료를 입력하세요!
+</h5>
+<a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" style="border-radius: 10px;">입력하기</a>
+</div>
+<hr>
+<br>			
+			
 			<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name()%>
 				<span>님의 건강에 맞춰 음식을 추천해드려요!</span>
 			</h5>
@@ -327,8 +339,7 @@ if (user != null) {
 							<!-- 좋은 질병 표시-->
 							<span class="test_font"> <%
  if (food.get(i).getFood_good() != null) {
- %>
-								<%=food.get(i).getFood_good()%> <%
+ %> <%=food.get(i).getFood_good()%> <%
  }
  %>
 							</span>
@@ -406,11 +417,10 @@ if (user != null) {
 									<br>
 									<!-- 좋은 질병 표시-->
 									<span class="test_font"> <%
- if (food.get(i).getFood_good() != null) {
- %>
-										<%=food.get(i).getFood_good()%> <%
- }
- %>
+									 if (food.get(i).getFood_good() != null) {
+									 %> <%=food.get(i).getFood_good()%> <%
+									 }
+									 %>
 									</span>
 									<!-- 음식 명-->
 									<span class="test_font"

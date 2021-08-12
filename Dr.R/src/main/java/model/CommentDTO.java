@@ -16,9 +16,15 @@ public class CommentDTO {
 		this.cmt_id = cmt_id;
 	}
 
+	
+
 	public CommentDTO(String cmt_content, String cmt_time, String cmt_id) {
-		
+		this.cmt_content = cmt_content;
+		this.cmt_time = cmt_time;
+		this.cmt_id = cmt_id;
 	}
+
+
 
 	public int getCmt_code() {
 		return cmt_code;

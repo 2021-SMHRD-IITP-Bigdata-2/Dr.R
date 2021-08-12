@@ -15,26 +15,12 @@ String name = request.getParameter("name");
 RecipeDAO dao = new RecipeDAO();
 RecipeDTO recipe = dao.search_recipe(name);
 
-/* 
-recipe = dao.all_recipe(); */
+CommentDAO dao2 = new CommentDAO();
+ArrayList<CommentDTO> comment = null;
+if(dao2.comment_select(recipe.getRecipe_code()) != null){
+	comment = dao2.comment_select(recipe.getRecipe_code());
+}
 
-
-/* int cnt = -1;
-for (int i = 0; i < recipe.size(); i++) {
-	if (recipe.get(i).getRecipe_name().equals(name)) {
-		cnt = i;
-	} else
-		continue;
-}*/
-
-/* RecipeDTO detail = new RecipeDTO(recipe.get(1).getRecipe_code(), recipe.get(1).getRecipe_name(), 
-		recipe.get(1).getRecipe_method(), recipe.get(1).getRecipe_food(), recipe.get(1).getRecipe_img(), 
-		recipe.get(1).getRecipe_cook1(), recipe.get(1).getRecipe_cook2()); */
-		
-ArrayList<CommentDTO> comment = new ArrayList<CommentDTO>();
-CommentDAO dao1 = new CommentDAO();
-
-comment = dao1.comment_select(1);		
 %> 
     
     
@@ -264,16 +250,19 @@ comment = dao1.comment_select(1);
 
                     <!-- ´ñ±Û °ø°£ -->
                     <hr>
-                    <form>
-                        <textarea rows="5" cols="50" style="border: 1px solid gray;"></textarea>
+                    <form action="CommentCon?cmt_recipe=" + <%=recipe.getRecipe_code() %> method="get">
+                        <textarea id = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
                     <hr>
+                    
                     <div align="left">
-                    <div style="color: darkgray;"><%= %></div>
-                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
-                    <div style="color: darkgray;">µµÈÆÀ×´Ô</div>
-                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
+                    <%  if(!comment.isEmpty()) {
+                   for(int i=0; i< comment.size(); i++){ %>
+                    <div style="color: darkgray;"><%= comment.get(i).getCmt_id() %></div>
+                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;"><%= comment.get(i).getCmt_content() %></div>                   
+                   <%}} %> 
+                     
                 </div>
                 
                 </div>
