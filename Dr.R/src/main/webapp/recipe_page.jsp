@@ -14,10 +14,12 @@ String name = request.getParameter("name");
 //½ÄÀç·á °ü·Ã
 RecipeDAO dao = new RecipeDAO();
 RecipeDTO recipe = dao.search_recipe(name);
-/* 
+
 CommentDAO dao2 = new CommentDAO();
-ArrayList<CommentDTO> comment = dao2.comment_select(recipe.getRecipe_code());
-System.out.println(comment.get(0).getCmt_content()); */
+ArrayList<CommentDTO> comment = null;
+if(dao2.comment_select(recipe.getRecipe_code()) != null){
+	comment = dao2.comment_select(recipe.getRecipe_code());
+}
 
 %> 
     
@@ -255,14 +257,12 @@ System.out.println(comment.get(0).getCmt_content()); */
                     <hr>
                     
                     <div align="left">
-                 <%--   <%  if(!comment.isEmpty()) {
+                    <%  if(!comment.isEmpty()) {
                    for(int i=0; i< comment.size(); i++){ %>
                     <div style="color: darkgray;"><%= comment.get(i).getCmt_id() %></div>
                     <div style="color: rgb(54, 53, 53); margin-bottom: 5px;"><%= comment.get(i).getCmt_content() %></div>                   
-                   <%}} %> --%>
-                    <!-- <div style="color: darkgray;">µµÈÆÀ×´Ô</div>
-                    <div style="color: rgb(54, 53, 53); margin-bottom: 5px;">°í±¸¸¶Á× ³Ñ ¸ÀÀÖ¾î¿ä ~</div>
-                     -->
+                   <%}} %> 
+                     
                 </div>
                 
                 </div>
