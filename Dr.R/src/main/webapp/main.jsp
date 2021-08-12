@@ -23,7 +23,8 @@ MyfoodDAO mf = new MyfoodDAO();
 } */
 
 ArrayList<String> dis = new ArrayList<>();
-ArrayList<FoodDTO> food;
+ArrayList<FoodDTO> food1 = null;
+ArrayList<FoodDTO> food2 = null;
 
 if (user != null) {
 	if (user.getU_dang() == 1)
@@ -34,12 +35,22 @@ if (user != null) {
 		dis.add("위장");
 	if (user.getU_ho() == 1)
 		dis.add("호흡기");
-	if(mf.select_not(user.getU_id())[0] != null)
-		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
-	else 
-		food = dao.food_custom(dis);
+	session.setAttribute("dis", dis);
+	if (mf.select_not(user.getU_id())[0] != null){
+		/* 못먹는 음식 있으면 !  */
+		food1 = dao.food_custom(dis, mf.select_not(user.getU_id()));
+		food2 = dao.food_custom_season(dis, mf.select_not(user.getU_id()), month);
+/* 		food1 = dao.food_custom(dis, mf.select_not(user.getU_id()), 0);
+		food2 = dao.food_custom(dis, mf.select_not(user.getU_id()), month); */
+	}else{
+		/* 못먹는 음식 없으면 ! */
+		food1 = dao.food_custom(dis);
+		food2 = dao.food_custom_season(dis, month);
+/* 		food1 = dao.food_custom(dis, 0);
+		food2 = dao.food_custom(dis, month); */
+	}
 } else {
-	food = dao.season_food(month);
+	food2 = dao.season_food(month);
 }
 %>
 <script>
@@ -306,15 +317,18 @@ if (user != null) {
 			<%
 			} else {
 			%>
-			
-<div align="center" style="margin-top: 7%; margin-bottom: 7%;">
-<h5  class="test_font" align="center" style="font-size: 22px; margin-bottom: 3%;">알러지나 못먹는 식재료를 입력하세요!
-</h5>
-<a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" style="border-radius: 10px;">입력하기</a>
-</div>
-<hr>
-<br>			
-			
+
+			<div align="center" style="margin-top: 7%; margin-bottom: 7%;">
+				<h5 class="test_font" align="center"
+					style="font-size: 22px; margin-bottom: 3%;">알러지나 못먹는 식재료를
+					입력하세요!</h5>
+				<a href="food_filter.jsp" class="btn delicious-btn"
+					data-animation="fadeInUp" data-delay="1000ms"
+					style="border-radius: 10px;">입력하기</a>
+			</div>
+			<hr>
+			<br>
+
 			<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name()%>
 				<span>님의 건강에 맞춰 음식을 추천해드려요!</span>
 			</h5>
@@ -322,7 +336,8 @@ if (user != null) {
 			<div class="row">
 
 				<%
-				for (int i = 0; i < 8; i++) {
+				for (int i = 0; i < 3; i++) {
+					int j = (new Random().nextInt(food1.size()));
 				%>
 				<!-- 레시피/ 식재료 글 시작-->
 				<div class="col-12 col-sm-6 col-lg-4 list1">
@@ -331,24 +346,24 @@ if (user != null) {
 
 						<div class="receipe-thumb" style="padding: 0px">
 							<img style="height: 100px;"
-								src="<%=food.get(i).getFood_image()%>" alt="">
+								src="<%=food1.get(j).getFood_image()%>" alt="">
 						</div>
 						<!-- Receipe Content -->
 						<div class="receipe-content " style="padding-left: 10px">
 							<br>
 							<!-- 좋은 질병 표시-->
 							<span class="test_font"> <%
- if (food.get(i).getFood_good() != null) {
- %> <%=food.get(i).getFood_good()%> <%
- }
- %>
+							 if (food1.get(j).getFood_good() != null) {
+							 %> <%=food1.get(j).getFood_good()%> <%
+							 }
+							 %>
 							</span>
 							<!-- 음식 명-->
 							<span class="test_font"
-								style="font-weight: bold; font-size: 20px; color: black;"><%=food.get(i).getFood_name()%></span>
+								style="font-weight: bold; font-size: 20px; color: black;"><%=food1.get(j).getFood_name()%></span>
 							<a class="test_font"
 								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-								href="custom_ingredient.html<%-- ?name=<%= food.get(i).getFood_name()%> --%>">상세보기</a>
+								href="ingredient_page.jsp?name=<%= food1.get(j).getFood_name()%>">상세보기</a>
 						</div>
 					</div>
 				</div>
@@ -361,7 +376,7 @@ if (user != null) {
 			</div>
 			<div align="center">
 				<button id="btn" style="margin-left: 100px;"
-					onclick="location.href='custom_ingredient.html'">더보기</button>
+					onclick="location.href='custom_ingredient.jsp'">더보기</button>
 			</div>
 			<!-- ##### 맞춤 레시피 추천 종료 ##### -->
 			<%
@@ -401,7 +416,13 @@ if (user != null) {
 					<div class="row">
 
 						<%
-						for (int i = 0; i < 8; i++) {
+						int j = 0;
+						if(food2.size() <6){
+							j = food2.size();
+						}else{
+							j = 6;
+						}
+						for (int i = 0; i < j; i++) {
 						%>
 						<!-- 레시피/ 식재료 글 시작-->
 						<div class="col-12 col-sm-6 col-lg-4 list1">
@@ -410,24 +431,25 @@ if (user != null) {
 
 								<div class="receipe-thumb" style="padding: 0px">
 									<img style="height: 100px;"
-										src="<%=food.get(i).getFood_image()%>" alt="">
+										src="<%=food2.get(i).getFood_image()%>" alt="">
 								</div>
 								<!-- Receipe Content -->
 								<div class="receipe-content " style="padding-left: 10px">
 									<br>
 									<!-- 좋은 질병 표시-->
-									<span class="test_font"> <%
-									 if (food.get(i).getFood_good() != null) {
-									 %> <%=food.get(i).getFood_good()%> <%
-									 }
-									 %>
+									<span class="test_font"> 
+									<%
+										 if (food2.get(i).getFood_good() != null) {
+										 %> <%=food2.get(i).getFood_good()%> <%
+										 }
+									%>
 									</span>
 									<!-- 음식 명-->
 									<span class="test_font"
-										style="font-weight: bold; font-size: 20px; color: black;"><%=food.get(i).getFood_name()%></span>
+										style="font-weight: bold; font-size: 20px; color: black;"><%=food2.get(i).getFood_name()%></span>
 									<a class="test_font"
 										style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-										href="custom_ingredient.html<%-- ?name=<%= food.get(i).getFood_name()%> --%>">상세보기</a>
+										href="ingredient_page.jsp?name=<%= food2.get(i).getFood_name()%>">상세보기</a>
 								</div>
 							</div>
 						</div>

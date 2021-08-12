@@ -1,15 +1,28 @@
+<%@page import="java.util.Date"%>
+<%@page import="model.FoodDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.FoodDAO"%>
 <%@page import="model.MyfoodDAO"%>
 <%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%
 	UserDTO user = (UserDTO) session.getAttribute("login_User");
+
+	Date time = new Date();
+	int month = time.getMonth() + 1;
+
 	MyfoodDAO mf = new MyfoodDAO();
-	String[] myfood = new String[5];
+	
+	FoodDAO dao = new FoodDAO();
+	ArrayList<String> dis = (ArrayList<String>)session.getAttribute("dis");
+	
+	ArrayList<FoodDTO> food = null;
 	
 	if(user != null){
-		myfood = mf.select_not(user.getU_id());
+		food = dao.food_custom_season(dis, mf.select_not(user.getU_id()), month);
 	}
+	
     
     %>
 <!DOCTYPE html>
@@ -24,6 +37,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 .row {
 	display: flex;
@@ -31,7 +45,7 @@
 
 .btn {
 	position: relative;
-	left: 40%;
+	/* left: 40%; */
 	transform: translateX(-50%);
 	margin-bottom: 40px;
 	width: 100px;
@@ -44,9 +58,8 @@
 	transition: 0.4s;
 	display: inline;
 	border-radius: 12px;
-	/* margin-left: 20px; */
+	margin-left: 100px;
 	font-family: 'allfonts';
-	margin-left: 50px;
 }
 
 .list1 {
@@ -54,6 +67,9 @@
 	display: none;
 	/* display: ; */
 }
+.left{
+            text-align: left;
+        }
 </style>
 <script src="jquery-3.6.0.min.js"></script>
 <script>
@@ -227,214 +243,47 @@
 	</h5>
 
 
-	<section class="small-receipe-area ">
+	<section class="small-receipe-area">
 		<div class="container">
+
+			<h5 align="center" style="margin-bottom: 50px;"></h5>
 			<div class="row">
 
-				<!-- ##### 맞춤 레시피 추천 시작 ##### -->
-				<hr>
-				<section class="small-receipe-area ">
-					<div class="container">
-						<h5 align="center" style="margin-bottom: 50px;"></h5>
-						<div class="row">
+				<!-- 레시피/ 식재료 글 시작-->
+				<% for(int i = 0; i < food.size(); i++) {%>
+				<div class="col-12 col-sm-6 col-lg-4 list1">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
 
-							<!-- 레시피/ 식재료 글 시작-->
-							<div class="col-12 col-sm-6 col-lg-4 list1">
-								<div class="single-small-receipe-area d-flex">
-									<!-- Receipe Thumb -->
-									<a href="ingredient_page.jsp">
-										<div class="receipe-thumb">
-											<img src="img/bg-img/sr1.jpg" alt="">
-										</div> <!-- Receipe Content -->
-										<div class="receipe-content">
-											<br>
-											<!-- 좋은 질병 표시-->
-											<span>당뇨</span>
-											<!-- 음식 명-->
-											<h5>우엉이 세상을 정복한다</h5>
-									</a>
-								</div>
-							</div>
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= food.get(i).getFood_image() %>" alt="">
 						</div>
-						<!-- 레시피/식재료 글 종료-->
-						<!-- 레시피/ 식재료 글 시작-->
-						<div class="col-12 col-sm-6 col-lg-4 list1">
-							<div class="single-small-receipe-area d-flex">
-								<!-- Receipe Thumb -->
-								<a href="ingredient_page.html">
-									<div class="receipe-thumb">
-										<img src="img/bg-img/sr1.jpg" alt="">
-									</div> <!-- Receipe Content -->
-									<div class="receipe-content">
-										<br>
-										<!-- 좋은 질병 표시-->
-										<span>당뇨</span>
-										<!-- 음식 명-->
-										<h5>우엉이 세상을 정복한다</h5>
-								</a>
-							</div>
-						</div>
-					</div>
-					<!-- 레시피/식재료 글 종료-->
-					<!-- 레시피/ 식재료 글 시작-->
-					<div class="col-12 col-sm-6 col-lg-4 list1">
-						<div class="single-small-receipe-area d-flex">
-							<!-- Receipe Thumb -->
-							<a href="ingredient_page.html">
-								<div class="receipe-thumb">
-									<img src="img/bg-img/sr1.jpg" alt="">
-								</div> <!-- Receipe Content -->
-								<div class="receipe-content">
-									<br>
-									<!-- 좋은 질병 표시-->
-									<span>당뇨</span>
-									<!-- 음식 명-->
-									<h5>우엉이 세상을 정복한다</h5>
-							</a>
-						</div>
-					</div>
-			</div>
-			<!-- 레시피/식재료 글 종료-->
-			<!-- 레시피/ 식재료 글 시작-->
-			<div class="col-12 col-sm-6 col-lg-4 list1">
-				<div class="single-small-receipe-area d-flex">
-					<!-- Receipe Thumb -->
-					<a href="ingredient_page.html">
-						<div class="receipe-thumb">
-							<img src="img/bg-img/sr1.jpg" alt="">
-						</div> <!-- Receipe Content -->
-						<div class="receipe-content">
+						<!-- Receipe Content -->
+						<div class="receipe-content "
+							style="padding-left: 10px; text-align: left;">
 							<br>
 							<!-- 좋은 질병 표시-->
-							<span>당뇨</span>
+							<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
+								<%= food.get(i).getFood_good()%> <%}%>
+							</span>
 							<!-- 음식 명-->
-							<h5>우엉이 세상을 정복한다</h5>
-					</a>
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
 
+				<% } %>
 
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
 			</div>
+			<p align="center">
+				<button id="load" class="btn">더보기</button>
+			</p>
 		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
-			</div>
-		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
-			</div>
-		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
-			</div>
-		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
-			</div>
-		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-		<!-- 레시피/ 식재료 글 시작-->
-		<div class="col-12 col-sm-6 col-lg-4 list1">
-			<div class="single-small-receipe-area d-flex">
-				<!-- Receipe Thumb -->
-				<a href="ingredient_page.html">
-					<div class="receipe-thumb">
-						<img src="img/bg-img/sr1.jpg" alt="">
-					</div> <!-- Receipe Content -->
-					<div class="receipe-content">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span>당뇨</span>
-						<!-- 음식 명-->
-						<h5>우엉이 세상을 정복한다</h5>
-				</a>
-			</div>
-		</div>
-		</div>
-		<!-- 레시피/식재료 글 종료-->
-
-		</div>
-		<p>
-			<button id="load" class="btn">더보기</button>
-		</p>
 
 
 
