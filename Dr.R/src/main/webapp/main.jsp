@@ -58,10 +58,7 @@ if (user != null) {
 		$("#mypage").attr("style", "display:flex");
 	} else
 		$("#mypage").attr("style", "display:none");
-	// 로그인 했으면 마이페이지로 이동,
-	// 로그인 하지 않았으면 로그인 페이지로 이동
-	// 로그인 했을 때만 마이페이지, 맞춤레시피 탭 보이게 style속성 바꿔주기 
-	// visible : true or false
+
 </script>
 
 

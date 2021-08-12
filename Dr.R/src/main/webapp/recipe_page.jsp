@@ -1,3 +1,4 @@
+<%@page import="model.UserDTO"%>
 <%@page import="model.CommentDAO"%>
 <%@page import="model.CommentDTO"%>
 <%@page import="model.RecipeDTO"%>
@@ -8,6 +9,8 @@
    
 <%
 response.setCharacterEncoding("euc-kr");
+
+UserDTO user = (UserDTO) session.getAttribute("login_User");
 
 String name = request.getParameter("name");
 
@@ -254,10 +257,12 @@ session.setAttribute("recipe_code", recipe.getRecipe_code());
 
                     <!-- ´ñ±Û °ø°£ -->
                     <hr>
+                    <% if(user!= null){ %>
                     <form action="CommentCon?"  method="get">
                         <textarea name = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
+                    <%} %>
                     <hr>
                     
                     <div align="left">
