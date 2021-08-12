@@ -250,8 +250,8 @@ if(dao2.comment_select(recipe.getRecipe_code()) != null){
 
                     <!-- ´ñ±Û °ø°£ -->
                     <hr>
-                    <form>
-                        <textarea rows="5" cols="50" style="border: 1px solid gray;"></textarea>
+                    <form action="CommentCon?cmt_recipe=" + <%=recipe.getRecipe_code() %> method="get">
+                        <textarea id = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="´ñ±ÛÀÛ¼º">
                     </form>
                     <hr>
