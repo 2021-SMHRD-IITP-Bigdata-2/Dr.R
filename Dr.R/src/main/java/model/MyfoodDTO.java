@@ -29,6 +29,16 @@ public class MyfoodDTO {
 		this.myfood_not4 = myfood_not4;
 		this.myfood_not5 = myfood_not5;
 	}
+	
+	public MyfoodDTO(String myfood_id, String myfood_not1, String myfood_not2, String myfood_not3, String myfood_not4,
+			String myfood_not5) {
+		this.myfood_id = myfood_id;
+		this.myfood_not1 = myfood_not1;
+		this.myfood_not2 = myfood_not2;
+		this.myfood_not3 = myfood_not3;
+		this.myfood_not4 = myfood_not4;
+		this.myfood_not5 = myfood_not5;
+	}
 
 	public String getMyfood_id() {
 		return myfood_id;

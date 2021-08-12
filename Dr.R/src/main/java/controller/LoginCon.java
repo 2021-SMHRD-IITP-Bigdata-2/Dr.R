@@ -33,7 +33,7 @@ public class LoginCon extends HttpServlet {
 		if(user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("login_User", user);
-			
+			System.out.println("성공");
 			// 로그인 성공 후 이동페이지
 			response.sendRedirect("main.jsp");
 		}else {

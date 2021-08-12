@@ -54,9 +54,9 @@ public class MyfoodDAO {
 	}
 
 	public String[] select_not(String id) {
-		
+
 		String[] list = new String[5];
-		
+
 		try {
 
 			connection();
@@ -65,7 +65,7 @@ public class MyfoodDAO {
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
-			
+
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -74,18 +74,98 @@ public class MyfoodDAO {
 				list[2] = rs.getString(3);
 				list[3] = rs.getString(4);
 				list[4] = rs.getString(5);
-			}else {
+			} else {
 				for (int i = 0; i < list.length; i++) {
 					list[i] = null;
 				}
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally { 
+		} finally {
 			close();
 		}
 		return list;
 	}
+
+	
+	// insert
+	public int insert_not(String user) {
+
+		try {
+
+			connection();
+
+			String sql = "insert into MYFOOD(myfood_id) values(?)";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+
+	// 못먹는 식재료 입력하는 DAO
+	public int update_not(String notfood, String id, int size) {
+
+		try {
+
+			connection();
+
+			String sql = "";
+
+			sql = "update myfood set myfood_not" + (size+1) + "=? where myfood_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, notfood);
+			psmt.setString(2, id);
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	public int delete_not(String id, String not, int index) {
+
+		try {
+
+			connection();
+
+			String sql = "";
+
+			sql = "update myfood set myfood_not" + (index+1) + "=null where myfood_id = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

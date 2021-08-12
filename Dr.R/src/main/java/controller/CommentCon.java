@@ -26,7 +26,7 @@ public class CommentCon extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		HttpSession session = request.getSession();
 		UserDTO User = (UserDTO) session.getAttribute("login_User");
-		String cmt_id = "test";
+		String cmt_id = User.getU_id();
 		String name = (String)session.getAttribute("recipe_name");
 		
 		

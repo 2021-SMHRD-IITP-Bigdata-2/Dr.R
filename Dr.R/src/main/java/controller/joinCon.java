@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.MyfoodDAO;
 import model.UserDAO;
 import model.UserDTO;
 
@@ -48,10 +49,12 @@ public class joinCon extends HttpServlet {
 		
 		UserDTO user = new UserDTO(id, pw, email, nick, sex, disease[0], disease[1], disease[2], disease[3], disease[4]);
 		UserDAO dao = new UserDAO();
+		MyfoodDAO dao2 = new MyfoodDAO();
 		
 		int cnt = dao.user_insert(user);
+		int cnt2 = dao2.insert_not(id);
 		
-		if(cnt > 0) {
+		if(cnt > 0 && cnt2 > 0) {
 			out.print("<script> alert(\"회원가입에 성공하였습니다!\");</script>");
 			response.sendRedirect("main.jsp");
 		}else {

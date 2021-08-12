@@ -12,12 +12,14 @@
 	
 	FoodDAO dao = new FoodDAO();
 	ArrayList<String> dis = (ArrayList<String>)session.getAttribute("dis");
-	ArrayList<FoodDTO> food = null;
+/* 	ArrayList<FoodDTO> food = null;
+ */	
+ 	ArrayList<FoodDTO> food = (ArrayList<FoodDTO>)session.getAttribute("food1");
 	
 	if(user != null){
 		/* myfood = mf.select_not(user.getU_id()); */
-		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
-	}
+		/* food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	 */}
 	%>
 <!DOCTYPE html>
 <html lang="en">
