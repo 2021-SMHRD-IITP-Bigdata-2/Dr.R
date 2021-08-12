@@ -248,7 +248,7 @@ public class RecipeDAO {
 		return list;
 	}
 	
-	// 레시피 검색
+	// 레시피 검색 기능
 	public ArrayList<RecipeDTO> Usearch_recipe(String name) {
 			
 		ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();;
@@ -288,5 +288,55 @@ public class RecipeDAO {
 		
 	}
 	
+	// 질병 맞춤 레시피 추천 
+	public ArrayList<RecipeDTO> custom_recipe(ArrayList<String> disease) {
+		
+		ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
+		String[] dis = {"당뇨", "고혈압", "위장", "호흡기"};
+		String[] dis1 = {"v_dang", "v_go", "v_we", "v_ho"};
+		try {
+			connection();
+
+			String sub = "select * from recipe where recipe_code in (select recipe_code from ";
+			
+			for (int i = 0; i < dis.length; i++) {
+				if(disease.get(0).equals(dis[i]))
+					sub  =sub + dis1[i] +") ";
+			}
+			
+			for (int i = 1; i < disease.size(); i++) {
+				for (int j = 0; j < dis.length; j++) {
+					if(disease.get(i).equals(dis[j]))
+						sub = sub + "and recipe_code in (select recipe_code from " + dis1[j] +" )";
+				}
+			}
+			
+			String sql = "select recipe_code, recipe_name, recipe_method, recipe_img from (" + sub + ") ";
+
+			psmt = conn.prepareStatement(sql);
+				
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				int recipe_code = rs.getInt(1);
+				String recipe_name = rs.getString(2);
+				String recipe_method = rs.getString(3);
+				String recipe_img = rs.getString(4);
+
+				RecipeDTO search = new RecipeDTO(recipe_code, recipe_name, recipe_method, recipe_img);
+				recipe.add(search);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return recipe;
+		
+	}
 
 }

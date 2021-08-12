@@ -231,7 +231,7 @@ if (user != null) {
 									}
 									%>
 									<li>
-										<div class="search-btn">
+										<div class="search-btn" onclick="location.href='search_main_page.jsp'">
 											<i class="fa fa-search" aria-hidden="true"
 												style="font-size: 30px;"></i>
 										</div>

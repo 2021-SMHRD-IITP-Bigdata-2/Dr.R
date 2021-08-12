@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="model.RecipeDTO"%>
 <%@page import="model.FoodDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,8 +6,11 @@
     pageEncoding="utf-8"%>
     
  <%
- 	ArrayList<FoodDTO> food = (ArrayList<FoodDTO>)session.getAttribute("search_food");
- 	ArrayList<RecipeDTO> recipe = (ArrayList<RecipeDTO>)session.getAttribute("search_recipe");
+ 	ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
+ 	food = (ArrayList<FoodDTO>)session.getAttribute("search_food");
+ 	ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
+ 	recipe = (ArrayList<RecipeDTO>)session.getAttribute("search_recipe");
+
  %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +31,81 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
+.row {
+	display: flex;
+}
+.btn {
+	position: relative;
+	/* left: 40%; */
+	transform: translateX(-50%);
+	margin-bottom: 40px;
+	width: 100px;
+	height: 40px;
+	background: rgb(244, 105, 19);
+	color: white;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	transition: 0.4s;
+	display: inline;
+	border-radius: 12px;
+	margin-left: 100px;
+	font-family: 'allfonts';
+}
+
+.list1 {
+	/* visibility: hidden; */
+	display: none;
+	/* display: ; */
+}
+.list2 {
+	/* visibility: hidden; */
+	display: none;
+	/* display: ; */
+}
+.left{
+            text-align: left;
+        }
+</style>
+<script src="jquery-3.6.0.min.js"></script>
+<script>
+        let num1 = 0;
+        let num2 = 6;
+        $(function () {
+            $(".list1").slice(num1, num2).attr("style", "display:flex");
+            $("#load").click(function () {
+                num1 += 6;
+                num2 += 6;
+                if (num1 < $(".list1").length) {
+                    console.log("클릭됨");
+                    $(".list1").slice(num1, num2).attr("style", "display:flex");
+                }
+
+                else {
+                    alert("더이상 없습니다 !!! ");
+                }
+            });
+        });
+        
+        let num3 = 0;
+        let num4 = 6;
+        $(function () {
+            $(".list2").slice(num3, num4).attr("style", "display:flex");
+            $("#load2").click(function () {
+                num1 += 6;
+                num2 += 6;
+                if (num1 < $(".list2").length) {
+                    console.log("클릭됨");
+                    $(".list2").slice(num1, num2).attr("style", "display:flex");
+                }
+
+                else {
+                    alert("더이상 없습니다 !!! ");
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Preloader -->
@@ -126,90 +204,57 @@
         <span style="color: black;">식재료 검색 결과</span>
     </div>
     
-    <section class="small-receipe-area section-padding-80-0">
-            <div class="container">
+	<section class="small-receipe-area" >
+        <div class="container">
+           
+            <h5 align="center" style="margin-bottom: 50px;"></h5>
             <div class="row">
 
                 <!-- Small Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <img src="img/bg-img/sr1.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <span>당뇨에 좋은</span>
-                            <a href="receipe-post.html">
-                                <h6 style="font-weight: bold;">꽈리고추 멸치볶음</h6>
-                            </a>
-                            
-                        </div>
-                    </div>
-                </div>
+                <% 
+				if(food != null){
+				for(int i = 0; i < food.size(); i++) {
+				%>
+				<div class="col-12 col-sm-6 col-lg-4 list1">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
 
-                <!-- Small Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <img src="img/bg-img/sr2.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <span>January 04, 2018</span>
-                            <a href="receipe-post.html">
-                                <h5>Baked Bread</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= food.get(i).getFood_image() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content "
+							style="padding-left: 10px; text-align: left;">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
+								<%= food.get(i).getFood_good()%> <%}%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="ingredient_page.jsp?name=<%=URLEncoder.encode(food.get(i).getFood_name(), "euc-kr")%>">상세보기</a>
+						</div>
+					</div>
+				</div>
 
-                <!-- Small Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <img src="img/bg-img/sr3.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <span>January 04, 2018</span>
-                            <a href="receipe-post.html">
-                                <h5>Scalops on salt</h5>
-                            </a>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Small Receipe Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-small-receipe-area d-flex">
-                        <!-- Receipe Thumb -->
-                        <div class="receipe-thumb">
-                            <img src="img/bg-img/sr4.jpg" alt="">
-                        </div>
-                        <!-- Receipe Content -->
-                        <div class="receipe-content">
-                            <br>
-                            <span>January 04, 2018</span>
-                            <a href="receipe-post.html">
-                                <h5>Fruits on plate</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+				<% }} %>
+</div>
+			</div>
+			<p align="center">
+				<button id="load" class="btn">더보기</button>
+			</p>
                 </div>
             </div>
+            
         </section>
 
     <!-- ##### 식재료 검색 종료 ##### -->
 
-        <!-- ##### 레시피 검색 결과 ##### -->
+         <!-- ##### 레시피 검색 결과 ##### -->
         <hr>
 
         <br>
@@ -222,79 +267,47 @@
                 <div class="container">
                 <div class="row">
     
-                    <!-- Small Receipe Area -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="single-small-receipe-area d-flex">
-                            <!-- Receipe Thumb -->
-                            <div class="receipe-thumb">
-                                <img src="img/bg-img/sr1.jpg" alt="">
-                            </div>
-                            <!-- Receipe Content -->
-                            <div class="receipe-content">
-                                <br>
-                                <span>당뇨에 좋은</span>
-                                <a href="receipe-post.html">
-                                    <h6 style="font-weight: bold;">꽈리고추 멸치볶음</h6>
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </div>
+                     <% 
+				if(recipe != null){
+				for(int i = 0; i < recipe.size(); i++) {
+				%>
+				<div class="col-12 col-sm-6 col-lg-4 list2">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
+
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= recipe.get(i).getRecipe_img() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content "
+							style="padding-left: 10px; text-align: left;">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <% if(recipe.get(i).getRecipe_method() != null){%>
+								<%= recipe.get(i).getRecipe_method()%> <%}%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= recipe.get(i).getRecipe_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="recipe_page.jsp?name=<%=URLEncoder.encode(recipe.get(i).getRecipe_name(), "euc-kr")  %>">상세보기</a>
+						</div>
+					</div>
+				</div>
+
+				<% }} %>
+    </div>
+			</div>
+			<p align="center">
+				<button id="load2" class="btn">더보기</button>
+			</p>
+                    
     
-                    <!-- Small Receipe Area -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="single-small-receipe-area d-flex">
-                            <!-- Receipe Thumb -->
-                            <div class="receipe-thumb">
-                                <img src="img/bg-img/sr2.jpg" alt="">
-                            </div>
-                            <!-- Receipe Content -->
-                            <div class="receipe-content">
-                                <br>
-                                <span>January 04, 2018</span>
-                                <a href="receipe-post.html">
-                                    <h5>Baked Bread</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                   
     
-                    <!-- Small Receipe Area -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="single-small-receipe-area d-flex">
-                            <!-- Receipe Thumb -->
-                            <div class="receipe-thumb">
-                                <img src="img/bg-img/sr3.jpg" alt="">
-                            </div>
-                            <!-- Receipe Content -->
-                            <div class="receipe-content">
-                                <br>
-                                <span>January 04, 2018</span>
-                                <a href="receipe-post.html">
-                                    <h5>Scalops on salt</h5>
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Small Receipe Area -->
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <div class="single-small-receipe-area d-flex">
-                            <!-- Receipe Thumb -->
-                            <div class="receipe-thumb">
-                                <img src="img/bg-img/sr4.jpg" alt="">
-                            </div>
-                            <!-- Receipe Content -->
-                            <div class="receipe-content">
-                                <br>
-                                <span>January 04, 2018</span>
-                                <a href="receipe-post.html">
-                                    <h5>Fruits on plate</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
         </section>

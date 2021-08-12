@@ -1,15 +1,15 @@
-<%@page import="model.FoodDAO"%>
-<%@page import="model.FoodDTO"%>
+<%@page import="model.RecipeDTO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.RecipeDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
-	ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
-	FoodDAO dao = new FoodDAO();
-	
-	food = dao.food_dang();
+	RecipeDAO dao = new RecipeDAO();
+	ArrayList<String> disease = new ArrayList<>();
+	disease.add("당뇨");
+	ArrayList<RecipeDTO> recipe = dao.custom_recipe(disease);
 %>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -54,12 +54,12 @@
     <script src="jquery-3.6.0.min.js"></script>
     <script>
         let num1 = 0;
-        let num2 = 4;
+        let num2 = 6;
         $(function () {
             $(".list1").slice(num1, num2).attr("style", "display:flex");
             $("#load").click(function () {
-                num1 += 4;
-                num2 += 4;
+                num1 += 6;
+                num2 += 6;
                 if (num1 < $(".list1").length) {
                     console.log("클릭됨");
                     $(".list1").slice(num1, num2).attr("style", "display:flex");
@@ -195,11 +195,11 @@
             &nbsp&nbsp
             &nbsp&nbsp
             
-            <a class="test_font1" style="font-size: 17px;border-bottom: 2px solid #adadad; " href="Disease_Diabetes_food.jsp">식재료</a>
+            <a class="test_font1" style="font-size: 17px; " href="Disease_Diabetes_food.jsp">식재료</a>
             &nbsp&nbsp
             &nbsp&nbsp
 
-            <a class="test_font1" style="font-size: 17px; " href="Disease_Diabetes_recipe.jsp">레시피</a>
+            <a class="test_font1" style="font-size: 17px;border-bottom: 2px solid #adadad;" href="Disease_Diabetes_recipe.html">레시피</a>
         </ul>
 
     </div>
@@ -245,34 +245,37 @@
             <h5 align="center" style="margin-bottom: 50px;"></h5>
             <div class="row">
 
-    <!-- 레시피/ 식재료 글 시작-->
-    		<% for(int i = 0; i < food.size(); i++) {%>
-               <div class="col-12 col-sm-6 col-lg-4 list1">
-				<div class="single-small-receipe-area d-flex">
-					<!-- Receipe Thumb -->
+                    <% 
+				if(recipe != null){
+				for(int i = 0; i < recipe.size(); i++) {
+				%>
+				<div class="col-12 col-sm-6 col-lg-4 list1">
+					<div class="single-small-receipe-area d-flex">
+						<!-- Receipe Thumb -->
 
-					<div class="receipe-thumb" style="padding: 0px">
-						<img style="height: 100px;"
-							src="<%= food.get(i).getFood_image() %>" alt="">
-					</div>
-					<!-- Receipe Content -->
-					<div class="receipe-content " style="padding-left: 10px; text-align:left;">
-						<br>
-						<!-- 좋은 질병 표시-->
-						<span class="test_font"> <% if(food.get(i).getFood_good() != null){%>
-							<%= food.get(i).getFood_good()%> <%}%>
-						</span>
-						<!-- 음식 명-->
-						<span class="test_font"
-							style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
-						<a class="test_font"
-							style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-							href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+						<div class="receipe-thumb" style="padding: 0px">
+							<img style="height: 100px;"
+								src="<%= recipe.get(i).getRecipe_img() %>" alt="">
+						</div>
+						<!-- Receipe Content -->
+						<div class="receipe-content "
+							style="padding-left: 10px; text-align: left;">
+							<br>
+							<!-- 좋은 질병 표시-->
+							<span class="test_font"> <% if(recipe.get(i).getRecipe_method() != null){%>
+								<%= recipe.get(i).getRecipe_method()%> <%}%>
+							</span>
+							<!-- 음식 명-->
+							<span class="test_font"
+								style="font-weight: bold; font-size: 20px; color: black;"><%= recipe.get(i).getRecipe_name() %></span>
+							<a class="test_font"
+								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
+								href="recipe_page.jsp?name=<%=recipe.get(i).getRecipe_name()  %>">상세보기</a>
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<% } %>
+
+				<% }} %>
     <!-- 레시피/식재료 글 종료-->
 
     </div>
