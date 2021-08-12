@@ -306,6 +306,15 @@ if (user != null) {
 			<%
 			} else {
 			%>
+			
+<div align="center" style="margin-top: 7%; margin-bottom: 7%;">
+<h5  class="test_font" align="center" style="font-size: 22px; margin-bottom: 3%;">알러지나 못먹는 식재료를 입력하세요!
+</h5>
+<a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms" style="border-radius: 10px;">입력하기</a>
+</div>
+<hr>
+<br>			
+			
 			<h5 class="test_font" align="center" style="font-size: 25px;"><%=user.getU_name()%>
 				<span>님의 건강에 맞춰 음식을 추천해드려요!</span>
 			</h5>
