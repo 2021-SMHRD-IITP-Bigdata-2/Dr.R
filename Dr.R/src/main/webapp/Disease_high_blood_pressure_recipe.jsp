@@ -278,14 +278,11 @@
 		
                 <!-- 레시피/ 식재료 글 시작-->
                 <% for (int i=0; i < recipe.size(); i++){	%>
-<<<<<<< HEAD
-=======
+
+
                 <% 
-                rNum.add(i);
-                session.setAttribute("rNum", rNum); 
                 	//여기서 음식 레시피 번호 저장해서 해당되는 번호만 전송????
                 %>
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-IITP-Bigdata-2/Dr.R.git
                <div class="col-12 col-sm-6 col-lg-4 list1 left">
                 <div class="single-small-receipe-area d-flex">
                     <!-- Receipe Thumb -->
