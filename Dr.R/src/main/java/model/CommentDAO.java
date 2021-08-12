@@ -53,7 +53,7 @@ public class CommentDAO {
 			connection();
 			
 			//3. 孽府巩 角青
-			String sql = "insert into comments values(cmt_num.nextval, ?, sysdate, ?, ?)";
+			String sql = "insert into commentss values(cmt_num.nextval, ?, sysdate, ?, ?)";
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, comment.getCmt_content());
@@ -81,7 +81,7 @@ public class CommentDAO {
 					connection();
 					
 					//3. 孽府巩 角青
-					String sql = "select cmt_content, cmt_time, cmt_id from commentss where cmt_recipe=?";
+					String sql = "select cmt_content, cmt_time, cmt_id from COMMENTSs where cmt_recipe=?";
 					
 					psmt = conn.prepareStatement(sql);
 					psmt.setInt(1, recipe);

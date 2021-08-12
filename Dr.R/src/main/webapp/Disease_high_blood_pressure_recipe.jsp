@@ -16,6 +16,7 @@
 	RecipeDAO dao = new RecipeDAO();
 	recipe = dao.recipe_go();
 	HttpSession session1 = request.getSession();
+	
 	session1.setAttribute("recipe", recipe);
 	
 	
@@ -286,7 +287,7 @@
                <div class="col-12 col-sm-6 col-lg-4 list1 left">
                 <div class="single-small-receipe-area d-flex">
                     <!-- Receipe Thumb -->
-                    <a href="recipe_page2.jsp?name=<%= recipe.get(i).getRecipe_name()%>">
+                    <a href="recipe_page.jsp?name=<%= recipe.get(i).getRecipe_name()%>">
                     
                     
                     <!--  <a href="ingredient_page.html">-->
