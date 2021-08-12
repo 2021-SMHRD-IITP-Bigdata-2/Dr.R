@@ -346,6 +346,7 @@ if (user != null) {
 
 				<%
 				int number_of_rec = 0;
+				int ran = 0;
 				if (food1.size()>=3){
 					number_of_rec = 3;
 				}else{
@@ -353,6 +354,12 @@ if (user != null) {
 				}
 				for (int i = 0; i < number_of_rec; i++) {
 					int j = (new Random().nextInt(food1.size()));
+					if(ran == j){
+						i--;
+						continue;
+					}else{
+					ran = j;
+					}
 				%>
 				<!-- 레시피/ 식재료 글 시작-->
 				<div class="col-12 col-sm-6 col-lg-4 list1">
