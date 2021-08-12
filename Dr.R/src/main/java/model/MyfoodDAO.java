@@ -79,6 +79,8 @@ public class MyfoodDAO {
 					list[i] = null;
 				}
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -89,16 +91,16 @@ public class MyfoodDAO {
 
 	
 	// insert
-	public int insert_not(MyfoodDTO user) {
+	public int insert_not(String user) {
 
 		try {
 
 			connection();
 
-			String sql = "insert into MYFOOD values(?, null, null, null, null, null, null, null, null, null)";
+			String sql = "insert into MYFOOD(myfood_id) values(?)";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, user.getMyfood_id());
+			psmt.setString(1, user);
 
 			cnt = psmt.executeUpdate();
 
@@ -113,15 +115,13 @@ public class MyfoodDAO {
 	// 못먹는 식재료 입력하는 DAO
 	public int update_not(String notfood, String id, int size) {
 
-		int size1 = size;
-
 		try {
 
 			connection();
 
 			String sql = "";
 
-			sql = "update myfood set myfood_not" + size1 + "=? where myfood_id = ? ";
+			sql = "update myfood set myfood_not" + size + "=? where myfood_id = ? ";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, notfood);
 			psmt.setString(2, id);
