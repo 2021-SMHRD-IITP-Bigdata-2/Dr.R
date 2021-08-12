@@ -18,9 +18,7 @@
 		/* myfood = mf.select_not(user.getU_id()); */
 		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
 	}
-	
-    
-    %>
+	%>
 <!DOCTYPE html>
 <html lang="en">
 
