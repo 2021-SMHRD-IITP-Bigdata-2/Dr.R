@@ -1,8 +1,28 @@
+<%@page import="model.FoodDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.FoodDAO"%>
+<%@page import="model.MyfoodDAO"%>
+<%@page import="model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%
+	UserDTO user = (UserDTO) session.getAttribute("login_User");
+	MyfoodDAO mf = new MyfoodDAO();
+	
+	FoodDAO dao = new FoodDAO();
+	/* ArrayList<String> dis = (ArrayList<String>)session.getAttribute("dis");
+	ArrayList<FoodDTO> food = null;
+	
+	if(user != null){
+		food = dao.food_custom(dis, mf.select_not(user.getU_id()));
+	} */
+	
+	ArrayList<FoodDTO> food = (ArrayList<FoodDTO>)session.getAttribute("food1");
+    
+    
+    %>
 <head>
     <meta charset="EUC-KR">
     <meta name="description" content="">

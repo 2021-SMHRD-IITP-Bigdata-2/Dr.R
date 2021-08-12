@@ -312,49 +312,52 @@ public class FoodDAO {
 		ArrayList<FoodDTO> list = new ArrayList<>();
 
 		int size = arr.size() - 2;
-		String[] con = { "and", "and", "and" };	
-		String[] con2 = {"or", "or", "or", "or" };
+		String[] con = { "and", "and", "and" };
+		String[] con2 = { "or", "or", "or", "or" };
 
 		while (size >= 0) {
 			con[size] = "or";
 			size -= 1;
 		}
 
-		for (int i = myfood.length-1; i >= 0; i--) {
-			if(myfood[i] != null) {
-				for(int j = 0; j < i; j++)
+		for (int i = myfood.length - 1; i >= 0; i--) {
+			if (myfood[i] != null) {
+				for (int j = 0; j < i; j++)
 					con2[j] = "and";
 			}
 		}
-			
-		
+
 		try {
 			connection();
 
-			String sql = "select distinct food_name, food_good, food_content, food_image from (select * from food where food_name not like ? " + con2[0] + " food_name not like ? " + con2[1] 
-					+ " food_name not like ? " + con2[2] + " food_name not like ? " + con2[3] + " food_name not like ?)  "
-					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
+			
+			String sql = "select distinct food_name, food_good, food_content, food_image from (select * from food where food_name not like ? "
+					+ con2[0] + " food_name not like ? " + con2[1] + " food_name not like ? " + con2[2]
+					+ " food_name not like ? " + con2[3] + " food_name not like ?)  " + "where food_good like ? "
+					+ con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ? ";
 
 			psmt = conn.prepareStatement(sql);
-			
+
 			for (int i = 0; i < myfood.length; i++) {
-				if(myfood[i] != null)
-					psmt.setString(i+1, '%'+myfood[i]+'%');
+				if (myfood[i] != null)
+					psmt.setString(i + 1, '%' + myfood[i] + '%');
 				else
-					psmt.setString(i+1, "%%");
+					psmt.setString(i + 1, "%%");
 			}
-			
+
 			int num = 6;
-			
-			for (int i = 0; i < arr.size(); i ++) {
-				String good = '%'+arr.get(i)+'%';
+
+			for (int i = 0; i < arr.size(); i++) {
+				String good = '%' + arr.get(i) + '%';
 				psmt.setString(num, good);
 				num += 1;
 			}
-			for(int i = num; i <= 9; i++) {
-				String a = '%'+""+'%';
+			for (int i = num; i <= 9; i++) {
+				String a = '%' + "" + '%';
 				psmt.setString(i, a);
 			}
+
+//			psmt.setInt(10, month);
 
 			rs = psmt.executeQuery();
 
@@ -379,38 +382,179 @@ public class FoodDAO {
 
 		return list;
 	}
-	
+
 	public ArrayList<FoodDTO> food_custom(ArrayList<String> arr) {
 		ArrayList<FoodDTO> list = new ArrayList<>();
 
 		int size = arr.size() - 2;
-		String[] con = { "and", "and", "and" };	
+		String[] con = { "and", "and", "and" };
 
 		while (size >= 0) {
 			con[size] = "or";
 			size -= 1;
 		}
-		
+
 		try {
 			connection();
 
 			String sql = "select distinct food_name, food_good, food_content, food_image from food "
-					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ?";
+					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2]
+					+ " food_good like ? ";
 
 			psmt = conn.prepareStatement(sql);
-			
+
 			int num = 1;
-			
-			for (int i = 0; i < arr.size(); i ++) {
-				String good = '%'+arr.get(i)+'%';
+
+			for (int i = 0; i < arr.size(); i++) {
+				String good = '%' + arr.get(i) + '%';
 				psmt.setString(num, good);
 				num += 1;
 			}
-			for(int i = num; i <= 4; i++) {
-				String a = '%'+""+'%';
+			for (int i = num; i <= 4; i++) {
+				String a = '%' + "" + '%';
 				psmt.setString(i, a);
 			}
 
+//			psmt.setInt(5, month);
+			
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_good = rs.getString(2);
+				String food_content = rs.getString(3);
+				String food_image = rs.getString(4);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+	
+	public ArrayList<FoodDTO> food_custom_season(ArrayList<String> arr, String[] myfood, int month) {
+		ArrayList<FoodDTO> list = new ArrayList<>();
+
+		int size = arr.size() - 2;
+		String[] con = { "and", "and", "and" };
+		String[] con2 = { "or", "or", "or", "or" };
+
+		while (size >= 0) {
+			con[size] = "or";
+			size -= 1;
+		}
+
+		for (int i = myfood.length - 1; i >= 0; i--) {
+			if (myfood[i] != null) {
+				for (int j = 0; j < i; j++)
+					con2[j] = "and";
+			}
+		}
+
+		try {
+			connection();
+
+			
+			String sql = "select distinct food_name, food_good, food_content, food_image from (select * from (select food_name, food_good, food_content, "
+					+ "food_image from food where food_month = ? ) where food_name not like ? "
+					+ con2[0] + " food_name not like ? " + con2[1] + " food_name not like ? " + con2[2]
+					+ " food_name not like ? " + con2[3] + " food_name not like ? )  " + "where food_good like ? "
+					+ con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2] + " food_good like ? ";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, month);
+			
+			for (int i = 0; i < myfood.length; i++) {
+				if (myfood[i] != null)
+					psmt.setString(i + 2, '%' + myfood[i] + '%');
+				else
+					psmt.setString(i + 2, "%%");
+			}
+
+			int num = 7;
+
+			for (int i = 0; i < arr.size(); i++) {
+				String good = '%' + arr.get(i) + '%';
+				psmt.setString(num, good);
+				num += 1;
+			}
+			for (int i = num; i <= 10; i++) {
+				String a = '%' + "" + '%';
+				psmt.setString(i, a);
+			}
+
+//			psmt.setInt(10, month);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String food_name = rs.getString(1);
+				String food_good = rs.getString(2);
+				String food_content = rs.getString(3);
+				String food_image = rs.getString(4);
+
+				FoodDTO food = new FoodDTO(food_name, food_content, food_image, food_good);
+
+				list.add(food);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+			close();
+
+		} // end finally
+
+		return list;
+	}
+
+	public ArrayList<FoodDTO> food_custom_season(ArrayList<String> arr, int month) {
+		ArrayList<FoodDTO> list = new ArrayList<>();
+
+		int size = arr.size() - 2;
+		String[] con = { "and", "and", "and" };
+
+		while (size >= 0) {
+			con[size] = "or";
+			size -= 1;
+		}
+
+		try {
+			connection();
+
+			String sql = "select distinct food_name, food_good, food_content, food_image from (select food_name, food_good, food_content, "
+					+ " food_image from food where food_month = ? ) "
+					+ "where food_good like ? " + con[0] + " food_good like ? " + con[1] + " food_good like ? " + con[2]
+					+ " food_good like ? ";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, month);
+			
+			int num = 2;
+
+			for (int i = 0; i < arr.size(); i++) {
+				String good = '%' + arr.get(i) + '%';
+				psmt.setString(num, good);
+				num += 1;
+			}
+			for (int i = num; i <= 5; i++) {
+				String a = '%' + "" + '%';
+				psmt.setString(i, a);
+			}
+
+//			psmt.setInt(5, month);
+			
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -437,7 +581,7 @@ public class FoodDAO {
 
 	// 식재료 검색
 	public FoodDTO search_food(String name) {
-		
+
 		FoodDTO food = new FoodDTO();
 
 		try {
@@ -448,7 +592,7 @@ public class FoodDAO {
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, name);
-			
+
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
@@ -470,6 +614,6 @@ public class FoodDAO {
 		} // end finally
 
 		return food;
-	
+
 	}
 }
