@@ -13,17 +13,17 @@ response.setCharacterEncoding("euc-kr");
 UserDTO user = (UserDTO) session.getAttribute("login_User");
 
 String name = request.getParameter("name");
-
 //식재료 관련
 RecipeDAO dao = new RecipeDAO();
 RecipeDTO recipe = dao.search_recipe(name);
 
+System.out.println(recipe.getRecipe_code());
+
 CommentDAO dao2 = new CommentDAO();
-ArrayList<CommentDTO> comment = null;
+ArrayList<CommentDTO> comment = new ArrayList<CommentDTO>();
 if(dao2.comment_select(recipe.getRecipe_code()) != null){
 	comment = dao2.comment_select(recipe.getRecipe_code());
 }
-
 
 session.setAttribute("recipe_name", name);
 session.setAttribute("recipe_code", recipe.getRecipe_code());
@@ -238,13 +238,16 @@ session.setAttribute("recipe_code", recipe.getRecipe_code());
                             <!-- 건드려야 하는 곳 -->
                             <h4 class="test_font" style="font-size: 25px; margin-bottom: 30px;">조리과정</h4>
                             <div align="center" style="color: black; text-align: left;">
-                            <%if (recipe.getRecipe_cook1() != null){ %>
                                 <img alt="" style="width: 100%;"
-                                    src="<%=recipe.getRecipe_cook1() %>">
+                                    src="img/<%=recipe.getRecipe_code() %>.png">
                                 <br>
-                                <img alt=""
-                                    src="<%=recipe.getRecipe_cook2() %>">
-                                    <%}else{ %>
+                                <img alt="" style="width: 100%;"
+                                    src="img/<%=recipe.getRecipe_code() %>-1.png">
+                                <br>
+                                <img alt="" style="width: 100%;"
+                                    src="img/<%=recipe.getRecipe_code() %>-2.png">
+                                <br>
+                                <% if( recipe.getRecipe_cook1() == null){ %>
                                      <p style="font-size: 17px; color: black;" align="center">현재 레시피 준비중입니다 ..!
                                     </p>
                                     <%} %>
@@ -259,7 +262,7 @@ session.setAttribute("recipe_code", recipe.getRecipe_code());
                     <hr>
                     <% if(user!= null){ %>
                     <form action="CommentCon?"  method="get">
-                        <textarea name = "comment" rows="5" cols="50" style="border: 1px solid gray;"></textarea>
+                        <textarea name = "comment" rows="5" cols="30" style="border: 1px solid gray;"></textarea>
                         <input class="btn" style="vertical-align: top; margin-left: 30px; line-height:90px;" type="submit" value="댓글작성">
                     </form>
                     <%} %>

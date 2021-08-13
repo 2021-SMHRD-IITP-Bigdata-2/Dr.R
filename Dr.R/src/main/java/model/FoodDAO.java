@@ -294,8 +294,9 @@ public class FoodDAO {
 
 				list.add(food);
 			}
-
-			season = list.get(list.size() / 2 - 1);
+			
+			
+			season = list.get(list.size() / 2);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

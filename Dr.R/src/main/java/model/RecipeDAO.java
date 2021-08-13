@@ -294,6 +294,12 @@ public class RecipeDAO {
 		ArrayList<RecipeDTO> recipe = new ArrayList<RecipeDTO>();
 		String[] dis = {"당뇨", "고혈압", "위장", "호흡기"};
 		String[] dis1 = {"v_dang", "v_go", "v_we", "v_ho"};
+		
+		// 입력된 질병 정보에 좋은 음식 추출
+		FoodDAO dao = new FoodDAO();
+		ArrayList<FoodDTO> food = new ArrayList<FoodDTO>();
+		food = dao.food_custom(disease);
+		
 		try {
 			connection();
 
@@ -311,22 +317,25 @@ public class RecipeDAO {
 				}
 			}
 			
-			String sql = "select recipe_code, recipe_name, recipe_method, recipe_img from (" + sub + ") ";
+			for (int i = 0; i < food.size(); i++) {}
+				String sql = "select recipe_code, recipe_name, recipe_method, recipe_img from (" + sub
+						+ ") where recipe_food like ? ";
 
-			psmt = conn.prepareStatement(sql);
-				
-			rs = psmt.executeQuery();
+				psmt = conn.prepareStatement(sql);
+//				psmt.setString(1, '%' + food.get(i).getFood_name() + '%');
 
-			while (rs.next()) {
-				int recipe_code = rs.getInt(1);
-				String recipe_name = rs.getString(2);
-				String recipe_method = rs.getString(3);
-				String recipe_img = rs.getString(4);
+				rs = psmt.executeQuery();
 
-				RecipeDTO search = new RecipeDTO(recipe_code, recipe_name, recipe_method, recipe_img);
-				recipe.add(search);
-			}
+				while (rs.next()) {
+					int recipe_code = rs.getInt(1);
+					String recipe_name = rs.getString(2);
+					String recipe_method = rs.getString(3);
+					String recipe_img = rs.getString(4);
 
+					RecipeDTO search = new RecipeDTO(recipe_code, recipe_name, recipe_method, recipe_img);
+					recipe.add(search);
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

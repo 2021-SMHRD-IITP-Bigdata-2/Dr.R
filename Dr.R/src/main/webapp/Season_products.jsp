@@ -1,10 +1,11 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="model.FoodDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.FoodDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%
-	
+	response.setCharacterEncoding("euc-kr");
 
 	String month = request.getParameter("month");
 
@@ -288,7 +289,7 @@ button {
 								style="font-weight: bold; font-size: 20px; color: black;"><%= food.get(i).getFood_name() %></span>
 							<a class="test_font"
 								style="font-size: 11px; padding: 2px 3px; width: fit-content; background-color: #ececec; border-radius: 5px"
-								href="ingredient_page.jsp?name=<%= food.get(i).getFood_name()%>">상세보기</a>
+								href="ingredient_page.jsp?name=<%= URLEncoder.encode(food.get(i).getFood_name(), "euc-kr")%>">상세보기</a>
 						</div>
 					</div>
 				</div>
