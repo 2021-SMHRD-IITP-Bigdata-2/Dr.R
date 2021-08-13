@@ -24,8 +24,8 @@ MyfoodDAO mf = new MyfoodDAO();
 } */
 
 ArrayList<String> dis = new ArrayList<>();
-ArrayList<FoodDTO> food1 = null;
-ArrayList<FoodDTO> food2 = null;
+ArrayList<FoodDTO> food1 = new ArrayList<FoodDTO>();
+ArrayList<FoodDTO> food2 = new ArrayList<FoodDTO>();
 
 String[] not;
 int size = 0;
@@ -237,6 +237,7 @@ if (user != null) {
 										</div>
 									</li>
 							</div>
+							<!-- ¸Þ´º¹­À½ ³¡ -->
 						</div>
 
 					</nav>
